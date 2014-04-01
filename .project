@@ -5,8 +5,14 @@
 	<projects>
 	</projects>
 	<buildSpec>
+		<buildCommand>
+			<name>com.appcelerator.titanium.core.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>com.appcelerator.titanium.alloy.core.nature</nature>
+		<nature>com.appcelerator.titanium.mobile.nature</nature>
 	</natures>
 </projectDescription>
