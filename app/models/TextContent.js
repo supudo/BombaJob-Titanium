@@ -3,15 +3,14 @@ var moment = require('alloy/moment');
 exports.definition = {
     config: {
         "columns": {
-            "TID": "INTEGER PRIMARY KEY AUTOINCREMENT",
-            "TextContentID": "INTEGER",
+            "TextContentID": "INTEGER PRIMARY KEY AUTOINCREMENT",
             "Title": "TEXT",
             "Content": "TEXT"
         },
         "adapter": {
             "type": "sql",
             "collection_name": "TextContent",
-            "idAttribute": "TID"
+            "idAttribute": "TextContentID"
         }
     },
 

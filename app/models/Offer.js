@@ -3,8 +3,7 @@ var moment = require('alloy/moment');
 exports.definition = {
     config: {
         "columns": {
-            "OID": "INTEGER PRIMARY KEY AUTOINCREMENT",
-            "OfferID":"INTEGER",
+            "OfferID":"INTEGER PRIMARY KEY AUTOINCREMENT",
             "CategoryID": "INTEGER",
             "Positivism": "TEXT",
             "Title": "TEXT",
@@ -21,7 +20,7 @@ exports.definition = {
         "adapter": {
             "type": "sql",
             "collection_name": "Offers",
-            "idAttribute": "OID"
+            "idAttribute": "OfferID"
         }
     },
 

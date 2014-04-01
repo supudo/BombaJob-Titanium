@@ -1,8 +1,6 @@
 var args = arguments[0] || {};
 
-//$.row.offerID = args.OID;
+//$.rowOffer.offerID = OfferID;
 $.imgType.image = (args.FreelanceYn > 0 ? "icon_person.png" : "icon_company.png");
 $.lblTitle.text = args.Title;
 $.lblCategory.text = args.CategoryTitle;
-
-Alloy.Globals.LogThis("Offer bind - " + args.OID + " - " + args.Title);

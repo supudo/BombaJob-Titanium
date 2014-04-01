@@ -1,7 +1,9 @@
 <Alloy>
-    <TableViewRow>
+    <TableViewRow id="rowOffer">
         <ImageView id="imgType"/>
-        <Label id="lblTitle"/>
-        <Label id="lblCategory"/>
+        <View id="vRow">
+            <Label id="lblTitle"/>
+            <Label id="lblCategory"/>
+        </View>
     </TableViewRow>
 </Alloy>

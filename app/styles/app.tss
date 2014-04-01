@@ -1,3 +1,6 @@
+// 
+// General all-screen styles
+//
 ".bgContainer": {
     backgroundImage: '/bg-pattern.png',
     backgroundRepeat: true, 
@@ -22,6 +25,20 @@
     layout: 'vertical'
 },
 
+// 
+// Table styles
+//
+
+".tblOffers": {
+    backgroundColor: 'transparent',
+    separatorColor: '#df9368',
+    style: Titanium.UI.iPhone.TableViewStyle.GROUPED,
+    headerView: ''
+}
+
+// 
+// Android ActionBar styles
+//
 'Window': {
     navBarHidden: false,
     backgroundColor: '#ffffff'

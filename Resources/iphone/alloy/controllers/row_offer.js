@@ -6,41 +6,78 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
-    $.__views.row_offer = Ti.UI.createTableViewRow({
-        id: "row_offer"
+    $.__views.rowOffer = Ti.UI.createTableViewRow({
+        backgroundColor: "transparent",
+        className: "ir",
+        hasChild: false,
+        selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.GRAY,
+        contentHeight: "auto",
+        id: "rowOffer"
     });
-    $.__views.row_offer && $.addTopLevelView($.__views.row_offer);
+    $.__views.rowOffer && $.addTopLevelView($.__views.rowOffer);
     $.__views.imgType = Ti.UI.createImageView({
+        width: "40dp",
+        left: "5dp",
+        top: "5dp",
+        clipsToBounds: true,
+        touchEnabled: false,
         id: "imgType"
     });
-    $.__views.row_offer.add($.__views.imgType);
+    $.__views.rowOffer.add($.__views.imgType);
+    $.__views.vRow = Ti.UI.createView({
+        layout: "vertical",
+        height: Ti.UI.SIZE,
+        id: "vRow"
+    });
+    $.__views.rowOffer.add($.__views.vRow);
     $.__views.lblTitle = Ti.UI.createLabel({
-        left: "10dp",
-        top: "10dp",
-        textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+        left: "50dip",
+        top: "5dip",
+        textAlign: "left",
         font: {
-            fontSize: "14dp"
+            fontFamily: "Ubuntu",
+            fontSize: "16dp",
+            fontStyle: "normal",
+            fontWeight: "normal"
         },
+        right: "5dip",
+        ellipsize: true,
+        wordWrap: false,
+        touchEnabled: false,
+        color: "#000",
+        horizontalWrap: true,
+        width: Ti.UI.FILL,
         id: "lblTitle"
     });
-    $.__views.row_offer.add($.__views.lblTitle);
+    $.__views.vRow.add($.__views.lblTitle);
     $.__views.lblCategory = Ti.UI.createLabel({
-        left: "10dp",
+        left: "50dip",
         top: "10dp",
-        textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+        textAlign: "left",
         font: {
-            fontSize: "14dp"
+            fontFamily: "Ubuntu",
+            fontSize: "10dp",
+            fontStyle: "normal",
+            fontWeight: "normal"
         },
+        right: "5dip",
+        bottom: "5dip",
+        ellipsize: true,
+        wordWrap: false,
+        touchEnabled: false,
+        color: "#444",
+        horizontalWrap: true,
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
         id: "lblCategory"
     });
-    $.__views.row_offer.add($.__views.lblCategory);
+    $.__views.vRow.add($.__views.lblCategory);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     $.imgType.image = args.FreelanceYn > 0 ? "icon_person.png" : "icon_company.png";
     $.lblTitle.text = args.Title;
     $.lblCategory.text = args.CategoryTitle;
-    Alloy.Globals.LogThis("Offer bind - " + args.OID + " - " + args.Title);
     _.extend($, exports);
 }
 

@@ -36,6 +36,10 @@ function Controller() {
     });
     $.__views.tblOffers = Ti.UI.createTableView({
         top: "10dp",
+        backgroundColor: "transparent",
+        separatorColor: "#df9368",
+        style: Titanium.UI.iPhone.TableViewStyle.GROUPED,
+        headerView: "",
         id: "tblOffers"
     });
     $.__views.__alloyId1.add($.__views.tblOffers);

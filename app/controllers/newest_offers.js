@@ -7,7 +7,6 @@ function fetchOffers() {
     dbOffers && dbOffers.fetch();
     var rows = [];
     _.each(dbOffers.models, function(item) {
-        //Alloy.Globals.LogThis("Offer bind - " + item.attributes.OID + " - " + item.attributes.Title);
         rows.push(Alloy.createController('row_offer', {
             OID: item.attributes.OID,
             FreelanceYn: item.attributes.FreelanceYn,
