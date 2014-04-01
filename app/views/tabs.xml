@@ -1,0 +1,12 @@
+<Alloy>
+    <TabGroup id="tbMenu" allowUserCustomization="false" onOpen="doOpen">
+        <Require src="newest_offers" />
+        <Require src="search_jobs" />   
+        <Require src="search_people" /> 
+        <Require src="search" />
+        <Require src="post_offer" />
+        <Require src="settings" />
+        <Require src="sync" />
+        <Require src="about" />
+    </TabGroup>
+</Alloy>

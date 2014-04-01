@@ -1,0 +1,7 @@
+<Alloy>
+    <Tab id="tbNewest" title="L('newestOffers')" icon="tb_newest.png">
+        <Window class="bgContainer" title="L('newestOffers')">
+            <Label text="L('newestOffers')" />
+        </Window>
+    </Tab>
+</Alloy>

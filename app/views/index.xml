@@ -1,0 +1,5 @@
+<Alloy>
+	<Window class="bgContainer" platform="android,ios">
+        <ActivityIndicator id="acView" class="loadingSpinner" message="L('loading')" />
+	</Window>
+</Alloy>

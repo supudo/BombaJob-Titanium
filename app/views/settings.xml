@@ -1,0 +1,7 @@
+<Alloy>
+    <Tab id="tbSettings" title="L('settings')" icon="tb_settings.png">
+        <Window class="bgContainer" title="L('settings')" backButtonTitle="">
+            <Label text="L('settings')" />
+        </Window>
+    </Tab>
+</Alloy>

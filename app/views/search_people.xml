@@ -1,0 +1,7 @@
+<Alloy>
+    <Tab id="tbPeople" title="L('searchPeople')" icon="tb_people.png">
+        <Window class="bgContainer" title="L('searchPeople')">
+            <Label text="L('searchPeople')" />
+        </Window>
+    </Tab>
+</Alloy>

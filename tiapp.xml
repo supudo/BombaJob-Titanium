@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <id>net.supudo.apps.titanium.Bombajob</id>
+    <name>BombaJob</name>
+    <version>1.0</version>
+    <publisher>supudo</publisher>
+    <url>http://supudo.net</url>
+    <description>Official Titanium app for BombaJob.bg</description>
+    <copyright>2013 by supudo</copyright>
+    <icon>appicon.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>false</statusbar-hidden>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>08f73cdd-0f50-4454-8339-9b115680f6f2</guid>
+    <property name="ti.ui.defaultunit" type="string">system</property>
+    <iphone>
+        <orientations device="iphone">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+        </orientations>
+        <orientations device="ipad">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+            <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
+        </orientations>
+    </iphone>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+        <manifest>
+            <application android:theme="@style/Theme.Action">
+                <activity android:name="org.appcelerator.titanium.TiTranslucentActivity"/>
+            </application>
+            <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19"/>
+        </manifest>
+    </android>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules/>
+    <deployment-targets>
+        <target device="android">true</target>
+        <target device="blackberry">false</target>
+        <target device="ipad">true</target>
+        <target device="iphone">true</target>
+        <target device="mobileweb">true</target>
+        <target device="tizen">true</target>
+    </deployment-targets>
+    <ios>
+        <plist>
+            <dict>
+                <key>UISupportedInterfaceOrientations~iphone</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                </array>
+                <key>UISupportedInterfaceOrientations~ipad</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                </array>
+                <key>UIRequiresPersistentWiFi</key>
+                <false/>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+                <key>UIStatusBarHidden</key>
+                <false/>
+                <key>UIStatusBarStyle</key>
+                <string>UIStatusBarStyleDefault</string>
+                <key>UIAppFonts</key>
+                <array>
+                    <string>Ubuntu-Bold.ttf</string>
+                    <string>Ubuntu-BoldItalic.ttf</string>
+                    <string>Ubuntu-Italic.ttf</string>
+                    <string>Ubuntu-Light.ttf</string>
+                    <string>Ubuntu-LightItalic.ttf</string>
+                    <string>Ubuntu-Medium.ttf</string>
+                    <string>Ubuntu-MediumItalic.ttf</string>
+                    <string>Ubuntu-Regular.ttf</string>
+                </array>
+            </dict>
+        </plist>
+    </ios>
+    <sdk-version>3.2.2.GA</sdk-version>
+    <plugins>
+        <plugin version="1.0">ti.alloy</plugin>
+    </plugins>
+    <tizen appid="6Aief39Ll2" xmlns:tizen="http://ti.appcelerator.org">
+        <tizen:privilege name="http://tizen.org/privilege/system"/>
+        <tizen:privilege name="http://tizen.org/privilege/tizen"/>
+        <tizen:privilege name="http://tizen.org/privilege/systeminfo"/>
+        <tizen:privilege name="http://tizen.org/privilege/system"/>
+        <tizen:privilege name="http://tizen.org/privilege/setting"/>
+        <tizen:privilege name="http://tizen.org/privilege/secureelement"/>
+        <tizen:privilege name="http://tizen.org/privilege/push"/>
+        <tizen:privilege name="http://tizen.org/privilege/power"/>
+        <tizen:privilege name="http://tizen.org/privilege/package.info"/>
+        <tizen:privilege name="http://tizen.org/privilege/notification.write"/>
+        <tizen:privilege name="http://tizen.org/privilege/notification.read"/>
+        <tizen:privilege name="http://tizen.org/privilege/notification"/>
+        <tizen:privilege name="http://tizen.org/privilege/nfc.tag"/>
+        <tizen:privilege name="http://tizen.org/privilege/nfc.p2p"/>
+        <tizen:privilege name="http://tizen.org/privilege/nfc.common"/>
+        <tizen:privilege name="http://tizen.org/privilege/nfc.admin"/>
+        <tizen:privilege name="http://tizen.org/privilege/networkbearerselection"/>
+        <tizen:privilege name="http://tizen.org/privilege/messaging.write"/>
+        <tizen:privilege name="http://tizen.org/privilege/messaging.write"/>
+        <tizen:privilege name="http://tizen.org/privilege/messaging.send"/>
+        <tizen:privilege name="http://tizen.org/privilege/messaging.read"/>
+        <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
+        <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
+        <tizen:privilege name="http://tizen.org/privilege/download"/>
+        <tizen:privilege name="http://tizen.org/privilege/datasync"/>
+        <tizen:privilege name="http://tizen.org/privilege/datacontrol.consumer"/>
+        <tizen:privilege name="http://tizen.org/privilege/content.write"/>
+        <tizen:privilege name="http://tizen.org/privilege/content.read"/>
+        <tizen:privilege name="http://tizen.org/privilege/contact.write"/>
+        <tizen:privilege name="http://tizen.org/privilege/contact.read"/>
+        <tizen:privilege name="http://tizen.org/privilege/callhistory.write"/>
+        <tizen:privilege name="http://tizen.org/privilege/callhistory.read"/>
+        <tizen:privilege name="http://tizen.org/privilege/calendar.write"/>
+        <tizen:privilege name="http://tizen.org/privilege/calendar.read"/>
+        <tizen:privilege name="http://tizen.org/privilege/bluetooth.spp"/>
+        <tizen:privilege name="http://tizen.org/privilege/bluetooth.gap"/>
+        <tizen:privilege name="http://tizen.org/privilege/bluetooth.admin"/>
+        <tizen:privilege name="http://tizen.org/privilege/appmanager.kill"/>
+        <tizen:privilege name="http://tizen.org/privilege/appmanager.certificate"/>
+        <tizen:privilege name="http://tizen.org/privilege/application.read"/>
+        <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+        <tizen:privilege name="http://tizen.org/privilege/alarm"/>
+        <tizen:privilege name="http://tizen.org/privilege/fullscreen"/>
+        <tizen:privilege name="http://tizen.org/privilege/location"/>
+        <tizen:privilege name="http://tizen.org/privilege/mediacapture"/>
+        <tizen:privilege name="http://tizen.org/privilege/unlimitedstorage"/>
+        <access origin="*" subdomains="true"/>
+    </tizen>
+</ti:app>

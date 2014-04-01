@@ -1,0 +1,7 @@
+<Alloy>
+    <Tab id="tbSync" title="L('syncagain')" icon="tb_syncagain.png">
+        <Window class="bgContainer" title="L('syncagain')" backButtonTitle="" navBarHidden="true" tabBarHidden="true" onFocus="startSync">
+            <ActivityIndicator id="acView" class="loadingSpinner" message="L('loading')" />
+        </Window>
+    </Tab>
+</Alloy>

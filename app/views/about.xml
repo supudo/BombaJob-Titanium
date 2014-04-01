@@ -1,0 +1,7 @@
+<Alloy>
+    <Tab id="tbAbout" title="L('about')" icon="tb_about.png">
+        <Window class="bgContainer" title="L('about')" backButtonTitle="">
+            <WebView id="wvContent" />
+        </Window>
+    </Tab>
+</Alloy>

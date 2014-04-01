@@ -1,0 +1,7 @@
+<Alloy>
+    <Tab id="tbPost" title="L('post')" icon="tb_postoffer.png">
+        <Window class="bgContainer" title="L('post')" backButtonTitle="">
+            <Label text="L('post')" />
+        </Window>
+    </Tab>
+</Alloy>

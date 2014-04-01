@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+   <string name="app_name">BombaJob</string>
+   
+    <string name="loading">Зареждане&#8230;</string>
+    <string name="sending">Изпращане&#8230;</string>
+    
+    <string name="noInternet">There is no Internet connection at the moment.</string>
+    
+    <string name="headerCategories">Категории</string>
+    <string name="headerOffers">Оферти</string>
+    <string name="newestOffers">Нови</string>
+    <string name="searchJobs">Работа</string>
+    <string name="searchPeople">Хора</string>
+    <string name="post">Публикувай</string>
+    <string name="settings">Настройки</string>
+    <string name="about">За BombaJob</string>
+    <string name="search">Търси</string>
+    <string name="misc">Други</string>
+    <string name="generic_error">Грешка!</string>
+    <string name="syncagain">Синхронизация</string>
+
+    <string name="title_NewestOffers">Нови обяви</string>
+    <string name="title_Jobs">Работа</string>
+    <string name="title_People">Хора</string>
+    <string name="title_Search">Търсене</string>
+    <string name="title_Settings">Настройки</string>
+    <string name="title_AboutBombaJob">За BombaJob</string>
+    <string name="title_PostOffer">Публикувай обява</string>
+    
+    <string name="no_offers">Няма оферти.</string>
+    <string name="no_categories">Няма категории.</string>
+    <string name="no_settings"></string>
+    <string name="close_alertbox">ОК</string>
+    
+    <string name="human_short">Ч</string>
+    <string name="company_short">Ф</string>
+    
+    <string name="monthsShort_1">Яну</string>
+    <string name="monthsShort_2">Фев</string>
+    <string name="monthsShort_3">Март</string>
+    <string name="monthsShort_4">Апр</string>
+    <string name="monthsShort_5">Май</string>
+    <string name="monthsShort_6">Юни</string>
+    <string name="monthsShort_7">Юли</string>
+    <string name="monthsShort_8">Авг</string>
+    <string name="monthsShort_9">Септ</string>
+    <string name="monthsShort_10">Окт</string>
+    <string name="monthsShort_11">Ное</string>
+    <string name="monthsShort_12">Дек</string>
+    
+    <string name="monthsLong_1">Януари</string>
+    <string name="monthsLong_2">Февруари</string>
+    <string name="monthsLong_3">Март</string>
+    <string name="monthsLong_4">Април</string>
+    <string name="monthsLong_5">Май</string>
+    <string name="monthsLong_6">Юни</string>
+    <string name="monthsLong_7">Юли</string>
+    <string name="monthsLong_8">Август</string>
+    <string name="monthsLong_9">Септември</string>
+    <string name="monthsLong_10">Октомври</string>
+    <string name="monthsLong_11">Ноември</string>
+    <string name="monthsLong_12">Декември</string>
+    <string name="weekday_0">Понеделник</string>
+    
+    <string name="weekday_1">Вторник</string>
+    <string name="weekday_2">Сряда</string>
+    <string name="weekday_3">Четвъртък</string>
+    <string name="weekday_4">Петък</string>
+    <string name="weekday_5">Събота</string>
+    <string name="weekday_6">Неделя</string>
+    
+    <string name="about_StorePrivateData">Запази лични данни</string>
+    <string name="about_SendGeo">Изпращай гео-координати</string>
+    <string name="about_InitSync">Начална синхронизация</string>
+    <string name="about_OnlineSearch">Онлайн търсене</string>
+    <string name="about_InAppEmail">In-App Email</string>
+    <string name="about_ShowCategories">Показвай категориите</string>
+
+    <string name="about_StorePrivateData_group">Лични данни</string>
+    <string name="about_StorePrivateData_title">Запази</string>
+    <string name="about_StorePrivateData_summary">Автоматично попълване</string>
+    <string name="about_StorePrivateData_EmailEnter">Email</string>
+    <string name="about_SendGeo_title">Координати</string>
+    <string name="about_SendGeo_summary">Изпращай гео-координати</string>
+    <string name="about_InitSync_title">Синхронизация</string>
+    <string name="about_InitSync_summary">Начална синхронизация</string>
+    <string name="about_OnlineSearch_title">Търсене</string>
+    <string name="about_OnlineSearch_summary">Онлайн или офлайн</string>
+    <string name="about_InAppEmail_title">Email</string>
+    <string name="about_InAppEmail_summary">Изпращане през телефона</string>
+    <string name="about_ShowCategories_title">Kатегории</string>
+    <string name="about_ShowCategories_summary">Показвай категориите</string>
+    <string name="yes">ДА</string>
+    <string name="no">НЕ</string>
+    <string name="searchFreelance">Проект/Freelance</string>
+    <string-array name="searchFreelance_array">
+        <item>Навсякъде</item>
+        <item>Само Проект/Freelance</item>
+        <item>Без Проект/Freelance</item>
+    </string-array>
+    <string name="search_results">Резултати</string>
+    <string name="offersCount_one">оферта</string>
+    <string name="offersCount_many">оферти</string>
+    <string name="odetails_Freelance">Проект/Freelance:</string>
+    <string name="odetails_Human_Positiv">Проблем:</string>
+    <string name="odetails_Human_Negativ">Умения:</string>
+    <string name="odetails_Company_Positiv">Описание на позицията:</string>
+    <string name="odetails_Company_Negativ">Предимства на фирмата:</string>
+
+    <string name="btn_email">Email</string>
+    <string name="btn_facebook">Facebook</string>
+    <string name="btn_twitter">Twitter</string>
+
+    <string name="facebook_publishok">Обявата беше публикувана на вашата стена.</string>
+    <string name="facebook_publisherror">Възникна проблем при публикуване на вашата стена.</string>
+    <string name="facebook_responseerror">Facebook error.</string>
+    <string name="twitter_pleaseauthorize">Моля, разрешете приложението в Twitter.</string>
+    <string name="twitter_loginerror">Грешно потребителско име и/или парола.</string>
+    <string name="twitter_publishok">Чуруликането беше успешно</string>
+    <string name="twitter_publisherror">Възникна проблем при чуруликането.</string>
+    <string name="twitter_initializing">Зареждане&#8230;</string>
+    <string name="twitter_finalizing">Още малко&#8230;</string>
+    <string name="twitter_noconnection">Нямаме връзка с Twitter в момента.</string>
+    <string name="twitter_err_requesttoken">Error getting request token</string>
+    <string name="twitter_err_accesstoken">Error getting access token</string>
+    <string name="twitter_err_duplicate">Вече сте туитнали тази оферта веднъж.</string>
+    <string name="email_subject">BombaJob.bg - виж тази обява</string>
+    <string name="email_noclient">Нямате конфигуриран email акаунт.</string>
+    <string name="contextmenu_view">Преглед</string>
+
+    <string name="contextmenu_sendmessage">Изпрати съобщение</string>
+    <string name="contextmenu_markread">Маркирай прочетено</string>
+    <string name="contextmenu_sendmessageshort">Съобщение</string>
+    <string name="contextmenu_goback">Назад</string>
+    <string name="contextmenu_share">Share!</string>
+    <string name="contextmenu_sharefb">Facebook</string>
+    <string name="contextmenu_sharetw">Twitter</string>
+    <string name="contextmenu_shareemail">Email</string>
+    <string name="offerMessage_Placeholder">Вашето съобщение&#8230;</string>
+    <string name="send_message">Изпрати</string>
+    <string name="message_sent">Съобщението е изпратено.</string>
+    <string name="message_fromEmail">От</string>
+    <string name="message_toEmail">До</string>
+    <string name="message_btn_send">Изпрати</string>
+    <string name="message_btn_cancel">Откажи</string>
+    <string name="post_HumanCompany_Choice">Аз съм</string>
+    <string-array name="post_HumanCompany_array">
+        <item>Човек</item>
+        <item>Фирма</item>
+    </string-array>
+    <string name="post_Category_Human">- Работя в -</string>
+    <string name="post_Human_Title">Заглавие на резюмето ви</string>
+    <string name="post_Human_Email">Вашият email</string>
+    <string name="post_Human_Positiv">Проблем</string>
+    <string name="post_Human_Negativ">Умения</string>
+    <string name="post_Category_Company">Категория</string>
+    <string name="post_Company_Title">Заглавие на позицията</string>
+    <string name="post_Company_Email">Email за връзка</string>
+    <string name="post_Company_Positiv">Описание на позицията</string>
+    <string name="post_Company_Negativ">Предимства на фирмата</string>
+    <string name="post_error_BlackListed">Email was blacklisted&#8230;</string>
+    <string name="post_error_OneOfferFromHuman">Съжаляваме,\nМоже да публикувате само една "човешка" обява от един email адрес.\n\nНе ни се вярва да имате 2 таланта.\n\nАко искате да осъвремените вашата обява, намерете админ мейла, който сме пратили при публикуването и и щракнете на линка за изтриване на вашата стара обява, за да я изтриете и след това да публикувате вашата нова.</string>
+    <string name="post_Button">Бум!</string>
+    <string name="post_OfferSuccess">Благодарим ви!</string>
+    <string name="post_MissingReqFields">Моля, попълнете изпуснатите полета.</string>
+    <string name="post_error_Category">Моля, изберете категория</string>
+    <string name="post_error_Human_Title">Заглавието на резюмето ви е задължително поле.</string>
+    <string name="post_error_Human_Email">Вашият email е задължително поле.</string>
+    <string name="post_error_Human_Positiv">Проблем е задължително поле.</string>
+    <string name="post_error_Human_Negativ">Умения е задължително поле.</string>
+    <string name="post_error_Company_Title">Заглавието на позицията е задължително поле.</string>
+    <string name="post_error_Company_Email">Моля попълнете email-а за връзка.</string>
+    <string name="post_error_Company_Positiv">Описаниеto на позицията е задължително поле.</string>
+    <string name="post_error_Company_Negativ">Предимствата на фирмата е задължително поле.</string>
+</resources>
