@@ -6,7 +6,7 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
-    $.__views.__alloyId11 = Ti.UI.createWindow({
+    $.__views.__alloyId10 = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
@@ -15,9 +15,9 @@ function Controller() {
         navTintColor: "#df9368",
         title: L("settings"),
         backButtonTitle: "",
-        id: "__alloyId11"
+        id: "__alloyId10"
     });
-    $.__views.__alloyId12 = Ti.UI.createLabel({
+    $.__views.__alloyId11 = Ti.UI.createLabel({
         left: "10dp",
         top: "10dp",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
@@ -25,11 +25,11 @@ function Controller() {
             fontSize: "14dp"
         },
         text: L("settings"),
-        id: "__alloyId12"
+        id: "__alloyId11"
     });
-    $.__views.__alloyId11.add($.__views.__alloyId12);
+    $.__views.__alloyId10.add($.__views.__alloyId11);
     $.__views.tbSettings = Ti.UI.createTab({
-        window: $.__views.__alloyId11,
+        window: $.__views.__alloyId10,
         id: "tbSettings",
         title: L("settings"),
         icon: "tb_settings.png"

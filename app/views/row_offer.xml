@@ -1,0 +1,7 @@
+<Alloy>
+    <TableViewRow>
+        <ImageView id="imgType"/>
+        <Label id="lblTitle"/>
+        <Label id="lblCategory"/>
+    </TableViewRow>
+</Alloy>

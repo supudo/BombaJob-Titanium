@@ -6,7 +6,7 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
-    $.__views.__alloyId7 = Ti.UI.createWindow({
+    $.__views.__alloyId6 = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
@@ -14,9 +14,9 @@ function Controller() {
         verticalAlign: "center",
         navTintColor: "#df9368",
         title: L("searchJobs"),
-        id: "__alloyId7"
+        id: "__alloyId6"
     });
-    $.__views.__alloyId8 = Ti.UI.createLabel({
+    $.__views.__alloyId7 = Ti.UI.createLabel({
         left: "10dp",
         top: "10dp",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
@@ -24,11 +24,11 @@ function Controller() {
             fontSize: "14dp"
         },
         text: L("searchJobs"),
-        id: "__alloyId8"
+        id: "__alloyId7"
     });
-    $.__views.__alloyId7.add($.__views.__alloyId8);
+    $.__views.__alloyId6.add($.__views.__alloyId7);
     $.__views.tbJobs = Ti.UI.createTab({
-        window: $.__views.__alloyId7,
+        window: $.__views.__alloyId6,
         id: "tbJobs",
         title: L("searchJobs"),
         icon: "tb_jobs.png"
