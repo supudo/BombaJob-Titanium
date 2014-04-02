@@ -1,5 +1,6 @@
 var dbOffers = Alloy.Collections.Offers;
 dbOffers && dbOffers.fetch();
+var foffers = dbOffers.where({ HumanYn: 0 });
 
 fetchOffers();
 
@@ -9,9 +10,10 @@ $.tblOffers.addEventListener("click", function(e) {
 
 function fetchOffers() {
     var rows = [];
-    _.each(dbOffers.models, function(item) {
+    _.each(foffers, function(item) {
         rows.push(Alloy.createController('row_offer', {
             OID: item.attributes.OID,
+            HumanYn: item.attributes.HumanYn,
             FreelanceYn: item.attributes.FreelanceYn,
             Title: item.attributes.Title,
             CategoryTitle: item.attributes.CategoryTitle
@@ -21,7 +23,7 @@ function fetchOffers() {
 }
 
 function viewDetails(idx) {
-    var off = dbOffers.models[idx];
+    var off = foffers[idx];
     var odw = Alloy.createController("offer_details", {
         data: off,
         "$model": off
