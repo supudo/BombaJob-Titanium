@@ -6,31 +6,43 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
-    $.__views.offer_details = Ti.UI.createWindow({
+    $.__views.odw = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
         backgroundRepeat: true,
         verticalAlign: "center",
         navTintColor: "#df9368",
-        id: "offer_details"
+        id: "odw",
+        backButtonTitle: "",
+        title: L("title_Offer")
     });
-    $.__views.offer_details && $.addTopLevelView($.__views.offer_details);
-    $.__views.lblTitle = Ti.UI.createLabel({
+    $.__views.odw && $.addTopLevelView($.__views.odw);
+    $.__views.lblOTitle = Ti.UI.createLabel({
         left: "10dp",
         top: "10dp",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
         font: {
-            fontSize: "14dp"
+            fontFamily: "Ubuntu",
+            fontSize: "24dp",
+            fontStyle: "normal",
+            fontWeight: "bold"
         },
-        id: "lblTitle"
+        right: "10dp",
+        verticalAlign: "center",
+        color: "#df9368",
+        id: "lblOTitle"
     });
-    $.__views.offer_details.add($.__views.lblTitle);
+    $.__views.odw.add($.__views.lblOTitle);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    $.offer_details.open();
+    exports.openOfferDetails = function(_tab) {
+        _tab.open($.odw);
+    };
     var args = arguments[0] || {};
-    $.lblTitle.text = null != args && null != args.$model ? args.$model.attributes.Title : "Error!";
+    var hasData = true;
+    hasData = null != args && null != args.$model ? true : false;
+    $.lblOTitle.text = hasData ? args.$model.attributes.Title : "Error!";
     _.extend($, exports);
 }
 

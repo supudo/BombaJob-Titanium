@@ -1,7 +1,18 @@
-$.offer_details.open();
+exports.openOfferDetails = function(_tab) {
+  _tab.open($.odw);
+};
+
 var args = arguments[0] || {};
+var hasData = true;
 
 if (args != null && args.$model != null)
-    $.lblTitle.text = args.$model.attributes.Title;
+    hasData = true;
  else
-    $.lblTitle.text = 'Error!';
+    hasData = false;
+
+if (hasData) {
+    $.lblOTitle.text = args.$model.attributes.Title;
+}
+else {
+    $.lblOTitle.text = 'Error!';
+}

@@ -1,0 +1,13 @@
+"#lblOTitle": {
+    top: '10dp',
+    left: '10dp',
+    right: '10dp',
+    verticalAlign: 'center',
+    color: '#df9368',
+    font: {
+        fontFamily:'Ubuntu',
+        fontSize: '24dp',
+        fontStyle: 'normal',
+        fontWeight: 'bold'
+    },
+}

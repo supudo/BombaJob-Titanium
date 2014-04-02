@@ -1,7 +1,7 @@
 <Alloy>
     <Tab id="tbJobs" title="L('searchJobs')" icon="tb_jobs.png">
         <Window class="bgContainer" title="L('searchJobs')">
-            <Label text="L('searchJobs')" />
+            <TableView id="tblOffers" class="tblOffers" />
         </Window>
     </Tab>
 </Alloy>

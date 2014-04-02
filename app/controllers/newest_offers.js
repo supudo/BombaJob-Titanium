@@ -26,6 +26,5 @@ function viewDetails(idx) {
         data: off,
         "$model": off
     });
-    odw.getView().open();
-    //$.tbNewest.open(odw.getView());
+    odw.openOfferDetails($.tbNewest);
 }

@@ -20,6 +20,7 @@
     <string name="generic_error">Грешка!</string>
     <string name="syncagain">Синхронизация</string>
 
+    <string name="title_Offer">Оферта</string>
     <string name="title_NewestOffers">Нови обяви</string>
     <string name="title_Jobs">Работа</string>
     <string name="title_People">Хора</string>

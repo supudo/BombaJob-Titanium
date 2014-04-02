@@ -1,5 +1,5 @@
 <Alloy>
-    <Window class="bgContainer">
-        <Label id="lblTitle" />
+    <Window id="odw" class="bgContainer" backButtonTitle="" title="L('title_Offer')">
+        <Label id="lblOTitle" />
     </Window>
 </Alloy>

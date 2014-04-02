@@ -17,7 +17,7 @@ function Controller() {
             data: off,
             $model: off
         });
-        $.tbNewest.open(odw.getView());
+        odw.openOfferDetails($.tbNewest);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "newest_offers";
