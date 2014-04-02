@@ -1,3 +1,5 @@
+var sync_manager = require('SyncManager');
+
 function doOpen() {
     if (OS_ANDROID) {
         var activity = $.tbMenu.activity;
@@ -39,3 +41,42 @@ if (OS_IOS) {
 }
 else
     $.tbMenu.open();
+
+$.tbMenu.addEventListener("focus", function(e) {
+    if (e.index == 7) {
+        Alloy.Globals.LogThis("Sync press");
+        //$.acView.show();
+        //startSync();
+    }
+});
+
+function startSync() {
+    Alloy.Globals.LogThis("Sync start");
+    sync_manager.startSync(syncFinished, syncError);
+}
+
+function syncFinished() {
+    Alloy.Globals.LogThis("Sync finish");
+    
+    //$.winSync.hide();
+    //$.winSync.close();
+    
+    //$.tbSync.close($.winSync);
+    //$.tbMenu.close($.winSync);
+    
+    //$.tbSync.closeWindow($.winSync);
+    //$.tbMenu.closeWindow($.winSync);
+    
+    //Alloy.Globals.navgroup.close($.winSync);
+    //Alloy.Globals.navgroup.close($.tbSync);
+    
+    //Alloy.Globals.navgroup.closeWindow($.winSync);
+    //Alloy.Globals.navgroup.closeWindow($.tbSync);
+    
+    //Alloy.Globals.navgroup.setActiveTab(0);
+}
+
+function syncError(e) {
+    Alloy.Globals.LogThis("Sync error - " + e.error);
+    alert(L('generic_error') + " " + e.error);
+}

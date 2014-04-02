@@ -35,6 +35,7 @@ function fetchCategories() {
         alert(L('noInternet'));
     else {
         var url = Alloy.Globals.ServicesURL + "?action=getCategories";
+        Alloy.Globals.LogThis("Sync - " + url);
         var xhr = Ti.Network.createHTTPClient({
             onload: function(e) {
                 processCategories(this.responseText);
@@ -57,6 +58,7 @@ function fetchOffers() {
         alert(L('noInternet'));
     else {
         var url = Alloy.Globals.ServicesURL + "?action=getNewJobs";
+        Alloy.Globals.LogThis("Sync - " + url);
         var xhr = Ti.Network.createHTTPClient({
             onload: function(e) {
                 processOffers(this.responseText);

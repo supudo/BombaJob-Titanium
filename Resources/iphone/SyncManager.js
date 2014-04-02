@@ -21,6 +21,7 @@ function fetchTextContent() {
 function fetchCategories() {
     if (Titanium.Network.online) {
         var url = Alloy.Globals.ServicesURL + "?action=getCategories";
+        Alloy.Globals.LogThis("Sync - " + url);
         var xhr = Ti.Network.createHTTPClient({
             onload: function() {
                 processCategories(this.responseText);
@@ -40,6 +41,7 @@ function fetchCategories() {
 function fetchOffers() {
     if (Titanium.Network.online) {
         var url = Alloy.Globals.ServicesURL + "?action=getNewJobs";
+        Alloy.Globals.LogThis("Sync - " + url);
         var xhr = Ti.Network.createHTTPClient({
             onload: function() {
                 processOffers(this.responseText);

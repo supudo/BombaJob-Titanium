@@ -1,9 +1,11 @@
 function Controller() {
     function startSync() {
+        Alloy.Globals.LogThis("SyncX start");
         sync_manager.startSync(syncFinished, syncError);
     }
     function syncFinished() {
-        Alloy.Globals.navgroup.setActiveTab(0);
+        Alloy.Globals.LogThis("SyncX finish");
+        Alloy.Globals.navgroup.closeWindow($.winSync);
     }
     function syncError(e) {
         Alloy.Globals.LogThis(e.error);
@@ -17,19 +19,19 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.__alloyId10 = Ti.UI.createWindow({
+    $.__views.winSync = Ti.UI.createWindow({
         navBarHidden: "true",
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
         backgroundRepeat: true,
         verticalAlign: "center",
         navTintColor: "#df9368",
+        id: "winSync",
         title: L("syncagain"),
         backButtonTitle: "",
-        tabBarHidden: "true",
-        id: "__alloyId10"
+        tabBarHidden: "true"
     });
-    startSync ? $.__views.__alloyId10.addEventListener("focus", startSync) : __defers["$.__views.__alloyId10!focus!startSync"] = true;
+    startSync ? $.__views.winSync.addEventListener("focus", startSync) : __defers["$.__views.winSync!focus!startSync"] = true;
     $.__views.acView = Ti.UI.createActivityIndicator({
         verticalAlign: "center",
         color: "#df9368",
@@ -43,9 +45,9 @@ function Controller() {
         id: "acView",
         message: L("loading")
     });
-    $.__views.__alloyId10.add($.__views.acView);
+    $.__views.winSync.add($.__views.acView);
     $.__views.tbSync = Ti.UI.createTab({
-        window: $.__views.__alloyId10,
+        window: $.__views.winSync,
         id: "tbSync",
         title: L("syncagain"),
         icon: "tb_syncagain.png"
@@ -55,7 +57,7 @@ function Controller() {
     _.extend($, $.__views);
     var sync_manager = require("SyncManager");
     $.acView.show();
-    __defers["$.__views.__alloyId10!focus!startSync"] && $.__views.__alloyId10.addEventListener("focus", startSync);
+    __defers["$.__views.winSync!focus!startSync"] && $.__views.winSync.addEventListener("focus", startSync);
     _.extend($, exports);
 }
 

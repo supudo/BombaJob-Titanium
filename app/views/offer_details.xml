@@ -1,5 +1,6 @@
 <Alloy>
     <Window id="odw" class="bgContainer" backButtonTitle="" title="L('title_Offer')">
         <Label id="lblOTitle" />
+        <Button id="btnClose" title="BACK" />
     </Window>
 </Alloy>

@@ -3,11 +3,20 @@ var sync_manager = require('SyncManager');
 $.acView.show();
 
 function startSync() {
+    Alloy.Globals.LogThis("SyncX start");
     sync_manager.startSync(syncFinished, syncError);
 }
 
 function syncFinished() {
-    Alloy.Globals.navgroup.setActiveTab(0);
+    Alloy.Globals.LogThis("SyncX finish");
+    //$.winSync.hide();
+    //$.winSync.close();
+    
+    //$.tbSync.close($.winSync);
+    //$.tbSync.closeWindow($.winSync);
+    
+    //Alloy.Globals.navgroup.close($.winSync);
+    //Alloy.Globals.navgroup.close($.tbSync);
 }
 
 function syncError(e) {

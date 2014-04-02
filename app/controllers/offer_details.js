@@ -1,5 +1,5 @@
 exports.openOfferDetails = function(_tab) {
-  _tab.open($.odw);
+    _tab.open($.odw);
 };
 
 var args = arguments[0] || {};
@@ -16,3 +16,7 @@ if (hasData) {
 else {
     $.lblOTitle.text = 'Error!';
 }
+
+$.btnClose.addEventListener("click", function(e) {
+    $.odw.close();
+});

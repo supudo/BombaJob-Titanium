@@ -34,6 +34,14 @@ function Controller() {
         id: "lblOTitle"
     });
     $.__views.odw.add($.__views.lblOTitle);
+    $.__views.btnClose = Ti.UI.createButton({
+        height: "60dp",
+        width: "300dp",
+        top: "10dp",
+        id: "btnClose",
+        title: "BACK"
+    });
+    $.__views.odw.add($.__views.btnClose);
     exports.destroy = function() {};
     _.extend($, $.__views);
     exports.openOfferDetails = function(_tab) {
@@ -43,6 +51,9 @@ function Controller() {
     var hasData = true;
     hasData = null != args && null != args.$model ? true : false;
     $.lblOTitle.text = hasData ? args.$model.attributes.Title : "Error!";
+    $.btnClose.addEventListener("click", function() {
+        $.odw.close();
+    });
     _.extend($, exports);
 }
 
