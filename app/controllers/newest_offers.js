@@ -1,10 +1,13 @@
-function tblClicked(e) {
-    $.trigger('offer_details', e);
-}
+var dbOffers = Alloy.Collections.Offers;
+dbOffers && dbOffers.fetch();
+
+fetchOffers();
+
+$.tblOffers.addEventListener("click", function(e) {
+    viewDetails(e.index);
+});
 
 function fetchOffers() {
-    var dbOffers = Alloy.Collections.Offers;
-    dbOffers && dbOffers.fetch();
     var rows = [];
     _.each(dbOffers.models, function(item) {
         rows.push(Alloy.createController('row_offer', {
@@ -17,4 +20,12 @@ function fetchOffers() {
     $.tblOffers.setData(rows);
 }
 
-fetchOffers();
+function viewDetails(idx) {
+    var off = dbOffers.models[idx];
+    var odw = Alloy.createController("offer_details", {
+        data: off,
+        "$model": off
+    });
+    odw.getView().open();
+    //$.tbNewest.open(odw.getView());
+}

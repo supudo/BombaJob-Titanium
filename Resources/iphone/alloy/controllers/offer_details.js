@@ -13,13 +13,24 @@ function Controller() {
         backgroundRepeat: true,
         verticalAlign: "center",
         navTintColor: "#df9368",
-        title: "",
         id: "offer_details"
     });
     $.__views.offer_details && $.addTopLevelView($.__views.offer_details);
+    $.__views.lblTitle = Ti.UI.createLabel({
+        left: "10dp",
+        top: "10dp",
+        textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+        font: {
+            fontSize: "14dp"
+        },
+        id: "lblTitle"
+    });
+    $.__views.offer_details.add($.__views.lblTitle);
     exports.destroy = function() {};
     _.extend($, $.__views);
     $.offer_details.open();
+    var args = arguments[0] || {};
+    $.lblTitle.text = null != args && null != args.$model ? args.$model.attributes.Title : "Error!";
     _.extend($, exports);
 }
 

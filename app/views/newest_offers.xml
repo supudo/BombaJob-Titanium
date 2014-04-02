@@ -1,7 +1,7 @@
 <Alloy>
     <Tab id="tbNewest" title="L('newestOffers')" icon="tb_newest.png">
         <Window class="bgContainer" title="L('newestOffers')">
-            <TableView id="tblOffers" onClick="tblClicked" class="tblOffers" />
+            <TableView id="tblOffers" class="tblOffers" />
         </Window>
     </Tab>
 </Alloy>

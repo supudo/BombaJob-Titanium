@@ -7,7 +7,6 @@ function startSync() {
 }
 
 function syncFinished() {
-    Alloy.Globals.LogThis("XXXX");
     Alloy.Globals.navgroup.setActiveTab(0);
 }
 

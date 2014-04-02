@@ -1,5 +1,5 @@
 <Alloy>
-    <TabGroup id="tbMenu" allowUserCustomization="false" onOpen="doOpen">
+    <TabGroup id="tbMenu" allowUserCustomization="false" onOpen="doOpen" navBarHidden="false" tabsAtBottom="true">
         <Require src="newest_offers" />
         <Require src="search_jobs" />   
         <Require src="search_people" /> 

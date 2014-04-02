@@ -1,5 +1,3 @@
-Alloy.Globals.tabgroup = $.tabs;
-
 function doOpen() {
     if (OS_ANDROID) {
         var activity = $.tbMenu.activity;

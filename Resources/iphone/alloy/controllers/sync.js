@@ -3,7 +3,6 @@ function Controller() {
         sync_manager.startSync(syncFinished, syncError);
     }
     function syncFinished() {
-        Alloy.Globals.LogThis("XXXX");
         Alloy.Globals.navgroup.setActiveTab(0);
     }
     function syncError(e) {

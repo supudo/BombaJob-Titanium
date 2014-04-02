@@ -6,7 +6,8 @@
     backgroundRepeat: true, 
     backgroundColor: 'white',
     verticalAlign: 'center',
-    navTintColor: '#df9368'
+    navTintColor: '#df9368',
+    navBarHidden: false
 },
 
 ".loadingSpinner": {
@@ -31,9 +32,7 @@
 
 ".tblOffers": {
     backgroundColor: 'transparent',
-    separatorColor: '#df9368',
-    style: Titanium.UI.iPhone.TableViewStyle.GROUPED,
-    headerView: ''
+    separatorColor: '#df9368'
 }
 
 // 

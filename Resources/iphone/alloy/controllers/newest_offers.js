@@ -1,10 +1,5 @@
 function Controller() {
-    function tblClicked(e) {
-        $.trigger("offer_details", e);
-    }
     function fetchOffers() {
-        var dbOffers = Alloy.Collections.Offers;
-        dbOffers && dbOffers.fetch();
         var rows = [];
         _.each(dbOffers.models, function(item) {
             rows.push(Alloy.createController("row_offer", {
@@ -16,6 +11,14 @@ function Controller() {
         });
         $.tblOffers.setData(rows);
     }
+    function viewDetails(idx) {
+        var off = dbOffers.models[idx];
+        var odw = Alloy.createController("offer_details", {
+            data: off,
+            $model: off
+        });
+        $.tbNewest.open(odw.getView());
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "newest_offers";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -23,7 +26,6 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
-    var __defers = {};
     $.__views.__alloyId1 = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
@@ -38,12 +40,9 @@ function Controller() {
         top: "10dp",
         backgroundColor: "transparent",
         separatorColor: "#df9368",
-        style: Titanium.UI.iPhone.TableViewStyle.GROUPED,
-        headerView: "",
         id: "tblOffers"
     });
     $.__views.__alloyId1.add($.__views.tblOffers);
-    tblClicked ? $.__views.tblOffers.addEventListener("click", tblClicked) : __defers["$.__views.tblOffers!click!tblClicked"] = true;
     $.__views.tbNewest = Ti.UI.createTab({
         window: $.__views.__alloyId1,
         id: "tbNewest",
@@ -53,8 +52,12 @@ function Controller() {
     $.__views.tbNewest && $.addTopLevelView($.__views.tbNewest);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var dbOffers = Alloy.Collections.Offers;
+    dbOffers && dbOffers.fetch();
     fetchOffers();
-    __defers["$.__views.tblOffers!click!tblClicked"] && $.__views.tblOffers.addEventListener("click", tblClicked);
+    $.tblOffers.addEventListener("click", function(e) {
+        viewDetails(e.index);
+    });
     _.extend($, exports);
 }
 

@@ -1,3 +1,5 @@
 <Alloy>
-    <Window class="bgContainer" title="" />
+    <Window class="bgContainer">
+        <Label id="lblTitle" />
+    </Window>
 </Alloy>

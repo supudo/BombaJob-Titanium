@@ -69,13 +69,14 @@ function Controller() {
     $.__views.tbMenu = Ti.UI.createTabGroup({
         tabs: __alloyId13,
         id: "tbMenu",
-        allowUserCustomization: "false"
+        allowUserCustomization: "false",
+        navBarHidden: "false",
+        tabsAtBottom: "true"
     });
     $.__views.tbMenu && $.addTopLevelView($.__views.tbMenu);
     doOpen ? $.__views.tbMenu.addEventListener("open", doOpen) : __defers["$.__views.tbMenu!open!doOpen"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
-    Alloy.Globals.tabgroup = $.tabs;
     $.tbMenu.open();
     Alloy.Globals.navgroup = $.tbMenu;
     __defers["$.__views.tbMenu!open!doOpen"] && $.__views.tbMenu.addEventListener("open", doOpen);
