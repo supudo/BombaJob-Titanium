@@ -1,6 +1,18 @@
 function Controller() {
     function doOpen() {
     }
+    function startSync() {
+        Alloy.Globals.LogThis("Sync start");
+        sync_manager.startSync(syncFinished, syncError);
+    }
+    function syncFinished() {
+        Alloy.Globals.LogThis("Sync finish");
+        $.tbMenu.getActiveTab().window.close();
+    }
+    function syncError(e) {
+        Alloy.Globals.LogThis("Sync error - " + e.error);
+        alert(L("generic_error") + " " + e.error);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "tabs";
     var __parentSymbol = arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -52,18 +64,44 @@ function Controller() {
     __alloyId10.push($.__views.__alloyId16.getViewEx({
         recurse: true
     }));
-    $.__views.__alloyId17 = Alloy.createController("sync", {
+    $.__views.winSync = Ti.UI.createWindow({
+        navBarHidden: "true",
+        backgroundColor: "white",
+        backgroundImage: "/bg-pattern.png",
+        backgroundRepeat: true,
+        verticalAlign: "center",
+        navTintColor: "#df9368",
+        id: "winSync",
+        title: L("syncagain"),
+        backButtonTitle: "",
+        tabBarHidden: "true"
+    });
+    $.__views.acView = Ti.UI.createActivityIndicator({
+        verticalAlign: "center",
+        color: "#df9368",
+        font: {
+            fontFamily: "Ubuntu",
+            fontSize: "24dp",
+            fontStyle: "normal",
+            fontWeight: "bold"
+        },
+        style: Ti.UI.iPhone.ActivityIndicatorStyle.DARK,
+        id: "acView",
+        message: L("loading")
+    });
+    $.__views.winSync.add($.__views.acView);
+    $.__views.tbSync = Ti.UI.createTab({
+        window: $.__views.winSync,
+        id: "tbSync",
+        title: L("syncagain"),
+        icon: "tb_syncagain.png"
+    });
+    __alloyId10.push($.__views.tbSync);
+    $.__views.__alloyId17 = Alloy.createController("about", {
         id: "__alloyId17",
         __parentSymbol: __parentSymbol
     });
     __alloyId10.push($.__views.__alloyId17.getViewEx({
-        recurse: true
-    }));
-    $.__views.__alloyId18 = Alloy.createController("about", {
-        id: "__alloyId18",
-        __parentSymbol: __parentSymbol
-    });
-    __alloyId10.push($.__views.__alloyId18.getViewEx({
         recurse: true
     }));
     $.__views.tbMenu = Ti.UI.createTabGroup({
@@ -77,11 +115,15 @@ function Controller() {
     doOpen ? $.__views.tbMenu.addEventListener("open", doOpen) : __defers["$.__views.tbMenu!open!doOpen"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
-    require("SyncManager");
+    var sync_manager = require("SyncManager");
     $.tbMenu.open();
     Alloy.Globals.navgroup = $.tbMenu;
     $.tbMenu.addEventListener("focus", function(e) {
-        7 == e.index && Alloy.Globals.LogThis("Sync press");
+        if (6 == e.index) {
+            Alloy.Globals.LogThis("Sync press");
+            $.acView.show();
+            startSync();
+        }
     });
     __defers["$.__views.tbMenu!open!doOpen"] && $.__views.tbMenu.addEventListener("open", doOpen);
     _.extend($, exports);

@@ -6,7 +6,12 @@
         <Require src="search" />
         <Require src="post_offer" />
         <Require src="settings" />
-        <Require src="sync" />
+        <!-- <Require src="sync" /> -->
+        <Tab id="tbSync" title="L('syncagain')" icon="tb_syncagain.png">
+            <Window id="winSync" class="bgContainer" title="L('syncagain')" backButtonTitle="" navBarHidden="true" tabBarHidden="true">
+                <ActivityIndicator id="acView" class="loadingSpinner" message="L('loading')" />
+            </Window>
+        </Tab>
         <Require src="about" />
     </TabGroup>
 </Alloy>

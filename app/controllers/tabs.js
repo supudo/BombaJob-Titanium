@@ -43,7 +43,7 @@ else
     $.tbMenu.open();
 
 $.tbMenu.addEventListener("focus", function(e) {
-    if (e.index == 7) {
+    if (e.index == 6) {
         Alloy.Globals.LogThis("Sync press");
         //$.acView.show();
         //startSync();
@@ -57,6 +57,7 @@ function startSync() {
 
 function syncFinished() {
     Alloy.Globals.LogThis("Sync finish");
+    //$.tbMenu.setActiveTab(0);
     
     //$.winSync.hide();
     //$.winSync.close();

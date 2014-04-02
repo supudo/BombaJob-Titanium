@@ -5,7 +5,6 @@ function Controller() {
     }
     function syncFinished() {
         Alloy.Globals.LogThis("SyncX finish");
-        Alloy.Globals.navgroup.closeWindow($.winSync);
     }
     function syncError(e) {
         Alloy.Globals.LogThis(e.error);
