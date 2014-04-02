@@ -1,42 +1,48 @@
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "post_offer";
+    this.__controllerPath = "offer_details";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
     arguments[0] ? arguments[0]["$model"] : null;
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
-    $.__views.__alloyId2 = Ti.UI.createWindow({
+    $.__views.odw = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
         backgroundRepeat: true,
         verticalAlign: "center",
         navTintColor: "#df9368",
-        title: L("post"),
+        id: "odw",
         backButtonTitle: "",
-        id: "__alloyId2"
+        title: L("title_Offer")
     });
-    $.__views.__alloyId3 = Ti.UI.createLabel({
+    $.__views.odw && $.addTopLevelView($.__views.odw);
+    $.__views.lblOTitle = Ti.UI.createLabel({
         left: "10dp",
         top: "10dp",
         textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
         font: {
-            fontSize: "14dp"
+            fontFamily: "Ubuntu",
+            fontSize: "24dp",
+            fontStyle: "normal",
+            fontWeight: "bold"
         },
-        text: L("post"),
-        id: "__alloyId3"
+        right: "10dp",
+        verticalAlign: "center",
+        color: "#df9368",
+        id: "lblOTitle"
     });
-    $.__views.__alloyId2.add($.__views.__alloyId3);
-    $.__views.tbPost = Ti.UI.createTab({
-        window: $.__views.__alloyId2,
-        id: "tbPost",
-        title: L("post"),
-        icon: "tb_postoffer.png"
-    });
-    $.__views.tbPost && $.addTopLevelView($.__views.tbPost);
+    $.__views.odw.add($.__views.lblOTitle);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    exports.openOfferDetails = function(_tab) {
+        _tab.open($.odw);
+    };
+    var args = arguments[0] || {};
+    var hasData = true;
+    hasData = null != args && null != args.$model ? true : false;
+    $.lblOTitle.text = hasData ? args.$model.attributes.Title : "Error!";
     _.extend($, exports);
 }
 

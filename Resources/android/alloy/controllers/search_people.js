@@ -1,4 +1,25 @@
 function Controller() {
+    function fetchOffers() {
+        var rows = [];
+        _.each(foffers, function(item) {
+            rows.push(Alloy.createController("row_offer", {
+                OID: item.attributes.OID,
+                HumanYn: item.attributes.HumanYn,
+                FreelanceYn: item.attributes.FreelanceYn,
+                Title: item.attributes.Title,
+                CategoryTitle: item.attributes.CategoryTitle
+            }).getView());
+        });
+        $.tblOffers.setData(rows);
+    }
+    function viewDetails(idx) {
+        var off = foffers[idx];
+        var odw = Alloy.createController("offer_details", {
+            data: off,
+            $model: off
+        });
+        odw.openOfferDetails($.tbPeople);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "search_people";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -6,7 +27,7 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
-    $.__views.__alloyId9 = Ti.UI.createWindow({
+    $.__views.__alloyId7 = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
@@ -14,21 +35,17 @@ function Controller() {
         verticalAlign: "center",
         navTintColor: "#df9368",
         title: L("searchPeople"),
-        id: "__alloyId9"
+        id: "__alloyId7"
     });
-    $.__views.__alloyId10 = Ti.UI.createLabel({
-        left: "10dp",
+    $.__views.tblOffers = Ti.UI.createTableView({
         top: "10dp",
-        textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-        font: {
-            fontSize: "14dp"
-        },
-        text: L("searchPeople"),
-        id: "__alloyId10"
+        backgroundColor: "transparent",
+        separatorColor: "#df9368",
+        id: "tblOffers"
     });
-    $.__views.__alloyId9.add($.__views.__alloyId10);
+    $.__views.__alloyId7.add($.__views.tblOffers);
     $.__views.tbPeople = Ti.UI.createTab({
-        window: $.__views.__alloyId9,
+        window: $.__views.__alloyId7,
         id: "tbPeople",
         title: L("searchPeople"),
         icon: "tb_people.png"
@@ -36,6 +53,15 @@ function Controller() {
     $.__views.tbPeople && $.addTopLevelView($.__views.tbPeople);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var dbOffers = Alloy.Collections.Offers;
+    dbOffers && dbOffers.fetch();
+    var foffers = dbOffers.where({
+        HumanYn: 1
+    });
+    fetchOffers();
+    $.tblOffers.addEventListener("click", function(e) {
+        viewDetails(e.index);
+    });
     _.extend($, exports);
 }
 

@@ -1,4 +1,25 @@
 function Controller() {
+    function fetchOffers() {
+        var rows = [];
+        _.each(dbOffers.models, function(item) {
+            rows.push(Alloy.createController("row_offer", {
+                OID: item.attributes.OID,
+                HumanYn: item.attributes.HumanYn,
+                FreelanceYn: item.attributes.FreelanceYn,
+                Title: item.attributes.Title,
+                CategoryTitle: item.attributes.CategoryTitle
+            }).getView());
+        });
+        $.tblOffers.setData(rows);
+    }
+    function viewDetails(idx) {
+        var off = dbOffers.models[idx];
+        var odw = Alloy.createController("offer_details", {
+            data: off,
+            $model: off
+        });
+        odw.openOfferDetails($.tbNewest);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "newest_offers";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -16,17 +37,13 @@ function Controller() {
         title: L("newestOffers"),
         id: "__alloyId1"
     });
-    $.__views.__alloyId2 = Ti.UI.createLabel({
-        left: "10dp",
+    $.__views.tblOffers = Ti.UI.createTableView({
         top: "10dp",
-        textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-        font: {
-            fontSize: "14dp"
-        },
-        text: L("newestOffers"),
-        id: "__alloyId2"
+        backgroundColor: "transparent",
+        separatorColor: "#df9368",
+        id: "tblOffers"
     });
-    $.__views.__alloyId1.add($.__views.__alloyId2);
+    $.__views.__alloyId1.add($.__views.tblOffers);
     $.__views.tbNewest = Ti.UI.createTab({
         window: $.__views.__alloyId1,
         id: "tbNewest",
@@ -36,6 +53,12 @@ function Controller() {
     $.__views.tbNewest && $.addTopLevelView($.__views.tbNewest);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var dbOffers = Alloy.Collections.Offers;
+    dbOffers && dbOffers.fetch();
+    fetchOffers();
+    $.tblOffers.addEventListener("click", function(e) {
+        viewDetails(e.index);
+    });
     _.extend($, exports);
 }
 

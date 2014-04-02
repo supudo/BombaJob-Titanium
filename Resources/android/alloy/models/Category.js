@@ -3,15 +3,14 @@ var moment = require("alloy/moment");
 exports.definition = {
     config: {
         columns: {
-            CID: "INTEGER PRIMARY KEY AUTOINCREMENT",
-            CategoryID: "INTEGER",
+            CategoryID: "INTEGER PRIMARY KEY AUTOINCREMENT",
             CategoryTitle: "TEXT",
             OffersCount: "INTEGER"
         },
         adapter: {
             type: "sql",
             collection_name: "Categories",
-            idAttribute: "CID"
+            idAttribute: "CategoryID"
         }
     },
     extendModel: function(Model) {

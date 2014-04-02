@@ -3,7 +3,6 @@ function Controller() {
         sync_manager.startSync(syncFinished, syncError);
     }
     function syncFinished() {
-        Alloy.Globals.LogThis("XXXX");
         Alloy.Globals.navgroup.setActiveTab(0);
     }
     function syncError(e) {
@@ -18,7 +17,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.__alloyId13 = Ti.UI.createWindow({
+    $.__views.__alloyId10 = Ti.UI.createWindow({
         navBarHidden: "true",
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
@@ -28,9 +27,9 @@ function Controller() {
         title: L("syncagain"),
         backButtonTitle: "",
         tabBarHidden: "true",
-        id: "__alloyId13"
+        id: "__alloyId10"
     });
-    startSync ? $.__views.__alloyId13.addEventListener("focus", startSync) : __defers["$.__views.__alloyId13!focus!startSync"] = true;
+    startSync ? $.__views.__alloyId10.addEventListener("focus", startSync) : __defers["$.__views.__alloyId10!focus!startSync"] = true;
     $.__views.acView = Ti.UI.createActivityIndicator({
         verticalAlign: "center",
         color: "#df9368",
@@ -44,9 +43,9 @@ function Controller() {
         id: "acView",
         message: L("loading")
     });
-    $.__views.__alloyId13.add($.__views.acView);
+    $.__views.__alloyId10.add($.__views.acView);
     $.__views.tbSync = Ti.UI.createTab({
-        window: $.__views.__alloyId13,
+        window: $.__views.__alloyId10,
         id: "tbSync",
         title: L("syncagain"),
         icon: "tb_syncagain.png"
@@ -56,7 +55,7 @@ function Controller() {
     _.extend($, $.__views);
     var sync_manager = require("SyncManager");
     $.acView.show();
-    __defers["$.__views.__alloyId13!focus!startSync"] && $.__views.__alloyId13.addEventListener("focus", startSync);
+    __defers["$.__views.__alloyId10!focus!startSync"] && $.__views.__alloyId10.addEventListener("focus", startSync);
     _.extend($, exports);
 }
 
