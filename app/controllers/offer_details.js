@@ -1,5 +1,5 @@
 exports.openOfferDetails = function(_tab) {
-    _tab.open($.odw);
+    _tab.open($.wOfferDetails);
 };
 
 var args = arguments[0] || {};
@@ -18,5 +18,5 @@ else {
 }
 
 $.btnClose.addEventListener("click", function(e) {
-    $.odw.close();
+    $.wOfferDetails.close();
 });

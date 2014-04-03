@@ -6,18 +6,18 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
-    $.__views.odw = Ti.UI.createWindow({
+    $.__views.wOfferDetails = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
         backgroundRepeat: true,
         verticalAlign: "center",
         navTintColor: "#df9368",
-        id: "odw",
+        id: "wOfferDetails",
         backButtonTitle: "",
         title: L("title_Offer")
     });
-    $.__views.odw && $.addTopLevelView($.__views.odw);
+    $.__views.wOfferDetails && $.addTopLevelView($.__views.wOfferDetails);
     $.__views.lblOTitle = Ti.UI.createLabel({
         top: "10dp",
         left: "10dp",
@@ -32,23 +32,23 @@ function Controller() {
         },
         id: "lblOTitle"
     });
-    $.__views.odw.add($.__views.lblOTitle);
+    $.__views.wOfferDetails.add($.__views.lblOTitle);
     $.__views.btnClose = Ti.UI.createButton({
         id: "btnClose",
         title: "BACK"
     });
-    $.__views.odw.add($.__views.btnClose);
+    $.__views.wOfferDetails.add($.__views.btnClose);
     exports.destroy = function() {};
     _.extend($, $.__views);
     exports.openOfferDetails = function(_tab) {
-        _tab.open($.odw);
+        _tab.open($.wOfferDetails);
     };
     var args = arguments[0] || {};
     var hasData = true;
     hasData = null != args && null != args.$model ? true : false;
     $.lblOTitle.text = hasData ? args.$model.attributes.Title : "Error!";
     $.btnClose.addEventListener("click", function() {
-        $.odw.close();
+        $.wOfferDetails.close();
     });
     _.extend($, exports);
 }

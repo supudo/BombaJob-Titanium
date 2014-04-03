@@ -1,7 +1,16 @@
 function Controller() {
     function searchFinished() {
         Alloy.Globals.LogThis("Search finish.");
-        alert("Done!");
+        var sObj = {
+            keyword: searchKeyword,
+            freelance: searchFreelance
+        };
+        var srw = Alloy.createController("search_results", {
+            data: sObj,
+            $model: sObj,
+            op: $.tbSearch
+        });
+        srw.openSearchResults($.tbSearch);
     }
     function searchError(e) {
         Alloy.Globals.LogThis("Search error - " + e.error + "!");
@@ -114,7 +123,7 @@ function Controller() {
     $.btnSearch.addEventListener("click", function() {
         searchKeyword = $.txtSearch.value;
         searchFreelance = $.swFreelance.value;
-        if ("" != string.trim(searchKeyword)) {
+        if ("" != string.trim(searchKeyword) && searchKeyword.length >= 3) {
             Alloy.Globals.LogThis("Search start...");
             sync_manager.startSearch(searchKeyword, searchFreelance, searchFinished, searchError);
         }

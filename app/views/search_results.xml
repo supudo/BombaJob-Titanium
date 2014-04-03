@@ -1,0 +1,5 @@
+<Alloy>
+    <Window id="wSearchResults" class="bgContainer" title="L('search_results')">
+        <TableView id="tblOffers" class="tblOffers" />
+    </Window>
+</Alloy>

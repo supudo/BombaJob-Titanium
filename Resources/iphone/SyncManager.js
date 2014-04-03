@@ -8,7 +8,6 @@ function doSearch() {
         Alloy.Globals.LogThis("Search URL - " + url);
         var xhr = Ti.Network.createHTTPClient({
             onload: function() {
-                Alloy.Globals.LogThis(this.responseText);
                 null != this.responseText && processSearch(this.responseText);
             },
             onerror: function(e) {
