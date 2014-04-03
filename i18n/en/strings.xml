@@ -94,11 +94,8 @@
     <string name="yes">ДА</string>
     <string name="no">НЕ</string>
     <string name="searchFreelance">Проект/Freelance</string>
-    <string-array name="searchFreelance_array">
-        <item>Навсякъде</item>
-        <item>Само Проект/Freelance</item>
-        <item>Без Проект/Freelance</item>
-    </string-array>
+    <string name="postComboFreelanceY">Само Проект/Freelance</string>
+    <string name="postComboFreelanceN">Без Проект/Freelance</string>
     <string name="search_results">Резултати</string>
     <string name="offersCount_one">оферта</string>
     <string name="offersCount_many">оферти</string>
@@ -144,7 +141,7 @@
     <string name="message_toEmail">До</string>
     <string name="message_btn_send">Изпрати</string>
     <string name="message_btn_cancel">Откажи</string>
-    <string name="post_HumanCompany_Choice">Аз съм</string>
+    <string name="post_HumanCompany_Choice">- Аз съм -</string>
     <string name="post_HumanCompany_H">Човек</string>
     <string name="post_HumanCompany_C">Фирма</string>
     <string name="post_Category_Human">- Работя в -</string>

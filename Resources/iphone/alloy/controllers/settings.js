@@ -13,7 +13,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.__alloyId16 = Ti.UI.createWindow({
+    $.__views.__alloyId15 = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
@@ -22,23 +22,23 @@ function Controller() {
         navTintColor: "#df9368",
         title: L("settings"),
         backButtonTitle: "",
+        id: "__alloyId15"
+    });
+    initSettings ? $.__views.__alloyId15.addEventListener("focus", initSettings) : __defers["$.__views.__alloyId15!focus!initSettings"] = true;
+    $.__views.__alloyId16 = Ti.UI.createView({
+        layout: "vertical",
         id: "__alloyId16"
     });
-    initSettings ? $.__views.__alloyId16.addEventListener("focus", initSettings) : __defers["$.__views.__alloyId16!focus!initSettings"] = true;
+    $.__views.__alloyId15.add($.__views.__alloyId16);
     $.__views.__alloyId17 = Ti.UI.createView({
-        layout: "vertical",
-        id: "__alloyId17"
-    });
-    $.__views.__alloyId16.add($.__views.__alloyId17);
-    $.__views.__alloyId18 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         height: Ti.UI.SIZE,
         width: Ti.UI.FILL,
-        id: "__alloyId18"
+        id: "__alloyId17"
     });
-    $.__views.__alloyId17.add($.__views.__alloyId18);
+    $.__views.__alloyId16.add($.__views.__alloyId17);
     $.__views.txtEmail = Ti.UI.createTextField({
         backgroundColor: "#fff",
         width: Ti.UI.FILL,
@@ -59,17 +59,17 @@ function Controller() {
         id: "txtEmail",
         hintText: L("about_StorePrivateData_summary")
     });
-    $.__views.__alloyId18.add($.__views.txtEmail);
-    $.__views.__alloyId19 = Ti.UI.createView({
+    $.__views.__alloyId17.add($.__views.txtEmail);
+    $.__views.__alloyId18 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         height: Ti.UI.SIZE,
         width: Ti.UI.FILL,
-        id: "__alloyId19"
+        id: "__alloyId18"
     });
-    $.__views.__alloyId17.add($.__views.__alloyId19);
-    $.__views.__alloyId20 = Ti.UI.createLabel({
+    $.__views.__alloyId16.add($.__views.__alloyId18);
+    $.__views.__alloyId19 = Ti.UI.createLabel({
         left: "0dp",
         font: {
             fontFamily: "Ubuntu",
@@ -78,25 +78,25 @@ function Controller() {
             fontWeight: "normal"
         },
         text: L("about_InitSync_summary"),
-        id: "__alloyId20"
+        id: "__alloyId19"
     });
-    $.__views.__alloyId19.add($.__views.__alloyId20);
+    $.__views.__alloyId18.add($.__views.__alloyId19);
     $.__views.swInitSync = Ti.UI.createSwitch({
         right: "0dp",
         value: true,
         id: "swInitSync"
     });
-    $.__views.__alloyId19.add($.__views.swInitSync);
-    $.__views.__alloyId21 = Ti.UI.createView({
+    $.__views.__alloyId18.add($.__views.swInitSync);
+    $.__views.__alloyId20 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         height: Ti.UI.SIZE,
         width: Ti.UI.FILL,
-        id: "__alloyId21"
+        id: "__alloyId20"
     });
-    $.__views.__alloyId17.add($.__views.__alloyId21);
-    $.__views.__alloyId22 = Ti.UI.createLabel({
+    $.__views.__alloyId16.add($.__views.__alloyId20);
+    $.__views.__alloyId21 = Ti.UI.createLabel({
         left: "0dp",
         font: {
             fontFamily: "Ubuntu",
@@ -105,25 +105,25 @@ function Controller() {
             fontWeight: "normal"
         },
         text: L("about_OnlineSearch_summary"),
-        id: "__alloyId22"
+        id: "__alloyId21"
     });
-    $.__views.__alloyId21.add($.__views.__alloyId22);
+    $.__views.__alloyId20.add($.__views.__alloyId21);
     $.__views.swOnlineSearch = Ti.UI.createSwitch({
         right: "0dp",
         value: true,
         id: "swOnlineSearch"
     });
-    $.__views.__alloyId21.add($.__views.swOnlineSearch);
-    $.__views.__alloyId23 = Ti.UI.createView({
+    $.__views.__alloyId20.add($.__views.swOnlineSearch);
+    $.__views.__alloyId22 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         height: Ti.UI.SIZE,
         width: Ti.UI.FILL,
-        id: "__alloyId23"
+        id: "__alloyId22"
     });
-    $.__views.__alloyId17.add($.__views.__alloyId23);
-    $.__views.__alloyId24 = Ti.UI.createLabel({
+    $.__views.__alloyId16.add($.__views.__alloyId22);
+    $.__views.__alloyId23 = Ti.UI.createLabel({
         left: "0dp",
         font: {
             fontFamily: "Ubuntu",
@@ -132,17 +132,17 @@ function Controller() {
             fontWeight: "normal"
         },
         text: L("about_ShowCategories_summary"),
-        id: "__alloyId24"
+        id: "__alloyId23"
     });
-    $.__views.__alloyId23.add($.__views.__alloyId24);
+    $.__views.__alloyId22.add($.__views.__alloyId23);
     $.__views.swShowCategories = Ti.UI.createSwitch({
         right: "0dp",
         value: true,
         id: "swShowCategories"
     });
-    $.__views.__alloyId23.add($.__views.swShowCategories);
+    $.__views.__alloyId22.add($.__views.swShowCategories);
     $.__views.tbSettings = Ti.UI.createTab({
-        window: $.__views.__alloyId16,
+        window: $.__views.__alloyId15,
         id: "tbSettings",
         title: L("settings"),
         icon: "tb_settings.png"
@@ -162,7 +162,7 @@ function Controller() {
     $.swShowCategories.addEventListener("change", function() {
         Ti.App.Properties.setString("BJSettingShowCategories", $.swShowCategories.value);
     });
-    __defers["$.__views.__alloyId16!focus!initSettings"] && $.__views.__alloyId16.addEventListener("focus", initSettings);
+    __defers["$.__views.__alloyId15!focus!initSettings"] && $.__views.__alloyId15.addEventListener("focus", initSettings);
     _.extend($, exports);
 }
 

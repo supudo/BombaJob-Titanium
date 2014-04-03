@@ -35,7 +35,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.__alloyId15 = Ti.UI.createWindow({
+    $.__views.__alloyId14 = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
@@ -43,18 +43,18 @@ function Controller() {
         verticalAlign: "center",
         navTintColor: "#df9368",
         title: L("searchPeople"),
-        id: "__alloyId15"
+        id: "__alloyId14"
     });
-    fetchOffersPeople ? $.__views.__alloyId15.addEventListener("focus", fetchOffersPeople) : __defers["$.__views.__alloyId15!focus!fetchOffersPeople"] = true;
+    fetchOffersPeople ? $.__views.__alloyId14.addEventListener("focus", fetchOffersPeople) : __defers["$.__views.__alloyId14!focus!fetchOffersPeople"] = true;
     $.__views.tblOffers = Ti.UI.createTableView({
         top: "10dp",
         backgroundColor: "transparent",
         separatorColor: "#df9368",
         id: "tblOffers"
     });
-    $.__views.__alloyId15.add($.__views.tblOffers);
+    $.__views.__alloyId14.add($.__views.tblOffers);
     $.__views.tbPeople = Ti.UI.createTab({
-        window: $.__views.__alloyId15,
+        window: $.__views.__alloyId14,
         id: "tbPeople",
         title: L("searchPeople"),
         icon: "tb_people.png"
@@ -69,7 +69,7 @@ function Controller() {
     $.tblOffers.addEventListener("click", function(e) {
         viewDetails(e.row.getOID());
     });
-    __defers["$.__views.__alloyId15!focus!fetchOffersPeople"] && $.__views.__alloyId15.addEventListener("focus", fetchOffersPeople);
+    __defers["$.__views.__alloyId14!focus!fetchOffersPeople"] && $.__views.__alloyId14.addEventListener("focus", fetchOffersPeople);
     _.extend($, exports);
 }
 

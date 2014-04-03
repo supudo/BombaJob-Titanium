@@ -58,6 +58,8 @@ function Controller() {
     _.extend($, $.__views);
     var dbOffers = Alloy.Collections.Offers;
     dbOffers && dbOffers.fetch();
+    dbOffers.setSortField("OfferID", "DESC");
+    dbOffers.sort();
     $.tblOffers.addEventListener("click", function(e) {
         viewDetails(e.index);
     });
