@@ -3,10 +3,13 @@ var sync_manager = require('SyncManager');
 $.index.open();
 $.acView.show();
 
-syncFinished();
+startSync();
 
 function startSync() {
-    sync_manager.startSync(syncFinished, syncError);
+    if (Ti.App.Properties.getBool('BJSettingInitSync'))
+        sync_manager.startSync(syncFinished, syncError);
+    else
+        syncFinished();
 }
 
 function syncFinished() {

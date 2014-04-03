@@ -1,5 +1,5 @@
 function Controller() {
-    function searchFinished() {
+    function openResults() {
         Alloy.Globals.LogThis("Search finish.");
         var sObj = {
             keyword: searchKeyword,
@@ -11,6 +11,9 @@ function Controller() {
             op: $.tbSearch
         });
         srw.openSearchResults($.tbSearch);
+    }
+    function searchFinished() {
+        openResults();
     }
     function searchError(e) {
         Alloy.Globals.LogThis("Search error - " + e.error + "!");
@@ -122,7 +125,7 @@ function Controller() {
         searchFreelance = $.swFreelance.value;
         if ("" != string.trim(searchKeyword) && searchKeyword.length >= 3) {
             Alloy.Globals.LogThis("Search start...");
-            sync_manager.startSearch(searchKeyword, searchFreelance, searchFinished, searchError);
+            Ti.App.Properties.getBool("BJSettingOnlineSearch") ? sync_manager.startSearch(searchKeyword, searchFreelance, searchFinished, searchError) : openResults();
         }
     });
     _.extend($, exports);

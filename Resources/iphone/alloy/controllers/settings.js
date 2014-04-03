@@ -2,6 +2,8 @@ function Controller() {
     function initSettings() {
         $.txtEmail.value = Ti.App.Properties.getString("BJSettingPrivateEmail");
         $.swInitSync.value = Ti.App.Properties.getString("BJSettingInitSync");
+        $.swOnlineSearch.value = Ti.App.Properties.getString("BJSettingOnlineSearch");
+        $.swShowCategories.value = Ti.App.Properties.getString("BJSettingShowCategories");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "settings";

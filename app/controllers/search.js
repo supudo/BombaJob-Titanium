@@ -8,11 +8,14 @@ $.btnSearch.addEventListener('click', function(e) {
     searchFreelance = $.swFreelance.value;
     if (string.trim(searchKeyword) != "" && searchKeyword.length >= 3) {        
         Alloy.Globals.LogThis("Search start...");
-        sync_manager.startSearch(searchKeyword, searchFreelance, searchFinished, searchError);
+        if (Ti.App.Properties.getBool('BJSettingOnlineSearch'))
+            sync_manager.startSearch(searchKeyword, searchFreelance, searchFinished, searchError);
+        else
+            openResults();
     }
 });
 
-function searchFinished() {
+function openResults() {
     Alloy.Globals.LogThis("Search finish.");
     var sObj = {
         keyword: searchKeyword,
@@ -24,6 +27,10 @@ function searchFinished() {
         op: $.tbSearch
     });
     srw.openSearchResults($.tbSearch);
+}
+
+function searchFinished() {
+    openResults();
 }
 
 function searchError(e) {
