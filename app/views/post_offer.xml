@@ -1,7 +1,28 @@
 <Alloy>
     <Tab id="tbPost" title="L('post')" icon="tb_postoffer.png">
-        <Window class="bgContainer" title="L('post')" backButtonTitle="">
-            <Label text="L('post')" />
+        <Window id="wPost" class="bgContainer" title="L('post')" backButtonTitle="">
+            <View layout="vertical">
+                <View class="vPostRow" layout="vertical">
+                    <Button id="btnPostHumanYn" title="L('post_HumanCompany_H')" />
+                </View>
+                <View class="vPostRow" layout="vertical">
+                    <Label class="lblPost" text="L('post_Human_Title')" />
+                    <TextField class="txtPost" id="txtTitle" />
+                </View>
+                <View class="vPostRow" layout="vertical">
+                    <Label class="lblPost" text="L('post_Human_Email')" />
+                    <TextField class="txtPost" id="txtEmail" />
+                </View>
+                <View class="vPostRow" layout="vertical">
+                    <Label class="lblPost" text="L('post_Human_Positiv')" />
+                    <TextField class="txtPost" id="txtPositiv" />
+                </View>
+                <View class="vPostRow" layout="vertical">
+                    <Label class="lblPost" text="L('post_Human_Negativ')" />
+                    <TextField class="txtPost" id="txtNegativ" />
+                </View>
+                <Button id="btnPost" title="L('post_Button')" backgroundImage="btn_boom.png" />
+            </View>
         </Window>
     </Tab>
 </Alloy>

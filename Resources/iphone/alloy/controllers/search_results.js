@@ -62,6 +62,8 @@ function Controller() {
     };
     var dbOffers = Alloy.Collections.Offers;
     dbOffers && dbOffers.fetch();
+    dbOffers.setSortField("OfferID", "DESC");
+    dbOffers.sort();
     var args = arguments[0] || {};
     var foffers = dbOffers.where({
         FreelanceYn: args.$model.freelance > 0 ? 1 : 0

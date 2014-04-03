@@ -145,10 +145,8 @@
     <string name="message_btn_send">Изпрати</string>
     <string name="message_btn_cancel">Откажи</string>
     <string name="post_HumanCompany_Choice">Аз съм</string>
-    <string-array name="post_HumanCompany_array">
-        <item>Човек</item>
-        <item>Фирма</item>
-    </string-array>
+    <string name="post_HumanCompany_H">Човек</string>
+    <string name="post_HumanCompany_C">Фирма</string>
     <string name="post_Category_Human">- Работя в -</string>
     <string name="post_Human_Title">Заглавие на резюмето ви</string>
     <string name="post_Human_Email">Вашият email</string>
