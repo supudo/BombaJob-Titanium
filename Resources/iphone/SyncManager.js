@@ -1,10 +1,61 @@
+function doSearch() {
+    if (Titanium.Network.online) {
+        var url = Alloy.Globals.ServicesURL;
+        var urlParams = "action=searchOffers";
+        urlParams += "&keyword=" + searchKeyword;
+        urlParams += "&freelance=" + searchFreelance;
+        url += "?" + urlParams;
+        Alloy.Globals.LogThis("Search URL - " + url);
+        var xhr = Ti.Network.createHTTPClient({
+            onload: function() {
+                Alloy.Globals.LogThis(this.responseText);
+                null != this.responseText && processSearch(this.responseText);
+            },
+            onerror: function(e) {
+                delegateSyncError(e);
+            },
+            timeout: Alloy.Globals.ConnectionTimeout,
+            enableKeepAlive: false
+        });
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.open("GET", url);
+        xhr.send(urlParams);
+    } else alert(L("noInternet"));
+}
+
+function processSearch(jsonText) {
+    Alloy.Globals.LogThis(jsonText);
+    var dbOffers = Alloy.Collections.Offers;
+    var json = JSON.parse(jsonText);
+    var off;
+    for (i = 0; json.searchOffers.length > i; i++) {
+        off = json.searchOffers[i];
+        var ent = Alloy.createModel("Offer", {
+            OfferID: off.id,
+            CategoryID: off.cid,
+            Positivism: off.positivism,
+            Title: off.title,
+            Negativism: off.negativism,
+            CategoryTitle: off.category,
+            Email: off.email,
+            HumanYn: off.hm,
+            FreelanceYn: off.fyn,
+            PublishDate: off.date,
+            PublishDateStamp: off.datestamp
+        });
+        dbOffers.add(ent);
+        ent.save();
+    }
+    delegateSyncFinished();
+}
+
 function fetchTextContent() {
     if (Titanium.Network.online) {
         var url = Alloy.Globals.ServicesURL + "?action=getTextContent";
         Alloy.Globals.LogThis("Sync - " + url);
         var xhr = Ti.Network.createHTTPClient({
             onload: function() {
-                processTextContent(this.responseText);
+                null != this.responseText && processTextContent(this.responseText);
             },
             onerror: function(e) {
                 delegateSyncError(e);
@@ -24,7 +75,7 @@ function fetchCategories() {
         Alloy.Globals.LogThis("Sync - " + url);
         var xhr = Ti.Network.createHTTPClient({
             onload: function() {
-                processCategories(this.responseText);
+                null != this.responseText && processCategories(this.responseText);
             },
             onerror: function(e) {
                 delegateSyncError(e);
@@ -44,7 +95,7 @@ function fetchOffers() {
         Alloy.Globals.LogThis("Sync - " + url);
         var xhr = Ti.Network.createHTTPClient({
             onload: function() {
-                processOffers(this.responseText);
+                null != this.responseText && processOffers(this.responseText);
             },
             onerror: function(e) {
                 delegateSyncError(e);
@@ -122,8 +173,18 @@ function processOffers(jsonText) {
 
 var delegateSyncFinished, delegateSyncError;
 
+var searchKeyword, searchFreelance;
+
 exports.startSync = function(o, u) {
     delegateSyncFinished = o;
     delegateSyncError = u;
     fetchTextContent();
+};
+
+exports.startSearch = function(sk, sf, o, u) {
+    searchKeyword = sk;
+    searchFreelance = sf;
+    delegateSyncFinished = o;
+    delegateSyncError = u;
+    doSearch();
 };

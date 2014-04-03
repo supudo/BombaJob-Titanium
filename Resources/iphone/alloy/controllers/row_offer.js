@@ -33,18 +33,18 @@ function Controller() {
     $.__views.lblTitle = Ti.UI.createLabel({
         left: "50dip",
         top: "5dip",
+        right: "5dip",
+        ellipsize: true,
+        wordWrap: false,
         textAlign: "left",
+        touchEnabled: false,
+        color: "#000",
         font: {
             fontFamily: "Ubuntu",
             fontSize: "16dp",
             fontStyle: "normal",
             fontWeight: "normal"
         },
-        right: "5dip",
-        ellipsize: true,
-        wordWrap: false,
-        touchEnabled: false,
-        color: "#000",
         horizontalWrap: true,
         width: Ti.UI.FILL,
         id: "lblTitle"
@@ -52,20 +52,19 @@ function Controller() {
     $.__views.vRow.add($.__views.lblTitle);
     $.__views.lblCategory = Ti.UI.createLabel({
         left: "50dip",
-        top: "10dp",
+        right: "5dip",
+        bottom: "5dip",
+        ellipsize: true,
+        wordWrap: false,
         textAlign: "left",
+        touchEnabled: false,
+        color: "#444",
         font: {
             fontFamily: "Ubuntu",
             fontSize: "10dp",
             fontStyle: "normal",
             fontWeight: "normal"
         },
-        right: "5dip",
-        bottom: "5dip",
-        ellipsize: true,
-        wordWrap: false,
-        touchEnabled: false,
-        color: "#444",
         horizontalWrap: true,
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,

@@ -44,18 +44,18 @@
 },
 
 'Button': {
-    height: '60dp',
-    width: '300dp',
-    top: '10dp'
+    //height: '60dp',
+    //width: '300dp',
+    //top: '10dp'
 },
 
 'Label':{
-    left:'10dp',
-    top:'10dp',
-    textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-    font:{
-        fontSize: '14dp'
-    }
+    //left:'10dp',
+    //top:'10dp',
+    //textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+    //font:{
+    //    fontSize: '14dp'
+    //}
 }
 
 'TableView':{
@@ -63,8 +63,8 @@
 },
 
 'TextField':{
-    width:'300dp',
-    top:'10dp',
-    softKeyboardOnFocus: Titanium.UI.Android.SOFT_KEYBOARD_HIDE_ON_FOCUS
+    //width:'300dp',
+    //top:'10dp'
+    //softKeyboardOnFocus: Titanium.UI.Android.SOFT_KEYBOARD_HIDE_ON_FOCUS
 }
     

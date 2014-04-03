@@ -18,12 +18,6 @@ function Controller() {
         id: "__alloyId8"
     });
     $.__views.__alloyId9 = Ti.UI.createLabel({
-        left: "10dp",
-        top: "10dp",
-        textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-        font: {
-            fontSize: "14dp"
-        },
         text: L("settings"),
         id: "__alloyId9"
     });

@@ -1,0 +1,57 @@
+"#txtSearch": {
+    backgroundColor: '#fff',
+    width: Ti.UI.FULL,
+    height: '32dp',
+    top: '20dp',
+    left: '20dp',
+    right: '20dp',
+    font: {
+        fontFamily:'Ubuntu',
+        fontSize: '16dp',
+        fontStyle: 'normal',
+        fontWeight: 'normal'
+    },
+    autocorrect: false,
+    borderColor: '#000',
+    borderRadius: '3dp',
+    borderWidth: '1dp',
+    paddingLeft: '5dp',
+    paddingRight: '5dp'
+}
+
+"#vSearchFreelance": {
+    top: '20dp',
+    left: '20dp',
+    right: '20dp',
+    height: Ti.UI.SIZE,
+    width: Ti.UI.FILL,
+    //layout: 'horizontal'
+}
+
+"#lblSearchFreelance": {
+    left: '0dp',
+    font: {
+        fontFamily:'Ubuntu',
+        fontSize: '16dp',
+        fontStyle: 'normal',
+        fontWeight: 'normal'
+    },
+}
+
+"#swFreelance": {
+    right: '0dp'
+}
+
+"#btnSearch": {
+    width: Ti.UI.FULL,
+    height: '50dp',
+    top: '20dp',
+    left: '20dp',
+    right: '20dp',
+    font: {
+        fontFamily:'Ubuntu',
+        fontSize: '16dp',
+        fontStyle: 'normal',
+        fontWeight: 'normal'
+    }
+}

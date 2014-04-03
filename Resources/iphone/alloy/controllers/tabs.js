@@ -1,18 +1,6 @@
 function Controller() {
     function doOpen() {
     }
-    function startSync() {
-        Alloy.Globals.LogThis("Sync start");
-        sync_manager.startSync(syncFinished, syncError);
-    }
-    function syncFinished() {
-        Alloy.Globals.LogThis("Sync finish");
-        $.tbMenu.getActiveTab().window.close();
-    }
-    function syncError(e) {
-        Alloy.Globals.LogThis("Sync error - " + e.error);
-        alert(L("generic_error") + " " + e.error);
-    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "tabs";
     var __parentSymbol = arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -115,15 +103,11 @@ function Controller() {
     doOpen ? $.__views.tbMenu.addEventListener("open", doOpen) : __defers["$.__views.tbMenu!open!doOpen"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var sync_manager = require("SyncManager");
+    require("SyncManager");
     $.tbMenu.open();
     Alloy.Globals.navgroup = $.tbMenu;
     $.tbMenu.addEventListener("focus", function(e) {
-        if (6 == e.index) {
-            Alloy.Globals.LogThis("Sync press");
-            $.acView.show();
-            startSync();
-        }
+        6 == e.index && Alloy.Globals.LogThis("Sync press");
     });
     __defers["$.__views.tbMenu!open!doOpen"] && $.__views.tbMenu.addEventListener("open", doOpen);
     _.extend($, exports);

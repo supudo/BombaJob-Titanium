@@ -19,25 +19,21 @@ function Controller() {
     });
     $.__views.odw && $.addTopLevelView($.__views.odw);
     $.__views.lblOTitle = Ti.UI.createLabel({
-        left: "10dp",
         top: "10dp",
-        textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+        left: "10dp",
+        right: "10dp",
+        verticalAlign: "center",
+        color: "#df9368",
         font: {
             fontFamily: "Ubuntu",
             fontSize: "24dp",
             fontStyle: "normal",
             fontWeight: "bold"
         },
-        right: "10dp",
-        verticalAlign: "center",
-        color: "#df9368",
         id: "lblOTitle"
     });
     $.__views.odw.add($.__views.lblOTitle);
     $.__views.btnClose = Ti.UI.createButton({
-        height: "60dp",
-        width: "300dp",
-        top: "10dp",
         id: "btnClose",
         title: "BACK"
     });
