@@ -117,9 +117,6 @@ function Controller() {
     var sync_manager = require("SyncManager");
     var string = require("alloy/string");
     var searchKeyword, searchFreelance;
-    $.swFreelance.addEventListener("change", function() {
-        Alloy.Globals.LogThis("Switch value: " + $.swFreelance.value);
-    });
     $.btnSearch.addEventListener("click", function() {
         searchKeyword = $.txtSearch.value;
         searchFreelance = $.swFreelance.value;

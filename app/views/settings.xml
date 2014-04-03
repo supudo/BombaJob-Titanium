@@ -1,7 +1,23 @@
 <Alloy>
     <Tab id="tbSettings" title="L('settings')" icon="tb_settings.png">
-        <Window class="bgContainer" title="L('settings')" backButtonTitle="">
-            <Label text="L('settings')" />
+        <Window class="bgContainer" title="L('settings')" backButtonTitle="" onFocus="initSettings">
+            <View layout="vertical">
+                <View class="vSettingsRow">
+                    <TextField id="txtEmail" hintText="L('about_StorePrivateData_summary')" />
+                </View>
+                <View class="vSettingsRow">
+                    <Label class="lblSName" text="L('about_InitSync_summary')" />
+                    <Switch class="swSetting" id="swInitSync" value="true" />
+                </View>
+                <View class="vSettingsRow">
+                    <Label class="lblSName" text="L('about_OnlineSearch_summary')" />
+                    <Switch class="swSetting" id="swOnlineSearch" value="true" />
+                </View>
+                <View class="vSettingsRow">
+                    <Label class="lblSName" text="L('about_ShowCategories_summary')" />
+                    <Switch class="swSetting" id="swShowCategories" value="true" />
+                </View>
+            </View>
         </Window>
     </Tab>
 </Alloy>

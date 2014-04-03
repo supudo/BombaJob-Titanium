@@ -81,16 +81,12 @@
     <string name="about_InAppEmail">In-App Email</string>
     <string name="about_ShowCategories">Показвай категориите</string>
 
-    <string name="about_StorePrivateData_group">Лични данни</string>
-    <string name="about_StorePrivateData_title">Запази</string>
-    <string name="about_StorePrivateData_summary">Автоматично попълване</string>
-    <string name="about_StorePrivateData_EmailEnter">Email</string>
+    <string name="about_StorePrivateData_summary">Автоматично попълване на Email</string>
     <string name="about_SendGeo_title">Координати</string>
     <string name="about_SendGeo_summary">Изпращай гео-координати</string>
     <string name="about_InitSync_title">Синхронизация</string>
     <string name="about_InitSync_summary">Начална синхронизация</string>
-    <string name="about_OnlineSearch_title">Търсене</string>
-    <string name="about_OnlineSearch_summary">Онлайн или офлайн</string>
+    <string name="about_OnlineSearch_summary">Онлайн Търсене</string>
     <string name="about_InAppEmail_title">Email</string>
     <string name="about_InAppEmail_summary">Изпращане през телефона</string>
     <string name="about_ShowCategories_title">Kатегории</string>
