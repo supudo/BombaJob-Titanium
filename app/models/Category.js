@@ -32,7 +32,6 @@ exports.definition = {
                 }
             }
         });
-
         return Model;
     },
 
@@ -42,7 +41,6 @@ exports.definition = {
                 return category.get('CategoryID');
             }
         });
-
         return Collection;
     }
 };

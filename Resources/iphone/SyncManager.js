@@ -19,36 +19,43 @@ function doSearch() {
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.open("GET", url);
         xhr.send(urlParams);
-    } else alert(L("noInternet"));
+    } else delegateSyncError({
+        error: L("noInternet")
+    });
 }
 
 function processSearch(jsonText) {
-    Alloy.Globals.LogThis(jsonText);
-    var dbOffers = Alloy.Collections.Offers;
-    var json = JSON.parse(jsonText);
-    var off;
-    if (0 == json.searchOffers.length) delegateSyncError({
-        error: L("searchNoResults")
-    }); else {
-        for (i = 0; json.searchOffers.length > i; i++) {
-            off = json.searchOffers[i];
-            var ent = Alloy.createModel("Offer", {
-                OfferID: off.id,
-                CategoryID: off.cid,
-                Positivism: off.positivism,
-                Title: off.title,
-                Negativism: off.negativism,
-                CategoryTitle: off.category,
-                Email: off.email,
-                HumanYn: off.hm,
-                FreelanceYn: off.fyn,
-                PublishDate: off.date,
-                PublishDateStamp: off.datestamp
-            });
-            dbOffers.add(ent);
-            ent.save();
+    try {
+        Alloy.Globals.LogThis(jsonText);
+        var dbOffers = Alloy.Collections.Offers;
+        var json = JSON.parse(jsonText);
+        var off;
+        if (0 == json.searchOffers.length) delegateSyncError({
+            error: L("searchNoResults")
+        }); else {
+            for (i = 0; json.searchOffers.length > i; i++) {
+                off = json.searchOffers[i];
+                var ent = Alloy.createModel("Offer", {
+                    OfferID: off.id,
+                    CategoryID: off.cid,
+                    Positivism: off.positivism,
+                    Title: off.title,
+                    Negativism: off.negativism,
+                    CategoryTitle: off.category,
+                    Email: off.email,
+                    HumanYn: off.hm,
+                    FreelanceYn: off.fyn,
+                    PublishDate: off.date,
+                    PublishDateStamp: off.datestamp
+                });
+                dbOffers.add(ent);
+                ent.save();
+            }
+            delegateSyncFinished();
         }
-        delegateSyncFinished();
+    } catch (e) {
+        Alloy.Globals.LogThis("processSearch error : " + e.error);
+        delegateSyncError(e);
     }
 }
 
@@ -69,7 +76,9 @@ function fetchTextContent() {
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.open("GET", url);
         xhr.send("action=getTextContent");
-    } else alert(L("noInternet"));
+    } else delegateSyncError({
+        error: L("noInternet")
+    });
 }
 
 function fetchCategories() {
@@ -89,7 +98,9 @@ function fetchCategories() {
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.open("GET", url);
         xhr.send();
-    } else alert(L("noInternet"));
+    } else delegateSyncError({
+        error: L("noInternet")
+    });
 }
 
 function fetchOffers() {
@@ -109,69 +120,86 @@ function fetchOffers() {
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.open("GET", url);
         xhr.send();
-    } else alert(L("noInternet"));
+    } else delegateSyncError({
+        error: L("noInternet")
+    });
 }
 
 function processTextContent(jsonText) {
-    Alloy.Globals.LogThis(jsonText);
-    var dbTextContent = Alloy.Collections.TextContent;
-    var json = JSON.parse(jsonText);
-    var txt;
-    for (i = 0; json.getTextContent.length > i; i++) {
-        txt = json.getTextContent[i];
-        var ent = Alloy.createModel("TextContent", {
-            TextContentID: txt.id,
-            Title: txt.title,
-            Content: txt.content
-        });
-        dbTextContent.add(ent);
-        ent.save();
+    try {
+        Alloy.Globals.LogThis(jsonText);
+        var dbTextContent = Alloy.Collections.TextContent;
+        var json = JSON.parse(jsonText);
+        var txt;
+        for (i = 0; json.getTextContent.length > i; i++) {
+            txt = json.getTextContent[i];
+            var ent = Alloy.createModel("TextContent", {
+                TextContentID: txt.id,
+                Title: txt.title,
+                Content: txt.content
+            });
+            dbTextContent.add(ent);
+            ent.save();
+        }
+        fetchCategories();
+    } catch (e) {
+        Alloy.Globals.LogThis("processTextContent error : " + e.error);
+        delegateSyncError(e);
     }
-    fetchCategories();
 }
 
 function processCategories(jsonText) {
-    Alloy.Globals.LogThis(jsonText);
-    var dbCategories = Alloy.Collections.Categories;
-    var json = JSON.parse(jsonText);
-    var cat;
-    for (i = 0; json.getCategories.length > i; i++) {
-        cat = json.getCategories[i];
-        var ent = Alloy.createModel("Category", {
-            CategoryID: cat.id,
-            CategoryTitle: cat.name,
-            OffersCount: cat.offerCount
-        });
-        dbCategories.add(ent);
-        ent.save();
+    try {
+        Alloy.Globals.LogThis(jsonText);
+        var dbCategories = Alloy.Collections.Categories;
+        var json = JSON.parse(jsonText);
+        var cat;
+        for (i = 0; json.getCategories.length > i; i++) {
+            cat = json.getCategories[i];
+            var ent = Alloy.createModel("Category", {
+                CategoryID: cat.id,
+                CategoryTitle: cat.name,
+                OffersCount: cat.offerCount
+            });
+            dbCategories.add(ent);
+            ent.save();
+        }
+        fetchOffers();
+    } catch (e) {
+        Alloy.Globals.LogThis("processCategories error : " + e.error);
+        delegateSyncError(e);
     }
-    fetchOffers();
 }
 
 function processOffers(jsonText) {
-    Alloy.Globals.LogThis(jsonText);
-    var dbOffers = Alloy.Collections.Offers;
-    var json = JSON.parse(jsonText);
-    var off;
-    for (i = 0; json.getNewJobs.length > i; i++) {
-        off = json.getNewJobs[i];
-        var ent = Alloy.createModel("Offer", {
-            OfferID: off.id,
-            CategoryID: off.cid,
-            Positivism: off.positivism,
-            Title: off.title,
-            Negativism: off.negativism,
-            CategoryTitle: off.category,
-            Email: off.email,
-            HumanYn: off.hm,
-            FreelanceYn: off.fyn,
-            PublishDate: off.date,
-            PublishDateStamp: off.datestamp
-        });
-        dbOffers.add(ent);
-        ent.save();
+    try {
+        Alloy.Globals.LogThis(jsonText);
+        var dbOffers = Alloy.Collections.Offers;
+        var json = JSON.parse(jsonText);
+        var off;
+        for (i = 0; json.getNewJobs.length > i; i++) {
+            off = json.getNewJobs[i];
+            var ent = Alloy.createModel("Offer", {
+                OfferID: off.id,
+                CategoryID: off.cid,
+                Positivism: off.positivism,
+                Title: off.title,
+                Negativism: off.negativism,
+                CategoryTitle: off.category,
+                Email: off.email,
+                HumanYn: off.hm,
+                FreelanceYn: off.fyn,
+                PublishDate: off.date,
+                PublishDateStamp: off.datestamp
+            });
+            dbOffers.add(ent);
+            ent.save();
+        }
+        delegateSyncFinished();
+    } catch (e) {
+        Alloy.Globals.LogThis("processOffers error : " + e.error);
+        delegateSyncError(e);
     }
-    delegateSyncFinished();
 }
 
 var delegateSyncFinished, delegateSyncError;

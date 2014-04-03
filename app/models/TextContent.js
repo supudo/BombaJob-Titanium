@@ -38,7 +38,7 @@ exports.definition = {
     extendCollection : function(Collection) {
         _.extend(Collection.prototype, {
             comparator: function(tc) {
-                return tc.get('TID');
+                return tc.get('TextContentID');
             }
         });
         return Collection;

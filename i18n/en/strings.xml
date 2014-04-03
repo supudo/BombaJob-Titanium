@@ -35,6 +35,7 @@
     <string name="no_categories">Няма категории.</string>
     <string name="no_settings"></string>
     <string name="close_alertbox">ОК</string>
+    <string name="retry_alertbox">Пак!</string>
     
     <string name="human_short">Ч</string>
     <string name="company_short">Ф</string>
