@@ -12,7 +12,7 @@ function fetchOffers() {
     var rows = [];
     _.each(foffers, function(item) {
         rows.push(Alloy.createController('row_offer', {
-            OID: item.attributes.OID,
+            OfferID: item.attributes.OfferID,
             HumanYn: item.attributes.HumanYn,
             FreelanceYn: item.attributes.FreelanceYn,
             Title: item.attributes.Title,

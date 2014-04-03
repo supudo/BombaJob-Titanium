@@ -17,6 +17,7 @@
     <string name="about">За BombaJob</string>
     <string name="search">Търси</string>
     <string name="searchHint">Търси по дума...</string>
+    <string name="searchNoResults">Няма намерени оферти. Опитайте с други критерии.</string>
     <string name="misc">Други</string>
     <string name="generic_error">Грешка!</string>
     <string name="syncagain">Синхронизация</string>

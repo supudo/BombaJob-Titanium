@@ -46,7 +46,11 @@ function Controller() {
     var args = arguments[0] || {};
     var hasData = true;
     hasData = null != args && null != args.$model ? true : false;
-    $.lblOTitle.text = hasData ? args.$model.attributes.Title : "Error!";
+    var offerModel;
+    if (hasData) {
+        offerModel = null == args.$model.attributes ? args.$model : args.$model.attributes;
+        $.lblOTitle.text = offerModel.Title;
+    } else $.lblOTitle.text = "Error!";
     $.btnClose.addEventListener("click", function() {
         $.wOfferDetails.close();
     });

@@ -7,15 +7,12 @@ dbOffers && dbOffers.fetch();
 
 var args = arguments[0] || {};
 
-var whereObj = {
-    FreelanceYn: (args.$model.freelance > 0 ? 1 : 0)
-};
-var foffers = dbOffers.where(whereObj);
+var foffers = dbOffers.where({FreelanceYn: (args.$model.freelance > 0 ? 1 : 0)});
 
 fetchOffers();
 
-$.tblOffers.addEventListener("click", function(e) {
-    viewDetails(e.index);
+$.tblSearchResults.addEventListener("click", function(e) {
+    viewDetails(e.row.getOID());
 });
 
 function fetchOffers() {
@@ -24,24 +21,26 @@ function fetchOffers() {
         if (item.attributes.Title.indexOf(args.$model.keyword) >= 0 ||
             item.attributes.Positivism.indexOf(args.$model.keyword) >= 0 ||
             item.attributes.Negativism.indexOf(args.$model.keyword) >= 0) {
-            rows.push(Alloy.createController('row_offer', {
-                OID: item.attributes.OID,
+            var w = Alloy.createController('row_offer', {
+                OfferID: item.attributes.OfferID,
                 HumanYn: item.attributes.HumanYn,
                 FreelanceYn: item.attributes.FreelanceYn,
                 Title: item.attributes.Title,
                 CategoryTitle: item.attributes.CategoryTitle
-            }).getView());
+            }).getView();
+            w.setOID(item.attributes.OfferID);
+            rows.push(w);
         }
     });
-    $.tblOffers.setData(rows);
+    $.tblSearchResults.setData(rows);
     Alloy.Globals.LogThis("Search found - " + rows.length + " rows.");
 }
 
-function viewDetails(idx) {
-    var off = foffers[idx];
+function viewDetails(oid) {
+    var off = dbOffers.where({OfferID: oid});
     var odw = Alloy.createController("offer_details", {
-        data: off,
-        "$model": off
+        data: off[0],
+        "$model": off[0]
     });
     odw.openOfferDetails(args.op);
 }

@@ -2,22 +2,28 @@ function Controller() {
     function fetchOffers() {
         var rows = [];
         _.each(foffers, function(item) {
-            (item.attributes.Title.indexOf(args.$model.keyword) >= 0 || item.attributes.Positivism.indexOf(args.$model.keyword) >= 0 || item.attributes.Negativism.indexOf(args.$model.keyword) >= 0) && rows.push(Alloy.createController("row_offer", {
-                OID: item.attributes.OID,
-                HumanYn: item.attributes.HumanYn,
-                FreelanceYn: item.attributes.FreelanceYn,
-                Title: item.attributes.Title,
-                CategoryTitle: item.attributes.CategoryTitle
-            }).getView());
+            if (item.attributes.Title.indexOf(args.$model.keyword) >= 0 || item.attributes.Positivism.indexOf(args.$model.keyword) >= 0 || item.attributes.Negativism.indexOf(args.$model.keyword) >= 0) {
+                var w = Alloy.createController("row_offer", {
+                    OfferID: item.attributes.OfferID,
+                    HumanYn: item.attributes.HumanYn,
+                    FreelanceYn: item.attributes.FreelanceYn,
+                    Title: item.attributes.Title,
+                    CategoryTitle: item.attributes.CategoryTitle
+                }).getView();
+                w.setOID(item.attributes.OfferID);
+                rows.push(w);
+            }
         });
-        $.tblOffers.setData(rows);
+        $.tblSearchResults.setData(rows);
         Alloy.Globals.LogThis("Search found - " + rows.length + " rows.");
     }
-    function viewDetails(idx) {
-        var off = foffers[idx];
+    function viewDetails(oid) {
+        var off = dbOffers.where({
+            OfferID: oid
+        });
         var odw = Alloy.createController("offer_details", {
-            data: off,
-            $model: off
+            data: off[0],
+            $model: off[0]
         });
         odw.openOfferDetails(args.op);
     }
@@ -39,13 +45,13 @@ function Controller() {
         title: L("search_results")
     });
     $.__views.wSearchResults && $.addTopLevelView($.__views.wSearchResults);
-    $.__views.tblOffers = Ti.UI.createTableView({
+    $.__views.tblSearchResults = Ti.UI.createTableView({
         top: "10dp",
         backgroundColor: "transparent",
         separatorColor: "#df9368",
-        id: "tblOffers"
+        id: "tblSearchResults"
     });
-    $.__views.wSearchResults.add($.__views.tblOffers);
+    $.__views.wSearchResults.add($.__views.tblSearchResults);
     exports.destroy = function() {};
     _.extend($, $.__views);
     exports.openSearchResults = function(_tab) {
@@ -54,13 +60,12 @@ function Controller() {
     var dbOffers = Alloy.Collections.Offers;
     dbOffers && dbOffers.fetch();
     var args = arguments[0] || {};
-    var whereObj = {
+    var foffers = dbOffers.where({
         FreelanceYn: args.$model.freelance > 0 ? 1 : 0
-    };
-    var foffers = dbOffers.where(whereObj);
+    });
     fetchOffers();
-    $.tblOffers.addEventListener("click", function(e) {
-        viewDetails(e.index);
+    $.tblSearchResults.addEventListener("click", function(e) {
+        viewDetails(e.row.getOID());
     });
     _.extend($, exports);
 }

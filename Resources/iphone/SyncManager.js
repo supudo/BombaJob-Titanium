@@ -3,7 +3,7 @@ function doSearch() {
         var url = Alloy.Globals.ServicesURL;
         var urlParams = "action=searchOffers";
         urlParams += "&keyword=" + searchKeyword;
-        urlParams += "&freelance=" + searchFreelance;
+        urlParams += "&freelance=" + (searchFreelance ? "1" : "0");
         url += "?" + urlParams;
         Alloy.Globals.LogThis("Search URL - " + url);
         var xhr = Ti.Network.createHTTPClient({
@@ -27,25 +27,29 @@ function processSearch(jsonText) {
     var dbOffers = Alloy.Collections.Offers;
     var json = JSON.parse(jsonText);
     var off;
-    for (i = 0; json.searchOffers.length > i; i++) {
-        off = json.searchOffers[i];
-        var ent = Alloy.createModel("Offer", {
-            OfferID: off.id,
-            CategoryID: off.cid,
-            Positivism: off.positivism,
-            Title: off.title,
-            Negativism: off.negativism,
-            CategoryTitle: off.category,
-            Email: off.email,
-            HumanYn: off.hm,
-            FreelanceYn: off.fyn,
-            PublishDate: off.date,
-            PublishDateStamp: off.datestamp
-        });
-        dbOffers.add(ent);
-        ent.save();
+    if (0 == json.searchOffers.length) delegateSyncError({
+        error: L("searchNoResults")
+    }); else {
+        for (i = 0; json.searchOffers.length > i; i++) {
+            off = json.searchOffers[i];
+            var ent = Alloy.createModel("Offer", {
+                OfferID: off.id,
+                CategoryID: off.cid,
+                Positivism: off.positivism,
+                Title: off.title,
+                Negativism: off.negativism,
+                CategoryTitle: off.category,
+                Email: off.email,
+                HumanYn: off.hm,
+                FreelanceYn: off.fyn,
+                PublishDate: off.date,
+                PublishDateStamp: off.datestamp
+            });
+            dbOffers.add(ent);
+            ent.save();
+        }
+        delegateSyncFinished();
     }
-    delegateSyncFinished();
 }
 
 function fetchTextContent() {

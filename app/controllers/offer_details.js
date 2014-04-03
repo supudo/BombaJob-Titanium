@@ -9,9 +9,16 @@ if (args != null && args.$model != null)
     hasData = true;
  else
     hasData = false;
+    
+var offerModel;
 
 if (hasData) {
-    $.lblOTitle.text = args.$model.attributes.Title;
+    if (args.$model.attributes == null)
+        offerModel = args.$model;
+    else
+        offerModel = args.$model.attributes;
+
+    $.lblOTitle.text = offerModel.Title;
 }
 else {
     $.lblOTitle.text = 'Error!';
