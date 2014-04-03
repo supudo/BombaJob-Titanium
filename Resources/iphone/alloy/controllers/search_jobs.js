@@ -1,5 +1,5 @@
 function Controller() {
-    function fetchOffers() {
+    function fetchOffersJobs() {
         var rows = [];
         _.each(foffers, function(item) {
             rows.push(Alloy.createController("row_offer", {
@@ -7,7 +7,8 @@ function Controller() {
                 HumanYn: item.attributes.HumanYn,
                 FreelanceYn: item.attributes.FreelanceYn,
                 Title: item.attributes.Title,
-                CategoryTitle: item.attributes.CategoryTitle
+                CategoryTitle: item.attributes.CategoryTitle,
+                ReadYn: item.attributes.ReadYn
             }).getView());
         });
         $.tblOffers.setData(rows);
@@ -27,6 +28,7 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.__alloyId6 = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
@@ -37,6 +39,7 @@ function Controller() {
         title: L("searchJobs"),
         id: "__alloyId6"
     });
+    fetchOffersJobs ? $.__views.__alloyId6.addEventListener("focus", fetchOffersJobs) : __defers["$.__views.__alloyId6!focus!fetchOffersJobs"] = true;
     $.__views.tblOffers = Ti.UI.createTableView({
         top: "10dp",
         backgroundColor: "transparent",
@@ -58,10 +61,10 @@ function Controller() {
     var foffers = dbOffers.where({
         HumanYn: 0
     });
-    fetchOffers();
     $.tblOffers.addEventListener("click", function(e) {
         viewDetails(e.index);
     });
+    __defers["$.__views.__alloyId6!focus!fetchOffersJobs"] && $.__views.__alloyId6.addEventListener("focus", fetchOffersJobs);
     _.extend($, exports);
 }
 

@@ -1,8 +1,6 @@
 var dbOffers = Alloy.Collections.Offers;
 dbOffers && dbOffers.fetch();
 
-fetchOffers();
-
 $.tblOffers.addEventListener("click", function(e) {
     viewDetails(e.index);
 });
@@ -15,7 +13,8 @@ function fetchOffers() {
             HumanYn: item.attributes.HumanYn,
             FreelanceYn: item.attributes.FreelanceYn,
             Title: item.attributes.Title,
-            CategoryTitle: item.attributes.CategoryTitle
+            CategoryTitle: item.attributes.CategoryTitle,
+            ReadYn: item.attributes.ReadYn
         }).getView());
     });
     $.tblOffers.setData(rows);

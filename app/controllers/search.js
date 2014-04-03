@@ -6,7 +6,7 @@ var searchKeyword, searchFreelance;
 $.btnSearch.addEventListener('click', function(e) {
     searchKeyword = $.txtSearch.value;
     searchFreelance = $.swFreelance.value;
-    if (string.trim(searchKeyword) != "" && searchKeyword.length >= 3) {        
+    if (string.trim(searchKeyword) != "" && searchKeyword.length >= 3) {
         Alloy.Globals.LogThis("Search start...");
         if (Ti.App.Properties.getBool('BJSettingOnlineSearch'))
             sync_manager.startSearch(searchKeyword, searchFreelance, searchFinished, searchError);

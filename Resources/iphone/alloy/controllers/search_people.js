@@ -1,19 +1,24 @@
 function Controller() {
-    function fetchOffers() {
+    function fetchOffersPeople() {
         var rows = [];
-        _.each(foffers, function(item) {
+        _.each(dbOffers.where({
+            HumanYn: 1
+        }), function(item) {
             rows.push(Alloy.createController("row_offer", {
                 OfferID: item.attributes.OfferID,
                 HumanYn: item.attributes.HumanYn,
                 FreelanceYn: item.attributes.FreelanceYn,
                 Title: item.attributes.Title,
-                CategoryTitle: item.attributes.CategoryTitle
+                CategoryTitle: item.attributes.CategoryTitle,
+                ReadYn: item.attributes.ReadYn
             }).getView());
         });
         $.tblOffers.setData(rows);
     }
     function viewDetails(idx) {
-        var off = foffers[idx];
+        var off = dbOffers.where({
+            HumanYn: 1
+        })[idx];
         var odw = Alloy.createController("offer_details", {
             data: off,
             $model: off
@@ -27,6 +32,7 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.__alloyId7 = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
@@ -37,6 +43,7 @@ function Controller() {
         title: L("searchPeople"),
         id: "__alloyId7"
     });
+    fetchOffersPeople ? $.__views.__alloyId7.addEventListener("focus", fetchOffersPeople) : __defers["$.__views.__alloyId7!focus!fetchOffersPeople"] = true;
     $.__views.tblOffers = Ti.UI.createTableView({
         top: "10dp",
         backgroundColor: "transparent",
@@ -55,13 +62,10 @@ function Controller() {
     _.extend($, $.__views);
     var dbOffers = Alloy.Collections.Offers;
     dbOffers && dbOffers.fetch();
-    var foffers = dbOffers.where({
-        HumanYn: 1
-    });
-    fetchOffers();
     $.tblOffers.addEventListener("click", function(e) {
         viewDetails(e.index);
     });
+    __defers["$.__views.__alloyId7!focus!fetchOffersPeople"] && $.__views.__alloyId7.addEventListener("focus", fetchOffersPeople);
     _.extend($, exports);
 }
 

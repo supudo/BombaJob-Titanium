@@ -9,8 +9,6 @@ var args = arguments[0] || {};
 
 var foffers = dbOffers.where({FreelanceYn: (args.$model.freelance > 0 ? 1 : 0)});
 
-fetchOffers();
-
 $.tblSearchResults.addEventListener("click", function(e) {
     viewDetails(e.row.getOID());
 });
@@ -26,7 +24,8 @@ function fetchOffers() {
                 HumanYn: item.attributes.HumanYn,
                 FreelanceYn: item.attributes.FreelanceYn,
                 Title: item.attributes.Title,
-                CategoryTitle: item.attributes.CategoryTitle
+                CategoryTitle: item.attributes.CategoryTitle,
+                ReadYn: item.attributes.ReadYn
             }).getView();
             w.setOID(item.attributes.OfferID);
             rows.push(w);

@@ -1,6 +1,6 @@
 <Alloy>
     <Tab id="tbJobs" title="L('searchJobs')" icon="tb_jobs.png">
-        <Window class="bgContainer" title="L('searchJobs')">
+        <Window class="bgContainer" title="L('searchJobs')" onFocus="fetchOffersJobs">
             <TableView id="tblOffers" class="tblOffers" />
         </Window>
     </Tab>

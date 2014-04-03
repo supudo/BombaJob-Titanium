@@ -84,6 +84,18 @@ function Controller() {
     $.imgType.image = args.HumanYn > 0 ? "icon_person.png" : "icon_company.png";
     $.lblTitle.text = args.Title;
     $.lblCategory.text = args.CategoryTitle;
+    $.lblTitle.font = {
+        fontFamily: "Ubuntu",
+        fontSize: "16dp",
+        fontStyle: "normal",
+        fontWeight: "normal"
+    };
+    (null == args.ReadYn || 0 == parseInt(args.ReadYn)) && ($.lblTitle.font = {
+        fontFamily: "Ubuntu",
+        fontSize: "16dp",
+        fontStyle: "normal",
+        fontWeight: "bold"
+    });
     _.extend($, exports);
 }
 

@@ -1,5 +1,5 @@
 <Alloy>
-    <Window id="wSearchResults" class="bgContainer" title="L('search_results')">
+    <Window id="wSearchResults" class="bgContainer" title="L('search_results')" onFocus="fetchOffers">
         <TableView id="tblSearchResults" class="tblOffers" />
     </Window>
 </Alloy>

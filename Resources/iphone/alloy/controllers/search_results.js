@@ -8,7 +8,8 @@ function Controller() {
                     HumanYn: item.attributes.HumanYn,
                     FreelanceYn: item.attributes.FreelanceYn,
                     Title: item.attributes.Title,
-                    CategoryTitle: item.attributes.CategoryTitle
+                    CategoryTitle: item.attributes.CategoryTitle,
+                    ReadYn: item.attributes.ReadYn
                 }).getView();
                 w.setOID(item.attributes.OfferID);
                 rows.push(w);
@@ -34,6 +35,7 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.wSearchResults = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
@@ -45,6 +47,7 @@ function Controller() {
         title: L("search_results")
     });
     $.__views.wSearchResults && $.addTopLevelView($.__views.wSearchResults);
+    fetchOffers ? $.__views.wSearchResults.addEventListener("focus", fetchOffers) : __defers["$.__views.wSearchResults!focus!fetchOffers"] = true;
     $.__views.tblSearchResults = Ti.UI.createTableView({
         top: "10dp",
         backgroundColor: "transparent",
@@ -63,10 +66,10 @@ function Controller() {
     var foffers = dbOffers.where({
         FreelanceYn: args.$model.freelance > 0 ? 1 : 0
     });
-    fetchOffers();
     $.tblSearchResults.addEventListener("click", function(e) {
         viewDetails(e.row.getOID());
     });
+    __defers["$.__views.wSearchResults!focus!fetchOffers"] && $.__views.wSearchResults.addEventListener("focus", fetchOffers);
     _.extend($, exports);
 }
 

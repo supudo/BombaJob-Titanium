@@ -49,7 +49,13 @@ function Controller() {
     var offerModel;
     if (hasData) {
         offerModel = null == args.$model.attributes ? args.$model : args.$model.attributes;
-        $.lblOTitle.text = offerModel.Title;
+        $.lblOTitle.text = args.$model.attributes.Title;
+        var dbOffers = Alloy.Collections.Offers;
+        dbOffers && dbOffers.fetch();
+        var off = dbOffers.get(args.$model.attributes.OfferID);
+        off.set({
+            ReadYn: 1
+        }).save();
     } else $.lblOTitle.text = "Error!";
     $.btnClose.addEventListener("click", function() {
         $.wOfferDetails.close();
