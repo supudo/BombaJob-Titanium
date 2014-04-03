@@ -4,6 +4,8 @@ exports.openSearchResults = function(_tab) {
 
 var dbOffers = Alloy.Collections.Offers;
 dbOffers && dbOffers.fetch();
+dbOffers.setSortField("OfferID", "DESC");
+dbOffers.sort();
 
 var args = arguments[0] || {};
 

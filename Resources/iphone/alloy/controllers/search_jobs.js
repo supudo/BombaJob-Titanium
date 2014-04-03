@@ -1,23 +1,29 @@
 function Controller() {
     function fetchOffersJobs() {
         var rows = [];
-        _.each(foffers, function(item) {
-            rows.push(Alloy.createController("row_offer", {
+        _.each(dbOffers.where({
+            HumanYn: 0
+        }), function(item) {
+            var w = Alloy.createController("row_offer", {
                 OfferID: item.attributes.OfferID,
                 HumanYn: item.attributes.HumanYn,
                 FreelanceYn: item.attributes.FreelanceYn,
                 Title: item.attributes.Title,
                 CategoryTitle: item.attributes.CategoryTitle,
                 ReadYn: item.attributes.ReadYn
-            }).getView());
+            }).getView();
+            w.setOID(item.attributes.OfferID);
+            rows.push(w);
         });
         $.tblOffers.setData(rows);
     }
-    function viewDetails(idx) {
-        var off = foffers[idx];
+    function viewDetails(oid) {
+        var off = dbOffers.where({
+            OfferID: oid
+        });
         var odw = Alloy.createController("offer_details", {
-            data: off,
-            $model: off
+            data: off[0],
+            $model: off[0]
         });
         odw.openOfferDetails($.tbJobs);
     }
@@ -58,11 +64,10 @@ function Controller() {
     _.extend($, $.__views);
     var dbOffers = Alloy.Collections.Offers;
     dbOffers && dbOffers.fetch();
-    var foffers = dbOffers.where({
-        HumanYn: 0
-    });
+    dbOffers.setSortField("ReadYn", "ASC");
+    dbOffers.sort();
     $.tblOffers.addEventListener("click", function(e) {
-        viewDetails(e.index);
+        viewDetails(e.row.getOID());
     });
     __defers["$.__views.__alloyId6!focus!fetchOffersJobs"] && $.__views.__alloyId6.addEventListener("focus", fetchOffersJobs);
     _.extend($, exports);
