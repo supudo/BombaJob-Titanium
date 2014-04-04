@@ -13,7 +13,7 @@ function switchLabels() {
             $.btnPostCategory.title = L('post_Category_Company');
             
         if (fyn == 0)
-        $.btnPostFreelance.title = L('post_Freelance');
+            $.btnPostFreelance.title = L('post_Freelance');
         
         $.lblPostTitle.text = L('post_Company_Title');
         $.lblPostEmail.text = L('post_Company_Email');
@@ -60,18 +60,18 @@ $.btnPost.addEventListener('click', function(e) {
         var vNegativ = string.trim($.txtNegativ.value);
         
         var valErrMessage = '';
-        if (vTitle == '')
-            valErrMessage = (humanYn == 0 ? L('post_error_Human_Title') : L('post_error_Company_Title'));
-        else if (vEmail == '')
-            valErrMessage = (humanYn == 0 ? L('post_error_Human_Email') : L('post_error_Company_Email'));
-        else if (vPositiv == '')
-            valErrMessage = (humanYn == 0 ? L('post_error_Human_Negativ') : L('post_error_Company_Negativ'));
-        else if (vNegativ == '')
-            valErrMessage = (humanYn == 0 ? L('post_error_Human_Positiv') : L('post_error_Company_Positiv'));
-        else if (cid <= 0)
+        if (cid <= 0)
             valErrMessage = L('post_error_Category');
         else if (fyn <= 0)
             valErrMessage = L('post_error_Freelance');
+        else if (vTitle == '')
+            valErrMessage = (humanYn == 1 ? L('post_error_Human_Title') : L('post_error_Company_Title'));
+        else if (vEmail == '')
+            valErrMessage = (humanYn == 1 ? L('post_error_Human_Email') : L('post_error_Company_Email'));
+        else if (vNegativ == '')
+            valErrMessage = (humanYn == 1 ? L('post_error_Human_Negativ') : L('post_error_Company_Negativ'));
+        else if (vPositiv == '')
+            valErrMessage = (humanYn == 1 ? L('post_error_Human_Positiv') : L('post_error_Company_Positiv'));
             
         if (valErrMessage == '') {
             Alloy.Globals.LogThis("Post ...");

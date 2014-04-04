@@ -364,7 +364,7 @@ function Controller() {
             var vPositiv = string.trim($.txtPositiv.value);
             var vNegativ = string.trim($.txtNegativ.value);
             var valErrMessage = "";
-            "" == vTitle ? valErrMessage = 0 == humanYn ? L("post_error_Human_Title") : L("post_error_Company_Title") : "" == vEmail ? valErrMessage = 0 == humanYn ? L("post_error_Human_Email") : L("post_error_Company_Email") : "" == vPositiv ? valErrMessage = 0 == humanYn ? L("post_error_Human_Negativ") : L("post_error_Company_Negativ") : "" == vNegativ ? valErrMessage = 0 == humanYn ? L("post_error_Human_Positiv") : L("post_error_Company_Positiv") : 0 >= cid ? valErrMessage = L("post_error_Category") : 0 >= fyn && (valErrMessage = L("post_error_Freelance"));
+            0 >= cid ? valErrMessage = L("post_error_Category") : 0 >= fyn ? valErrMessage = L("post_error_Freelance") : "" == vTitle ? valErrMessage = 1 == humanYn ? L("post_error_Human_Title") : L("post_error_Company_Title") : "" == vEmail ? valErrMessage = 1 == humanYn ? L("post_error_Human_Email") : L("post_error_Company_Email") : "" == vNegativ ? valErrMessage = 1 == humanYn ? L("post_error_Human_Negativ") : L("post_error_Company_Negativ") : "" == vPositiv && (valErrMessage = 1 == humanYn ? L("post_error_Human_Positiv") : L("post_error_Company_Positiv"));
             if ("" == valErrMessage) Alloy.Globals.LogThis("Post ..."); else {
                 Alloy.Globals.LogThis("Post error - " + valErrMessage);
                 var dialog = Ti.UI.createAlertDialog({

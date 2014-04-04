@@ -151,8 +151,8 @@
     <string name="post_Human_Positiv">Добър съм в следните неща</string>
     <string name="post_Human_Negativ">В работата си не харесвам</string>
     <string name="post_Category_Company">- Сфера на работа -</string>
-    <string name="post_Company_Title">Заглавие на обявата ви</string>
-    <string name="post_Company_Email">Каква е позицията?</string>
+    <string name="post_Company_Title">Каква е позицията?</string>
+    <string name="post_Company_Email">Вашият email адрес</string>
     <string name="post_Company_Positiv">В какво е добра вашата фирма?</string>
     <string name="post_Company_Negativ">Предимства на фирмата</string>
     <string name="post_error_BlackListed">Email was blacklisted&#8230;</string>
@@ -162,12 +162,12 @@
     <string name="post_MissingReqFields">Моля, попълнете изпуснатите полета.</string>
     <string name="post_error_Category">Моля, изберете категория</string>
     <string name="post_error_Freelance">Моля, изберете тип проект</string>
-    <string name="post_error_Human_Title">Заглавието на резюмето ви е задължително поле.</string>
-    <string name="post_error_Human_Email">Вашият email е задължително поле.</string>
-    <string name="post_error_Human_Positiv">Проблем е задължително поле.</string>
-    <string name="post_error_Human_Negativ">Умения е задължително поле.</string>
+    <string name="post_error_Human_Title">Заглавието на обявата ви е задължително поле.</string>
+    <string name="post_error_Human_Email">Вашият email адрес е задължително поле.</string>
+    <string name="post_error_Human_Positiv">Моля въведете в какво сте добри.</string>
+    <string name="post_error_Human_Negativ">Моля въведете какво не харесвате в работата си.</string>
     <string name="post_error_Company_Title">Заглавието на позицията е задължително поле.</string>
     <string name="post_error_Company_Email">Моля попълнете email-а за връзка.</string>
-    <string name="post_error_Company_Positiv">Описаниеto на позицията е задължително поле.</string>
+    <string name="post_error_Company_Positiv">Моля, опишете в какво е добра вашата фирма.</string>
     <string name="post_error_Company_Negativ">Предимствата на фирмата е задължително поле.</string>
 </resources>
