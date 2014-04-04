@@ -7,7 +7,7 @@
 }
 
 ".btnPostForm": {
-    width: Ti.UI.FULL,
+    width: Ti.UI.FILL,
     height: '40dp',
     top: '10dp',
     left: '10dp',
@@ -28,7 +28,7 @@
 }
 
 ".lblPost": {
-    width: Ti.UI.FULL,
+    width: Ti.UI.FILL,
     left: '10dp',
     font: {
         fontFamily:'Ubuntu',
@@ -40,7 +40,7 @@
 
 ".txtPost": {
     backgroundColor: '#fff',
-    width: Ti.UI.FULL,
+    width: Ti.UI.FILL,
     height: '32dp',
     left: '10dp',
     right: '10dp',
@@ -59,7 +59,7 @@
 }
 
 "#btnPost": {
-    width: Ti.UI.FULL,
+    width: Ti.UI.FILL,
     height: '50dp',
     top: '20dp',
     left: '20dp',

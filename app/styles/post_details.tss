@@ -7,7 +7,7 @@
 }
 
 ".lblPost": {
-    width: Ti.UI.FULL,
+    width: Ti.UI.FILL,
     left: '10dp',
     font: {
         fontFamily:'Ubuntu',
@@ -19,7 +19,7 @@
 
 ".txtPost": {
     backgroundColor: '#fff',
-    width: Ti.UI.FULL,
+    width: Ti.UI.FILL,
     height: 'auto',
     left: '10dp',
     right: '10dp',
@@ -37,7 +37,7 @@
 }
 
 "#btnPost": {
-    width: Ti.UI.FULL,
+    width: Ti.UI.FILL,
     height: '50dp',
     top: '20dp',
     left: '20dp',

@@ -1,13 +1,72 @@
-"#lblOTitle": {
+".vOffer": {
+    width: Ti.UI.FILL,
     top: '10dp',
+    bottom: '10dp',
     left: '10dp',
-    right: '10dp',
-    verticalAlign: 'center',
+    right: '10dp'
+}
+
+".vORow": {
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE
+}
+
+".lblo": {
+    width: Ti.UI.FILL,
     color: '#df9368',
+    top: '24dp',
     font: {
         fontFamily:'Ubuntu',
-        fontSize: '24dp',
+        fontSize: '22dp',
         fontStyle: 'normal',
         fontWeight: 'bold'
     },
+}
+
+".lblc": {
+    width: Ti.UI.FILL,
+    color: '#444',
+    font: {
+        fontFamily:'Ubuntu',
+        fontSize: '16dp',
+        fontStyle: 'normal',
+        fontWeight: 'normal'
+    },
+}
+
+".lblt": {
+    width: Ti.UI.FILL,
+    textAlign: 'left',
+    font: {
+        fontFamily:'Ubuntu',
+        fontSize: '16dp',
+        fontStyle: 'normal',
+        fontWeight: 'normal'
+    },
+}
+
+".lbltb": {
+    width: Ti.UI.FILL,
+    font: {
+        fontFamily:'Ubuntu',
+        fontSize: '16dp',
+        fontStyle: 'normal',
+        fontWeight: 'bold'
+    },
+}
+
+"#lblODate": {
+    top: '10dp'
+}
+
+"#lblOFreelance": {
+    top: '10dp'
+}
+
+"#lblONegativism": {
+    top: '10dp'
+}
+
+"#lblOPositivism": {
+    top: '10dp'
 }

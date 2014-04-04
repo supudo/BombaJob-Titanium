@@ -1,6 +1,6 @@
 "#txtSearch": {
     backgroundColor: '#fff',
-    width: Ti.UI.FULL,
+    width: Ti.UI.FILL,
     height: '32dp',
     top: '20dp',
     left: '20dp',
@@ -43,7 +43,7 @@
 }
 
 "#btnSearch": {
-    width: Ti.UI.FULL,
+    width: Ti.UI.FILL,
     height: '50dp',
     top: '20dp',
     left: '20dp',

@@ -1,6 +1,18 @@
 <Alloy>
     <Window id="wOfferDetails" class="bgContainer" backButtonTitle="" title="L('title_Offer')">
-        <Label id="lblOTitle" />
-        <Button id="btnClose" title="BACK" />
+        <ScrollView id="scDetails" layout="vertical" class="vOffer" disableBounce="true">
+            <Label id="lblOCategory" class="lblc" />
+            <Label id="lblOTitle" class="lblo" />
+            <Label id="lblODate" class="lblt" />
+            <Label id="lblOFreelance" class="lblt" />
+            <View class="vORow" layout="vertical">
+                <Label id="lblONegativism" class="lbltb" text="L('post_Human_Negativ')" />
+                <Label id="lblONegativismV" class="lblt" />
+            </View>
+            <View class="vORow" layout="vertical">
+                <Label id="lblOPositivism" class="lbltb" text="L('post_Human_Positiv')" />
+                <Label id="lblOPositivismV" class="lblt" />
+            </View>
+        </ScrollView>
     </Window>
 </Alloy>
