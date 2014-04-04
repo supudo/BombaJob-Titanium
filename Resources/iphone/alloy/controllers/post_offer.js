@@ -1,28 +1,28 @@
 function Controller() {
-    function switchLabels(hmyn) {
-        if (0 == hmyn) {
-            $.btnPostHumanYn.title = L("post_HumanCompany_H");
-            $.btnPostCategory.title = L("post_Category_Human");
-            $.btnPostFreelance.title = L("searchFreelance");
-            $.lblPostTitle.text = L("post_Human_Title");
-            $.lblPostEmail.text = L("post_Human_Email");
-            $.lblPostPositiv.text = L("post_Human_Positiv");
-            $.lblPostNegativ.text = L("post_Human_Negativ");
-        } else {
+    function switchLabels() {
+        if (2 == humanYn) {
             $.btnPostHumanYn.title = L("post_HumanCompany_C");
-            $.btnPostCategory.title = L("post_Category_Company");
-            $.btnPostFreelance.title = L("searchFreelance");
+            0 == cid && ($.btnPostCategory.title = L("post_Category_Company"));
+            0 == fyn && ($.btnPostFreelance.title = L("post_Freelance"));
             $.lblPostTitle.text = L("post_Company_Title");
             $.lblPostEmail.text = L("post_Company_Email");
             $.lblPostPositiv.text = L("post_Company_Positiv");
             $.lblPostNegativ.text = L("post_Company_Negativ");
+        } else {
+            $.btnPostHumanYn.title = L("post_HumanCompany_H");
+            0 == cid && ($.btnPostCategory.title = L("post_Category_Human"));
+            0 == fyn && ($.btnPostFreelance.title = L("post_Freelance"));
+            $.lblPostTitle.text = L("post_Human_Title");
+            $.lblPostEmail.text = L("post_Human_Email");
+            $.lblPostPositiv.text = L("post_Human_Positiv");
+            $.lblPostNegativ.text = L("post_Human_Negativ");
         }
     }
     function showCategory() {
-        $.btnPostCategory.title = dbCategories.models[cid].attributes.CategoryTitle;
+        $.btnPostCategory.title = 0 == cid ? 2 == humanYn ? L("post_Category_Company") : L("post_Category_Human") : dbCategories.models[cid - 1].attributes.CategoryTitle;
     }
     function showFreelance() {
-        $.btnPostFreelance.title = 1 == fyn ? L("postComboFreelanceN") : L("postComboFreelanceY");
+        $.btnPostFreelance.title = 0 == fyn ? L("post_Freelance") : 1 == fyn ? L("postComboFreelanceY") : L("postComboFreelanceN");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "post_offer";
@@ -80,7 +80,6 @@ function Controller() {
         borderWidth: "1dp",
         paddingLeft: "5dp",
         paddingRight: "5dp",
-        horizontalWrap: true,
         id: "btnPostHumanYn",
         title: L("post_HumanCompany_Choice")
     });
@@ -114,7 +113,6 @@ function Controller() {
         borderWidth: "1dp",
         paddingLeft: "5dp",
         paddingRight: "5dp",
-        horizontalWrap: true,
         id: "btnPostCategory",
         title: L("post_Category_Human")
     });
@@ -148,9 +146,8 @@ function Controller() {
         borderWidth: "1dp",
         paddingLeft: "5dp",
         paddingRight: "5dp",
-        horizontalWrap: true,
         id: "btnPostFreelance",
-        title: L("searchFreelance")
+        title: L("post_Freelance")
     });
     $.__views.__alloyId6.add($.__views.btnPostFreelance);
     $.__views.__alloyId7 = Ti.UI.createView({
@@ -251,50 +248,6 @@ function Controller() {
         id: "__alloyId9"
     });
     $.__views.__alloyId3.add($.__views.__alloyId9);
-    $.__views.lblPostPositiv = Ti.UI.createLabel({
-        width: Ti.UI.FULL,
-        left: "10dp",
-        font: {
-            fontFamily: "Ubuntu",
-            fontSize: "16dp",
-            fontStyle: "normal",
-            fontWeight: "normal"
-        },
-        id: "lblPostPositiv",
-        text: L("post_Human_Positiv")
-    });
-    $.__views.__alloyId9.add($.__views.lblPostPositiv);
-    $.__views.txtPositiv = Ti.UI.createTextField({
-        backgroundColor: "#fff",
-        width: Ti.UI.FULL,
-        height: "32dp",
-        left: "10dp",
-        right: "10dp",
-        font: {
-            fontFamily: "Ubuntu",
-            fontSize: "16dp",
-            fontStyle: "normal",
-            fontWeight: "normal"
-        },
-        autocorrect: false,
-        borderColor: "#000",
-        borderRadius: "3dp",
-        borderWidth: "1dp",
-        paddingLeft: "5dp",
-        paddingRight: "5dp",
-        id: "txtPositiv"
-    });
-    $.__views.__alloyId9.add($.__views.txtPositiv);
-    $.__views.__alloyId10 = Ti.UI.createView({
-        top: "10dp",
-        left: "10dp",
-        right: "10dp",
-        width: Ti.UI.FILL,
-        height: Ti.UI.SIZE,
-        layout: "vertical",
-        id: "__alloyId10"
-    });
-    $.__views.__alloyId3.add($.__views.__alloyId10);
     $.__views.lblPostNegativ = Ti.UI.createLabel({
         width: Ti.UI.FULL,
         left: "10dp",
@@ -307,7 +260,7 @@ function Controller() {
         id: "lblPostNegativ",
         text: L("post_Human_Negativ")
     });
-    $.__views.__alloyId10.add($.__views.lblPostNegativ);
+    $.__views.__alloyId9.add($.__views.lblPostNegativ);
     $.__views.txtNegativ = Ti.UI.createTextField({
         backgroundColor: "#fff",
         width: Ti.UI.FULL,
@@ -328,13 +281,58 @@ function Controller() {
         paddingRight: "5dp",
         id: "txtNegativ"
     });
-    $.__views.__alloyId10.add($.__views.txtNegativ);
+    $.__views.__alloyId9.add($.__views.txtNegativ);
+    $.__views.__alloyId10 = Ti.UI.createView({
+        top: "10dp",
+        left: "10dp",
+        right: "10dp",
+        width: Ti.UI.FILL,
+        height: Ti.UI.SIZE,
+        layout: "vertical",
+        id: "__alloyId10"
+    });
+    $.__views.__alloyId3.add($.__views.__alloyId10);
+    $.__views.lblPostPositiv = Ti.UI.createLabel({
+        width: Ti.UI.FULL,
+        left: "10dp",
+        font: {
+            fontFamily: "Ubuntu",
+            fontSize: "16dp",
+            fontStyle: "normal",
+            fontWeight: "normal"
+        },
+        id: "lblPostPositiv",
+        text: L("post_Human_Positiv")
+    });
+    $.__views.__alloyId10.add($.__views.lblPostPositiv);
+    $.__views.txtPositiv = Ti.UI.createTextField({
+        backgroundColor: "#fff",
+        width: Ti.UI.FULL,
+        height: "32dp",
+        left: "10dp",
+        right: "10dp",
+        font: {
+            fontFamily: "Ubuntu",
+            fontSize: "16dp",
+            fontStyle: "normal",
+            fontWeight: "normal"
+        },
+        autocorrect: false,
+        borderColor: "#000",
+        borderRadius: "3dp",
+        borderWidth: "1dp",
+        paddingLeft: "5dp",
+        paddingRight: "5dp",
+        id: "txtPositiv"
+    });
+    $.__views.__alloyId10.add($.__views.txtPositiv);
     $.__views.btnPost = Ti.UI.createButton({
         width: Ti.UI.FULL,
         height: "50dp",
         top: "20dp",
         left: "20dp",
         right: "20dp",
+        bottom: "10dp",
         font: {
             fontFamily: "Ubuntu",
             fontSize: "16dp",
@@ -355,9 +353,31 @@ function Controller() {
     $.__views.tbPost && $.addTopLevelView($.__views.tbPost);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var string = require("alloy/string");
     var dbCategories = Alloy.Collections.Categories;
     dbCategories && dbCategories.fetch();
-    var humanYn = -1, cid = -1, fyn = -1;
+    var humanYn = 0, cid = 0, fyn = 0;
+    $.btnPost.addEventListener("click", function() {
+        if (humanYn > 0) {
+            var vTitle = string.trim($.txtTitle.value);
+            var vEmail = string.trim($.txtEmail.value);
+            var vPositiv = string.trim($.txtPositiv.value);
+            var vNegativ = string.trim($.txtNegativ.value);
+            var valErrMessage = "";
+            "" == vTitle ? valErrMessage = 0 == humanYn ? L("post_error_Human_Title") : L("post_error_Company_Title") : "" == vEmail ? valErrMessage = 0 == humanYn ? L("post_error_Human_Email") : L("post_error_Company_Email") : "" == vPositiv ? valErrMessage = 0 == humanYn ? L("post_error_Human_Negativ") : L("post_error_Company_Negativ") : "" == vNegativ ? valErrMessage = 0 == humanYn ? L("post_error_Human_Positiv") : L("post_error_Company_Positiv") : 0 >= cid ? valErrMessage = L("post_error_Category") : 0 >= fyn && (valErrMessage = L("post_error_Freelance"));
+            if ("" == valErrMessage) Alloy.Globals.LogThis("Post ..."); else {
+                Alloy.Globals.LogThis("Post error - " + valErrMessage);
+                var dialog = Ti.UI.createAlertDialog({
+                    cancel: 0,
+                    buttonNames: [ L("close_alertbox") ],
+                    message: valErrMessage,
+                    title: L("generic_error")
+                });
+                dialog.addEventListener("click", function() {});
+                dialog.show();
+            }
+        }
+    });
     $.btnPostHumanYn.addEventListener("click", function() {
         var pkViewHuman = Titanium.UI.createView({
             height: "200dp",
@@ -379,18 +399,23 @@ function Controller() {
             height: 44
         });
         btnOKHuman.addEventListener("click", function() {
-            switchLabels(humanYn);
+            Alloy.Globals.LogThis("Saved humanYn (" + humanYn + ")");
+            switchLabels();
             pkViewHuman.hide();
         });
         pkViewHuman.add(btnOKHuman);
         var data = [];
         data.push(Titanium.UI.createPickerRow({
-            title: L("post_HumanCompany_H"),
+            title: L("post_HumanCompany_Choice"),
             value: 0
         }));
         data.push(Titanium.UI.createPickerRow({
-            title: L("post_HumanCompany_C"),
+            title: L("post_HumanCompany_H"),
             value: 1
+        }));
+        data.push(Titanium.UI.createPickerRow({
+            title: L("post_HumanCompany_C"),
+            value: 2
         }));
         var pickerHuman = Ti.UI.createPicker({
             width: Ti.UI.FILL,
@@ -400,7 +425,10 @@ function Controller() {
         pickerHuman.setSelectedRow(0, humanYn, false);
         pickerHuman.add(data);
         pickerHuman.addEventListener("change", function(e) {
-            null != e && null != e.row && null != e.row.value && (humanYn = e.row.value);
+            if (null != e && null != e.row && null != e.row.value) {
+                humanYn = e.row.value;
+                Alloy.Globals.LogThis("Changed humanYn (" + humanYn + ")");
+            }
         });
         pkViewHuman.add(pickerHuman);
         $.wPost.add(pkViewHuman);
@@ -426,14 +454,19 @@ function Controller() {
             height: 44
         });
         btnOKCategory.addEventListener("click", function() {
+            Alloy.Globals.LogThis("Saved cid (" + cid + ")");
             showCategory();
             pkViewCategory.hide();
         });
         pkViewCategory.add(btnOKCategory);
         var data = [];
+        data.push(Titanium.UI.createPickerRow({
+            title: L("post_Category_Human"),
+            value: 0
+        }));
         for (i = 0; dbCategories.models.length > i; i++) data.push(Titanium.UI.createPickerRow({
             title: dbCategories.models[i].attributes.CategoryTitle,
-            value: i
+            value: i + 1
         }));
         var pickerCategory = Ti.UI.createPicker({
             width: Ti.UI.FILL,
@@ -443,7 +476,10 @@ function Controller() {
         pickerCategory.setSelectedRow(0, cid, false);
         pickerCategory.add(data);
         pickerCategory.addEventListener("change", function(e) {
-            null != e && null != e.row && null != e.row.value && (cid = e.row.value);
+            if (null != e && null != e.row && null != e.row.value) {
+                cid = e.row.value;
+                Alloy.Globals.LogThis("Changed cid (" + cid + ")");
+            }
         });
         pkViewCategory.add(pickerCategory);
         $.wPost.add(pkViewCategory);
@@ -469,18 +505,23 @@ function Controller() {
             height: 44
         });
         btnOKFreelance.addEventListener("click", function() {
+            Alloy.Globals.LogThis("Saved fyn (" + fyn + ")");
             showFreelance();
             pkViewFreelance.hide();
         });
         pkViewFreelance.add(btnOKFreelance);
         var data = [];
         data.push(Titanium.UI.createPickerRow({
-            title: L("postComboFreelanceY"),
+            title: L("post_Freelance"),
             value: 0
         }));
         data.push(Titanium.UI.createPickerRow({
-            title: L("postComboFreelanceN"),
+            title: L("postComboFreelanceY"),
             value: 1
+        }));
+        data.push(Titanium.UI.createPickerRow({
+            title: L("postComboFreelanceN"),
+            value: 2
         }));
         var pickerFreelance = Ti.UI.createPicker({
             width: Ti.UI.FILL,
@@ -490,7 +531,10 @@ function Controller() {
         pickerFreelance.setSelectedRow(0, fyn, false);
         pickerFreelance.add(data);
         pickerFreelance.addEventListener("change", function(e) {
-            null != e && null != e.row && null != e.row.value && (fyn = e.row.value);
+            if (null != e && null != e.row && null != e.row.value) {
+                fyn = e.row.value;
+                Alloy.Globals.LogThis("Saved cid (" + fyn + ")");
+            }
         });
         pkViewFreelance.add(pickerFreelance);
         $.wPost.add(pkViewFreelance);

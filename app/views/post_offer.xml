@@ -10,7 +10,7 @@
                         <Button class="btnPostForm" id="btnPostCategory" title="L('post_Category_Human')" />
                     </View>
                     <View class="vPostRow" layout="vertical">
-                        <Button class="btnPostForm" id="btnPostFreelance" title="L('searchFreelance')" />
+                        <Button class="btnPostForm" id="btnPostFreelance" title="L('post_Freelance')" />
                     </View>
                     <View class="vPostRow" layout="vertical">
                         <Label id="lblPostTitle" class="lblPost" text="L('post_Human_Title')" />
@@ -21,12 +21,12 @@
                         <TextField class="txtPost" id="txtEmail" />
                     </View>
                     <View class="vPostRow" layout="vertical">
-                        <Label id="lblPostPositiv" class="lblPost" text="L('post_Human_Positiv')" />
-                        <TextField class="txtPost" id="txtPositiv" />
-                    </View>
-                    <View class="vPostRow" layout="vertical">
                         <Label id="lblPostNegativ" class="lblPost" text="L('post_Human_Negativ')" />
                         <TextField class="txtPost" id="txtNegativ" />
+                    </View>
+                    <View class="vPostRow" layout="vertical">
+                        <Label id="lblPostPositiv" class="lblPost" text="L('post_Human_Positiv')" />
+                        <TextField class="txtPost" id="txtPositiv" />
                     </View>
                     <Button id="btnPost" title="L('post_Button')" backgroundImage="btn_boom.png" />
                 </View>
