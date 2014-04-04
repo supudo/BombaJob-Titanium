@@ -1,10 +1,17 @@
 var delegateSyncFinished, delegateSyncError;
-var searchKeyword, searchFreelance;
+var searchKeyword, searchFreelance, joff;
 
 exports.startSync = function(o, u) {
     delegateSyncFinished = o;
     delegateSyncError = u;
     fetchTextContent();
+};
+
+exports.postOffer = function(off, o, u) {
+    joff = off;
+    delegateSyncFinished = o;
+    delegateSyncError = u;
+    doPostOffer();
 };
 
 exports.startSearch = function(sk, sf, o, u) {
@@ -14,6 +21,55 @@ exports.startSearch = function(sk, sf, o, u) {
     delegateSyncError = u;
     doSearch();
 };
+
+/*
+ * 
+ * Post
+ * 
+ */
+
+function doPostOffer() {
+    if (!Titanium.Network.online)
+        delegateSyncError({error: L('noInternet')});
+    else {
+        var url = Alloy.Globals.ServicesURL;
+        var urlParams = "?action=postNewJob";
+        url += urlParams;
+        Alloy.Globals.LogThis("Post URL - " + url);
+    
+        var params = { jsonobj : JSON.stringify(joff) };
+        Alloy.Globals.LogThis("Post Data - " + "jsonobj=" + JSON.stringify(joff));
+
+        var xhr = Ti.Network.createHTTPClient();
+        xhr.open("POST", url);
+        xhr.onload = function() {
+            if (this.responseText != null)
+                processPost(this.responseText);
+        };
+        xhr.onerror = function(e) {
+            Alloy.Globals.LogThis("Post Error - " + e.error);
+            delegateSyncError(e);
+        };
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        xhr.send(params);
+    }
+}
+
+function processPost(jsonText) {
+    try {
+        Alloy.Globals.LogThis(jsonText);
+        var dbOffers = Alloy.Collections.Offers;
+        var json = JSON.parse(jsonText);
+        if (json.postNewJob.result == 'true')
+            delegateSyncFinished(json.postNewJob.last_id, json.postNewJob.last_date_stamp, json.postNewJob.last_date);
+        else
+            delegateSyncError({error: json.postNewJob.result});
+    }
+    catch (e) {
+        Alloy.Globals.LogThis("processPost error : " + e.error);
+        delegateSyncError(e);
+    }
+}
 
 /*
  * 

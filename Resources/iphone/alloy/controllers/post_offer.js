@@ -1,7 +1,9 @@
 function Controller() {
     function setFields() {
+        hudLoading = loHud.loadingOverlay(Alloy.Globals.navgroup);
         $.txtPositiv.value = Alloy.Globals.PostPositiv;
         $.txtNegativ.value = Alloy.Globals.PostNegativ;
+        $.txtEmail.value = Ti.App.Properties.getString("BJSettingPrivateEmail");
     }
     function switchLabels() {
         if (2 == humanYn) {
@@ -27,6 +29,52 @@ function Controller() {
     }
     function showFreelance() {
         $.btnPostFreelance.title = 0 == fyn ? L("post_Freelance") : 1 == fyn ? L("postComboFreelanceY") : L("postComboFreelanceN");
+    }
+    function postFinished(offid, dtstamp, dt) {
+        Alloy.Globals.LogThis("Post done - " + offid + "!");
+        var vTitle = string.trim($.txtTitle.value);
+        var vEmail = string.trim($.txtEmail.value);
+        var vPositiv = string.trim($.txtPositiv.value);
+        var vNegativ = string.trim($.txtNegativ.value);
+        var dbOffers = Alloy.Collections.Offers;
+        var ent = Alloy.createModel("Offer", {
+            OfferID: offid,
+            CategoryID: cid - 1,
+            Positivism: vPositiv,
+            Title: vTitle,
+            Negativism: vNegativ,
+            CategoryTitle: dbCategories.models[cid - 1].attributes.CategoryTitle,
+            Email: vEmail,
+            HumanYn: 2 == humanYn ? "0" : "1",
+            FreelanceYn: 2 == fyn ? "0" : "1",
+            PublishDate: dt,
+            PublishDateStamp: dtstamp
+        });
+        dbOffers.add(ent);
+        ent.save();
+        hudLoading.hide();
+        var dialog = Ti.UI.createAlertDialog({
+            cancel: 0,
+            buttonNames: [ L("close_alertbox") ],
+            message: L("post_OfferSuccess"),
+            title: ""
+        });
+        dialog.addEventListener("click", function() {
+            humanYn = 0;
+            cid = 0;
+            fyn = 0;
+            $.txtTitle.value = "";
+            $.txtEmail.value = "";
+            $.txtPositiv.value = "";
+            $.txtNegativ.value = "";
+            Alloy.Globals.navgroup.setActiveTab(0);
+        });
+        dialog.show();
+    }
+    function postError(e) {
+        hudLoading.hide();
+        Alloy.Globals.LogThis("Post error - " + e.error + "!");
+        null != e && null != e.error && e.error.indexOf("post_") >= 0 ? alert(L(e.error)) : alert(L("generic_error"));
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "post_offer";
@@ -360,9 +408,12 @@ function Controller() {
     exports.destroy = function() {};
     _.extend($, $.__views);
     var string = require("alloy/string");
+    var sync_manager = require("SyncManager");
+    var loHud = require("LoadingOverlay");
     var dbCategories = Alloy.Collections.Categories;
     dbCategories && dbCategories.fetch();
     var humanYn = 0, cid = 0, fyn = 0;
+    var hudLoading;
     $.txtNegativ.addEventListener("focus", function() {
         var d = {
             h: humanYn,
@@ -395,7 +446,23 @@ function Controller() {
             var vNegativ = string.trim($.txtNegativ.value);
             var valErrMessage = "";
             0 >= cid ? valErrMessage = L("post_error_Category") : 0 >= fyn ? valErrMessage = L("post_error_Freelance") : "" == vTitle ? valErrMessage = 1 == humanYn ? L("post_error_Human_Title") : L("post_error_Company_Title") : "" == vEmail ? valErrMessage = 1 == humanYn ? L("post_error_Human_Email") : L("post_error_Company_Email") : "" == vNegativ ? valErrMessage = 1 == humanYn ? L("post_error_Human_Negativ") : L("post_error_Company_Negativ") : "" == vPositiv && (valErrMessage = 1 == humanYn ? L("post_error_Human_Positiv") : L("post_error_Company_Positiv"));
-            if ("" == valErrMessage) Alloy.Globals.LogThis("Post ..."); else {
+            if ("" == valErrMessage) {
+                hudLoading.show(L("sending"));
+                Alloy.Globals.LogThis("Post ...");
+                Ti.App.Properties.setString("BJSettingPrivateEmail", vEmail);
+                var joff = {
+                    h: 1 == humanYn ? "1" : "0",
+                    fr: 1 == fyn ? "1" : "0",
+                    cid: dbCategories.models[cid - 1].attributes.CategoryID,
+                    tt: vTitle,
+                    em: vEmail,
+                    pos: vPositiv,
+                    neg: vNegativ,
+                    glat: "0",
+                    glong: "0"
+                };
+                sync_manager.postOffer(joff, postFinished, postError);
+            } else {
                 Alloy.Globals.LogThis("Post error - " + valErrMessage);
                 var dialog = Ti.UI.createAlertDialog({
                     cancel: 0,

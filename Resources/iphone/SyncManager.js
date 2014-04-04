@@ -1,3 +1,43 @@
+function doPostOffer() {
+    if (Titanium.Network.online) {
+        var url = Alloy.Globals.ServicesURL;
+        var urlParams = "?action=postNewJob";
+        url += urlParams;
+        Alloy.Globals.LogThis("Post URL - " + url);
+        var params = {
+            jsonobj: JSON.stringify(joff)
+        };
+        Alloy.Globals.LogThis("Post Data - jsonobj=" + JSON.stringify(joff));
+        var xhr = Ti.Network.createHTTPClient();
+        xhr.open("POST", url);
+        xhr.onload = function() {
+            null != this.responseText && processPost(this.responseText);
+        };
+        xhr.onerror = function(e) {
+            Alloy.Globals.LogThis("Post Error - " + e.error);
+            delegateSyncError(e);
+        };
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(params);
+    } else delegateSyncError({
+        error: L("noInternet")
+    });
+}
+
+function processPost(jsonText) {
+    try {
+        Alloy.Globals.LogThis(jsonText);
+        Alloy.Collections.Offers;
+        var json = JSON.parse(jsonText);
+        "true" == json.postNewJob.result ? delegateSyncFinished(json.postNewJob.last_id, json.postNewJob.last_date_stamp, json.postNewJob.last_date) : delegateSyncError({
+            error: json.postNewJob.result
+        });
+    } catch (e) {
+        Alloy.Globals.LogThis("processPost error : " + e.error);
+        delegateSyncError(e);
+    }
+}
+
 function doSearch() {
     if (Titanium.Network.online) {
         var url = Alloy.Globals.ServicesURL;
@@ -204,12 +244,19 @@ function processOffers(jsonText) {
 
 var delegateSyncFinished, delegateSyncError;
 
-var searchKeyword, searchFreelance;
+var searchKeyword, searchFreelance, joff;
 
 exports.startSync = function(o, u) {
     delegateSyncFinished = o;
     delegateSyncError = u;
     fetchTextContent();
+};
+
+exports.postOffer = function(off, o, u) {
+    joff = off;
+    delegateSyncFinished = o;
+    delegateSyncError = u;
+    doPostOffer();
 };
 
 exports.startSearch = function(sk, sf, o, u) {

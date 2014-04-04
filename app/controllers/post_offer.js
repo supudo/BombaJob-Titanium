@@ -1,13 +1,27 @@
 var string = require('alloy/string');
+var sync_manager = require('SyncManager');
+var loHud = require('LoadingOverlay');
 
 var dbCategories = Alloy.Collections.Categories;
 dbCategories && dbCategories.fetch();
 
 var humanYn = 0, cid = 0, fyn = 0;
+var hudLoading;
 
 function setFields() {
+    hudLoading = loHud.loadingOverlay(Alloy.Globals.navgroup);
     $.txtPositiv.value = Alloy.Globals.PostPositiv;
     $.txtNegativ.value = Alloy.Globals.PostNegativ;
+    $.txtEmail.value = Ti.App.Properties.getString('BJSettingPrivateEmail');
+    
+    /*
+    humanYn = 1;
+    cid = 2;
+    fyn = 1;
+    $.txtTitle.value = 'aaaaa';
+    $.txtPositiv.value = 'bbbb';
+    $.txtNegativ.value = 'cccc';
+    */
 }
 
 $.txtNegativ.addEventListener('focus', function(e) {
@@ -97,7 +111,22 @@ $.btnPost.addEventListener('click', function(e) {
             valErrMessage = (humanYn == 1 ? L('post_error_Human_Positiv') : L('post_error_Company_Positiv'));
             
         if (valErrMessage == '') {
+            hudLoading.show(L('sending'));
             Alloy.Globals.LogThis("Post ...");
+            Ti.App.Properties.setString('BJSettingPrivateEmail', vEmail);
+            
+            var joff = {
+                h: (humanYn == 1 ? '1' : '0'),
+                fr: (fyn == 1 ? '1' : '0'),
+                cid: dbCategories.models[cid - 1].attributes.CategoryID,
+                tt: vTitle,
+                em: vEmail,
+                pos: vPositiv,
+                neg: vNegativ,
+                glat: '0',
+                glong: '0'
+            };
+            sync_manager.postOffer(joff, postFinished, postError);
         }
         else {
             Alloy.Globals.LogThis("Post error - " + valErrMessage);
@@ -113,6 +142,61 @@ $.btnPost.addEventListener('click', function(e) {
         }
     }
 });
+
+function postFinished(offid, dtstamp, dt) {
+    Alloy.Globals.LogThis("Post done - " + offid + "!");
+
+    var vTitle = string.trim($.txtTitle.value);
+    var vEmail = string.trim($.txtEmail.value);
+    var vPositiv = string.trim($.txtPositiv.value);
+    var vNegativ = string.trim($.txtNegativ.value);
+
+    var dbOffers = Alloy.Collections.Offers;
+    var ent = Alloy.createModel('Offer', {
+        OfferID: offid,
+        CategoryID: cid - 1,
+        Positivism: vPositiv,
+        Title: vTitle,
+        Negativism: vNegativ,
+        CategoryTitle: dbCategories.models[cid - 1].attributes.CategoryTitle,
+        Email: vEmail,
+        HumanYn: (humanYn == 2 ? "0" : "1"),
+        FreelanceYn: (fyn == 2 ? "0" : "1"),
+        PublishDate: dt,
+        PublishDateStamp: dtstamp
+    });
+    dbOffers.add(ent);
+    ent.save();
+
+    hudLoading.hide();
+    
+    var dialog = Ti.UI.createAlertDialog({
+        cancel : 0,
+        buttonNames : [L('close_alertbox')],
+        message : L('post_OfferSuccess'),
+        title : ''
+    });
+    dialog.addEventListener('click', function(e) {
+        humanYn = 0;
+        cid = 0;
+        fyn = 0;
+        $.txtTitle.value = '';
+        $.txtEmail.value = '';
+        $.txtPositiv.value = '';
+        $.txtNegativ.value = '';
+        Alloy.Globals.navgroup.setActiveTab(0);
+    });
+    dialog.show();
+}
+
+function postError(e) {
+    hudLoading.hide();
+    Alloy.Globals.LogThis("Post error - " + e.error + "!");
+    if (e != null && e.error != null && e.error.indexOf('post_') >= 0)
+        alert(L(e.error));
+    else
+        alert(L('generic_error'));
+}
 
 $.btnPostHumanYn.addEventListener('click', function(e) {
     var pkViewHuman = Titanium.UI.createView({ 
