@@ -146,6 +146,7 @@ $.btnPost.addEventListener('click', function(e) {
 function postFinished(offid, dtstamp, dt) {
     Alloy.Globals.LogThis("Post done - " + offid + "!");
 
+    /*
     var vTitle = string.trim($.txtTitle.value);
     var vEmail = string.trim($.txtEmail.value);
     var vPositiv = string.trim($.txtPositiv.value);
@@ -167,6 +168,7 @@ function postFinished(offid, dtstamp, dt) {
     });
     dbOffers.add(ent);
     ent.save();
+    */
 
     hudLoading.hide();
     
