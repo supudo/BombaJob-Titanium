@@ -1,0 +1,52 @@
+".vPostDetailsRow": {
+    top: '10dp',
+    left: '10dp',
+    right: '10dp',
+    width: Ti.UI.FILL,
+    height: Ti.UI.FILL
+}
+
+".lblPost": {
+    width: Ti.UI.FULL,
+    left: '10dp',
+    font: {
+        fontFamily:'Ubuntu',
+        fontSize: '16dp',
+        fontStyle: 'normal',
+        fontWeight: 'normal'
+    },
+}
+
+".txtPost": {
+    backgroundColor: '#fff',
+    width: Ti.UI.FULL,
+    height: 'auto',
+    left: '10dp',
+    right: '10dp',
+    font: {
+        fontFamily:'Ubuntu',
+        fontSize: '16dp',
+        fontStyle: 'normal',
+        fontWeight: 'normal'
+    },
+    borderColor: '#000',
+    borderRadius: '3dp',
+    borderWidth: '1dp',
+    paddingLeft: '5dp',
+    paddingRight: '5dp'
+}
+
+"#btnPost": {
+    width: Ti.UI.FULL,
+    height: '50dp',
+    top: '20dp',
+    left: '20dp',
+    right: '20dp',
+    bottom: '10dp',
+    font: {
+        fontFamily:'Ubuntu',
+        fontSize: '16dp',
+        fontStyle: 'normal',
+        fontWeight: 'normal'
+    }
+}

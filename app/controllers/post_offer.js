@@ -5,6 +5,29 @@ dbCategories && dbCategories.fetch();
 
 var humanYn = 0, cid = 0, fyn = 0;
 
+function setFields() {
+    $.txtPositiv.value = Alloy.Globals.PostPositiv;
+    $.txtNegativ.value = Alloy.Globals.PostNegativ;
+}
+
+$.txtNegativ.addEventListener('focus', function(e) {
+    var d = { h : humanYn, f: 0, t: $.txtNegativ.value };
+    var w = Alloy.createController("post_details", {
+        data: d,
+        "$model": d
+    });
+    w.openDetails($.tbPost);
+});
+
+$.txtPositiv.addEventListener('focus', function(e) {
+    var d = { h: humanYn, f: 1, t: $.txtPositiv.value };
+    var w = Alloy.createController("post_details", {
+        data: d,
+        "$model": d
+    });
+    w.openDetails($.tbPost);
+});
+
 function switchLabels() {
     if (humanYn == 2) {
         $.btnPostHumanYn.title = L('post_HumanCompany_C');

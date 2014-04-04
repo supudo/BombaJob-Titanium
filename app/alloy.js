@@ -15,6 +15,9 @@ Alloy.Globals.ServicesURL = "http://bombajob.supudo.net/_mob_service_json.php";
 Alloy.Globals.SiteURL = "http://bombajob.supudo.net";
 Alloy.Globals.ConnectionTimeout = 0;
 
+Alloy.Globals.PostPositiv = '';
+Alloy.Globals.PostNegativ = '';
+
 if (OS_IOS || OS_ANDROID) {
     Alloy.Collections.Categories = Alloy.createCollection('Category');
     Alloy.Collections.Offers = Alloy.createCollection('Offer');

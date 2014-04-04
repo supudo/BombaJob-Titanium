@@ -1,0 +1,8 @@
+<Alloy>
+    <Window id="wPostDetails" class="bgContainer" title="L('post')" backButtonTitle="" onFocus="openEdit">
+        <View class="vPostDetailsRow" layout="vertical">
+            <Label id="lblPostTitle" class="lblPost" text="L('post_Human_Negativ')" />
+            <TextArea id="txtDetails" class="txtPost" suppressReturn="false" />
+        </View>
+    </Window>
+</Alloy>

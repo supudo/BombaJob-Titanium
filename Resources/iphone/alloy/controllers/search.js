@@ -26,7 +26,7 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
-    $.__views.__alloyId11 = Ti.UI.createWindow({
+    $.__views.__alloyId12 = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
@@ -34,13 +34,13 @@ function Controller() {
         verticalAlign: "center",
         navTintColor: "#df9368",
         title: L("search"),
-        id: "__alloyId11"
-    });
-    $.__views.__alloyId12 = Ti.UI.createView({
-        layout: "vertical",
         id: "__alloyId12"
     });
-    $.__views.__alloyId11.add($.__views.__alloyId12);
+    $.__views.__alloyId13 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId13"
+    });
+    $.__views.__alloyId12.add($.__views.__alloyId13);
     $.__views.txtSearch = Ti.UI.createTextField({
         backgroundColor: "#fff",
         width: Ti.UI.FULL,
@@ -63,7 +63,7 @@ function Controller() {
         id: "txtSearch",
         hintText: L("searchHint")
     });
-    $.__views.__alloyId12.add($.__views.txtSearch);
+    $.__views.__alloyId13.add($.__views.txtSearch);
     $.__views.vSearchFreelance = Ti.UI.createView({
         top: "20dp",
         left: "20dp",
@@ -72,7 +72,7 @@ function Controller() {
         width: Ti.UI.FILL,
         id: "vSearchFreelance"
     });
-    $.__views.__alloyId12.add($.__views.vSearchFreelance);
+    $.__views.__alloyId13.add($.__views.vSearchFreelance);
     $.__views.lblSearchFreelance = Ti.UI.createLabel({
         left: "0dp",
         font: {
@@ -107,9 +107,9 @@ function Controller() {
         title: L("search"),
         backgroundImage: "btn_boom.png"
     });
-    $.__views.__alloyId12.add($.__views.btnSearch);
+    $.__views.__alloyId13.add($.__views.btnSearch);
     $.__views.tbSearch = Ti.UI.createTab({
-        window: $.__views.__alloyId11,
+        window: $.__views.__alloyId12,
         id: "tbSearch",
         title: L("search"),
         icon: "tb_search.png"

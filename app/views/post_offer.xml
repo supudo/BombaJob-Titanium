@@ -1,6 +1,6 @@
 <Alloy>
     <Tab id="tbPost" title="L('post')" icon="tb_postoffer.png">
-        <Window id="wPost" class="bgContainer" title="L('post')" backButtonTitle="">
+        <Window id="wPost" class="bgContainer" title="L('post')" backButtonTitle="" onFocus="setFields">
             <ScrollView>
                 <View layout="vertical">
                     <View class="vPostRow" layout="vertical">

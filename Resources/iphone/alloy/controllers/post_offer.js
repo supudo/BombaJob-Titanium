@@ -1,4 +1,8 @@
 function Controller() {
+    function setFields() {
+        $.txtPositiv.value = Alloy.Globals.PostPositiv;
+        $.txtNegativ.value = Alloy.Globals.PostNegativ;
+    }
     function switchLabels() {
         if (2 == humanYn) {
             $.btnPostHumanYn.title = L("post_HumanCompany_C");
@@ -31,6 +35,7 @@ function Controller() {
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.wPost = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
@@ -42,25 +47,26 @@ function Controller() {
         title: L("post"),
         backButtonTitle: ""
     });
-    $.__views.__alloyId2 = Ti.UI.createScrollView({
-        id: "__alloyId2"
-    });
-    $.__views.wPost.add($.__views.__alloyId2);
-    $.__views.__alloyId3 = Ti.UI.createView({
-        layout: "vertical",
+    setFields ? $.__views.wPost.addEventListener("focus", setFields) : __defers["$.__views.wPost!focus!setFields"] = true;
+    $.__views.__alloyId3 = Ti.UI.createScrollView({
         id: "__alloyId3"
     });
-    $.__views.__alloyId2.add($.__views.__alloyId3);
+    $.__views.wPost.add($.__views.__alloyId3);
     $.__views.__alloyId4 = Ti.UI.createView({
+        layout: "vertical",
+        id: "__alloyId4"
+    });
+    $.__views.__alloyId3.add($.__views.__alloyId4);
+    $.__views.__alloyId5 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "vertical",
-        id: "__alloyId4"
+        id: "__alloyId5"
     });
-    $.__views.__alloyId3.add($.__views.__alloyId4);
+    $.__views.__alloyId4.add($.__views.__alloyId5);
     $.__views.btnPostHumanYn = Ti.UI.createButton({
         width: Ti.UI.FULL,
         height: "40dp",
@@ -83,17 +89,17 @@ function Controller() {
         id: "btnPostHumanYn",
         title: L("post_HumanCompany_Choice")
     });
-    $.__views.__alloyId4.add($.__views.btnPostHumanYn);
-    $.__views.__alloyId5 = Ti.UI.createView({
+    $.__views.__alloyId5.add($.__views.btnPostHumanYn);
+    $.__views.__alloyId6 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "vertical",
-        id: "__alloyId5"
+        id: "__alloyId6"
     });
-    $.__views.__alloyId3.add($.__views.__alloyId5);
+    $.__views.__alloyId4.add($.__views.__alloyId6);
     $.__views.btnPostCategory = Ti.UI.createButton({
         width: Ti.UI.FULL,
         height: "40dp",
@@ -116,17 +122,17 @@ function Controller() {
         id: "btnPostCategory",
         title: L("post_Category_Human")
     });
-    $.__views.__alloyId5.add($.__views.btnPostCategory);
-    $.__views.__alloyId6 = Ti.UI.createView({
+    $.__views.__alloyId6.add($.__views.btnPostCategory);
+    $.__views.__alloyId7 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "vertical",
-        id: "__alloyId6"
+        id: "__alloyId7"
     });
-    $.__views.__alloyId3.add($.__views.__alloyId6);
+    $.__views.__alloyId4.add($.__views.__alloyId7);
     $.__views.btnPostFreelance = Ti.UI.createButton({
         width: Ti.UI.FULL,
         height: "40dp",
@@ -149,17 +155,17 @@ function Controller() {
         id: "btnPostFreelance",
         title: L("post_Freelance")
     });
-    $.__views.__alloyId6.add($.__views.btnPostFreelance);
-    $.__views.__alloyId7 = Ti.UI.createView({
+    $.__views.__alloyId7.add($.__views.btnPostFreelance);
+    $.__views.__alloyId8 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "vertical",
-        id: "__alloyId7"
+        id: "__alloyId8"
     });
-    $.__views.__alloyId3.add($.__views.__alloyId7);
+    $.__views.__alloyId4.add($.__views.__alloyId8);
     $.__views.lblPostTitle = Ti.UI.createLabel({
         width: Ti.UI.FULL,
         left: "10dp",
@@ -172,7 +178,7 @@ function Controller() {
         id: "lblPostTitle",
         text: L("post_Human_Title")
     });
-    $.__views.__alloyId7.add($.__views.lblPostTitle);
+    $.__views.__alloyId8.add($.__views.lblPostTitle);
     $.__views.txtTitle = Ti.UI.createTextField({
         backgroundColor: "#fff",
         width: Ti.UI.FULL,
@@ -193,17 +199,17 @@ function Controller() {
         paddingRight: "5dp",
         id: "txtTitle"
     });
-    $.__views.__alloyId7.add($.__views.txtTitle);
-    $.__views.__alloyId8 = Ti.UI.createView({
+    $.__views.__alloyId8.add($.__views.txtTitle);
+    $.__views.__alloyId9 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "vertical",
-        id: "__alloyId8"
+        id: "__alloyId9"
     });
-    $.__views.__alloyId3.add($.__views.__alloyId8);
+    $.__views.__alloyId4.add($.__views.__alloyId9);
     $.__views.lblPostEmail = Ti.UI.createLabel({
         width: Ti.UI.FULL,
         left: "10dp",
@@ -216,7 +222,7 @@ function Controller() {
         id: "lblPostEmail",
         text: L("post_Human_Email")
     });
-    $.__views.__alloyId8.add($.__views.lblPostEmail);
+    $.__views.__alloyId9.add($.__views.lblPostEmail);
     $.__views.txtEmail = Ti.UI.createTextField({
         backgroundColor: "#fff",
         width: Ti.UI.FULL,
@@ -237,17 +243,17 @@ function Controller() {
         paddingRight: "5dp",
         id: "txtEmail"
     });
-    $.__views.__alloyId8.add($.__views.txtEmail);
-    $.__views.__alloyId9 = Ti.UI.createView({
+    $.__views.__alloyId9.add($.__views.txtEmail);
+    $.__views.__alloyId10 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "vertical",
-        id: "__alloyId9"
+        id: "__alloyId10"
     });
-    $.__views.__alloyId3.add($.__views.__alloyId9);
+    $.__views.__alloyId4.add($.__views.__alloyId10);
     $.__views.lblPostNegativ = Ti.UI.createLabel({
         width: Ti.UI.FULL,
         left: "10dp",
@@ -260,7 +266,7 @@ function Controller() {
         id: "lblPostNegativ",
         text: L("post_Human_Negativ")
     });
-    $.__views.__alloyId9.add($.__views.lblPostNegativ);
+    $.__views.__alloyId10.add($.__views.lblPostNegativ);
     $.__views.txtNegativ = Ti.UI.createTextField({
         backgroundColor: "#fff",
         width: Ti.UI.FULL,
@@ -281,17 +287,17 @@ function Controller() {
         paddingRight: "5dp",
         id: "txtNegativ"
     });
-    $.__views.__alloyId9.add($.__views.txtNegativ);
-    $.__views.__alloyId10 = Ti.UI.createView({
+    $.__views.__alloyId10.add($.__views.txtNegativ);
+    $.__views.__alloyId11 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "vertical",
-        id: "__alloyId10"
+        id: "__alloyId11"
     });
-    $.__views.__alloyId3.add($.__views.__alloyId10);
+    $.__views.__alloyId4.add($.__views.__alloyId11);
     $.__views.lblPostPositiv = Ti.UI.createLabel({
         width: Ti.UI.FULL,
         left: "10dp",
@@ -304,7 +310,7 @@ function Controller() {
         id: "lblPostPositiv",
         text: L("post_Human_Positiv")
     });
-    $.__views.__alloyId10.add($.__views.lblPostPositiv);
+    $.__views.__alloyId11.add($.__views.lblPostPositiv);
     $.__views.txtPositiv = Ti.UI.createTextField({
         backgroundColor: "#fff",
         width: Ti.UI.FULL,
@@ -325,7 +331,7 @@ function Controller() {
         paddingRight: "5dp",
         id: "txtPositiv"
     });
-    $.__views.__alloyId10.add($.__views.txtPositiv);
+    $.__views.__alloyId11.add($.__views.txtPositiv);
     $.__views.btnPost = Ti.UI.createButton({
         width: Ti.UI.FULL,
         height: "50dp",
@@ -343,7 +349,7 @@ function Controller() {
         title: L("post_Button"),
         backgroundImage: "btn_boom.png"
     });
-    $.__views.__alloyId3.add($.__views.btnPost);
+    $.__views.__alloyId4.add($.__views.btnPost);
     $.__views.tbPost = Ti.UI.createTab({
         window: $.__views.wPost,
         id: "tbPost",
@@ -357,6 +363,30 @@ function Controller() {
     var dbCategories = Alloy.Collections.Categories;
     dbCategories && dbCategories.fetch();
     var humanYn = 0, cid = 0, fyn = 0;
+    $.txtNegativ.addEventListener("focus", function() {
+        var d = {
+            h: humanYn,
+            f: 0,
+            t: $.txtNegativ.value
+        };
+        var w = Alloy.createController("post_details", {
+            data: d,
+            $model: d
+        });
+        w.openDetails($.tbPost);
+    });
+    $.txtPositiv.addEventListener("focus", function() {
+        var d = {
+            h: humanYn,
+            f: 1,
+            t: $.txtPositiv.value
+        };
+        var w = Alloy.createController("post_details", {
+            data: d,
+            $model: d
+        });
+        w.openDetails($.tbPost);
+    });
     $.btnPost.addEventListener("click", function() {
         if (humanYn > 0) {
             var vTitle = string.trim($.txtTitle.value);
@@ -539,6 +569,7 @@ function Controller() {
         pkViewFreelance.add(pickerFreelance);
         $.wPost.add(pkViewFreelance);
     });
+    __defers["$.__views.wPost!focus!setFields"] && $.__views.wPost.addEventListener("focus", setFields);
     _.extend($, exports);
 }
 
