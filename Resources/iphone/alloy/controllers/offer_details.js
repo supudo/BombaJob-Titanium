@@ -7,10 +7,34 @@ function Controller() {
             title: L("contextmenu_share")
         });
         dialog.addEventListener("click", function(e) {
-            Alloy.Globals.LogThis("You selected " + e.index);
+            switch (e.index) {
+              case 0:
+                shareFacebook();
+                break;
+
+              case 1:
+                shareTwitter();
+                break;
+
+              case 2:
+                shareEmail();
+                break;
+
+              case 3:
+                sendMessage();
+            }
         });
         dialog.show();
     }
+    function sendMessage() {
+        var omw = Alloy.createController("offer_message", {
+            op: args.op
+        });
+        omw.openOfferMessage(args.op);
+    }
+    function shareEmail() {}
+    function shareFacebook() {}
+    function shareTwitter() {}
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "offer_details";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;

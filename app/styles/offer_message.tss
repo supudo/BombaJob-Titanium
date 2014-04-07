@@ -1,4 +1,4 @@
-".vPostDetailsRow": {
+".vOfferMessageRow": {
     top: '10dp',
     left: '10dp',
     right: '10dp',
@@ -6,7 +6,7 @@
     height: Ti.UI.FILL
 }
 
-".lblPost": {
+".lblMessage": {
     width: Ti.UI.FILL,
     left: '10dp',
     font: {
@@ -17,7 +17,7 @@
     },
 }
 
-".txtPost": {
+".txtMessage": {
     backgroundColor: '#fff',
     width: Ti.UI.FILL,
     height: 'auto',

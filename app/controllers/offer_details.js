@@ -86,7 +86,6 @@ function showShare() {
         title: L('contextmenu_share')
     });
     dialog.addEventListener('click', function(e) {
-        Alloy.Globals.LogThis('You selected ' + e.index);
         switch (e.index) {
             case 0:
                 shareFacebook();
@@ -106,6 +105,10 @@ function showShare() {
 }
 
 function sendMessage() {
+    var omw = Alloy.createController("offer_message", {
+        op: args.op
+    });
+    omw.openOfferMessage(args.op);
 }
 
 function shareEmail() {

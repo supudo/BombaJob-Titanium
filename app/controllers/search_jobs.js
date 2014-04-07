@@ -28,7 +28,8 @@ function viewDetails(oid) {
     var off = dbOffers.where({OfferID: oid});
     var odw = Alloy.createController("offer_details", {
         data: off[0],
-        "$model": off[0]
+        "$model": off[0],
+        op: $.tbJobs
     });
     odw.openOfferDetails($.tbJobs);
 }

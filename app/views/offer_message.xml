@@ -1,0 +1,8 @@
+<Alloy>
+    <Window id="wOfferMessage" class="bgContainer" title="L('contextmenu_sendmessage')" backButtonTitle="" onFocus="openEdit">
+        <View class="vOfferMessageRow" layout="vertical">
+            <Label id="lblOMTitle" class="lblMessage" text="L('offerMessage_Placeholder')" />
+            <TextArea id="txtMessage" class="txtMessage" suppressReturn="false" />
+        </View>
+    </Window>
+</Alloy>

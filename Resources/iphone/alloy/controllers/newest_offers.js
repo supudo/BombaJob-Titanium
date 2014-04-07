@@ -17,7 +17,8 @@ function Controller() {
         var off = dbOffers.models[idx];
         var odw = Alloy.createController("offer_details", {
             data: off,
-            $model: off
+            $model: off,
+            op: $.tbNewest
         });
         odw.openOfferDetails($.tbNewest);
     }

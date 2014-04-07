@@ -9,47 +9,47 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    var __alloyId28 = [];
-    $.__views.__alloyId29 = Alloy.createController("newest_offers", {
-        id: "__alloyId29",
-        __parentSymbol: __parentSymbol
-    });
-    __alloyId28.push($.__views.__alloyId29.getViewEx({
-        recurse: true
-    }));
-    $.__views.__alloyId30 = Alloy.createController("search_jobs", {
+    var __alloyId29 = [];
+    $.__views.__alloyId30 = Alloy.createController("newest_offers", {
         id: "__alloyId30",
         __parentSymbol: __parentSymbol
     });
-    __alloyId28.push($.__views.__alloyId30.getViewEx({
+    __alloyId29.push($.__views.__alloyId30.getViewEx({
         recurse: true
     }));
-    $.__views.__alloyId31 = Alloy.createController("search_people", {
+    $.__views.__alloyId31 = Alloy.createController("search_jobs", {
         id: "__alloyId31",
         __parentSymbol: __parentSymbol
     });
-    __alloyId28.push($.__views.__alloyId31.getViewEx({
+    __alloyId29.push($.__views.__alloyId31.getViewEx({
         recurse: true
     }));
-    $.__views.__alloyId32 = Alloy.createController("search", {
+    $.__views.__alloyId32 = Alloy.createController("search_people", {
         id: "__alloyId32",
         __parentSymbol: __parentSymbol
     });
-    __alloyId28.push($.__views.__alloyId32.getViewEx({
+    __alloyId29.push($.__views.__alloyId32.getViewEx({
         recurse: true
     }));
-    $.__views.__alloyId33 = Alloy.createController("post_offer", {
+    $.__views.__alloyId33 = Alloy.createController("search", {
         id: "__alloyId33",
         __parentSymbol: __parentSymbol
     });
-    __alloyId28.push($.__views.__alloyId33.getViewEx({
+    __alloyId29.push($.__views.__alloyId33.getViewEx({
         recurse: true
     }));
-    $.__views.__alloyId34 = Alloy.createController("settings", {
+    $.__views.__alloyId34 = Alloy.createController("post_offer", {
         id: "__alloyId34",
         __parentSymbol: __parentSymbol
     });
-    __alloyId28.push($.__views.__alloyId34.getViewEx({
+    __alloyId29.push($.__views.__alloyId34.getViewEx({
+        recurse: true
+    }));
+    $.__views.__alloyId35 = Alloy.createController("settings", {
+        id: "__alloyId35",
+        __parentSymbol: __parentSymbol
+    });
+    __alloyId29.push($.__views.__alloyId35.getViewEx({
         recurse: true
     }));
     $.__views.winSync = Ti.UI.createWindow({
@@ -84,16 +84,16 @@ function Controller() {
         title: L("syncagain"),
         icon: "tb_syncagain.png"
     });
-    __alloyId28.push($.__views.tbSync);
-    $.__views.__alloyId35 = Alloy.createController("about", {
-        id: "__alloyId35",
+    __alloyId29.push($.__views.tbSync);
+    $.__views.__alloyId36 = Alloy.createController("about", {
+        id: "__alloyId36",
         __parentSymbol: __parentSymbol
     });
-    __alloyId28.push($.__views.__alloyId35.getViewEx({
+    __alloyId29.push($.__views.__alloyId36.getViewEx({
         recurse: true
     }));
     $.__views.tbMenu = Ti.UI.createTabGroup({
-        tabs: __alloyId28,
+        tabs: __alloyId29,
         id: "tbMenu",
         allowUserCustomization: "false",
         navBarHidden: "false",

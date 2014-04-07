@@ -23,7 +23,8 @@ function Controller() {
         });
         var odw = Alloy.createController("offer_details", {
             data: off[0],
-            $model: off[0]
+            $model: off[0],
+            op: $.tbJobs
         });
         odw.openOfferDetails($.tbJobs);
     }
@@ -35,7 +36,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.__alloyId17 = Ti.UI.createWindow({
+    $.__views.__alloyId18 = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
@@ -43,18 +44,18 @@ function Controller() {
         verticalAlign: "center",
         navTintColor: "#df9368",
         title: L("searchJobs"),
-        id: "__alloyId17"
+        id: "__alloyId18"
     });
-    fetchOffersJobs ? $.__views.__alloyId17.addEventListener("focus", fetchOffersJobs) : __defers["$.__views.__alloyId17!focus!fetchOffersJobs"] = true;
+    fetchOffersJobs ? $.__views.__alloyId18.addEventListener("focus", fetchOffersJobs) : __defers["$.__views.__alloyId18!focus!fetchOffersJobs"] = true;
     $.__views.tblOffers = Ti.UI.createTableView({
         top: "10dp",
         backgroundColor: "transparent",
         separatorColor: "#df9368",
         id: "tblOffers"
     });
-    $.__views.__alloyId17.add($.__views.tblOffers);
+    $.__views.__alloyId18.add($.__views.tblOffers);
     $.__views.tbJobs = Ti.UI.createTab({
-        window: $.__views.__alloyId17,
+        window: $.__views.__alloyId18,
         id: "tbJobs",
         title: L("searchJobs"),
         icon: "tb_jobs.png"
@@ -69,7 +70,7 @@ function Controller() {
     $.tblOffers.addEventListener("click", function(e) {
         viewDetails(e.row.getOID());
     });
-    __defers["$.__views.__alloyId17!focus!fetchOffersJobs"] && $.__views.__alloyId17.addEventListener("focus", fetchOffersJobs);
+    __defers["$.__views.__alloyId18!focus!fetchOffersJobs"] && $.__views.__alloyId18.addEventListener("focus", fetchOffersJobs);
     _.extend($, exports);
 }
 
