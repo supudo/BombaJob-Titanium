@@ -1,0 +1,7 @@
+<Alloy>
+    <TableViewRow id="rowCategory">
+        <View id="vRow">
+            <Label id="lblTitle"/>
+        </View>
+    </TableViewRow>
+</Alloy>

@@ -1,27 +1,20 @@
-"#rowOffer": {
+"#rowCategory": {
     backgroundColor: "transparent",
     hasChild: false,
     selectionStyle : Titanium.UI.iPhone.TableViewCellSelectionStyle.GRAY,
     contentHeight: 'auto'
-} 
+}
 
 "#vRow": {
     layout: 'vertical',
     height: Ti.UI.SIZE
 }
 
-"#imgType": {
-    width: '40dp',
-    left: '5dp',
-    top: '5dp',
-    clipsToBounds: true,
-    touchEnabled: false
-}
-
 "#lblTitle": {
-    left: '50dip',
-    top: '5dip',
+    left: '5dip',
     right: '5dip',
+    top: '5dip',
+    bottom: '5dip',
     ellipsize: true,
     wordWrap: false,
     textAlign: 'left',
@@ -30,25 +23,6 @@
     font: {
         fontFamily:'Ubuntu',
         fontSize: '16dp',
-        fontStyle: 'normal',
-        fontWeight: 'normal'
-    },
-    horizontalWrap: true,
-    width: Ti.UI.FILL
-}
-
-"#lblCategory": {
-    left: '50dip',
-    right: '5dip',
-    bottom: '5dip',
-    ellipsize: true,
-    wordWrap: false,
-    textAlign: 'left',
-    touchEnabled: false,
-    color: '#444',
-    font: {
-        fontFamily:'Ubuntu',
-        fontSize: '10dp',
         fontStyle: 'normal',
         fontWeight: 'normal'
     },

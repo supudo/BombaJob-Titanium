@@ -1,0 +1,5 @@
+<Alloy>
+    <Window id="wOffersList" class="bgContainer" title="L('headerOffers')" onFocus="fetchOffers">
+        <TableView id="tblOffersList" class="tblOffers" />
+    </Window>
+</Alloy>

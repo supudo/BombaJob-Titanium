@@ -8,7 +8,6 @@ function Controller() {
     var exports = {};
     $.__views.rowOffer = Ti.UI.createTableViewRow({
         backgroundColor: "transparent",
-        className: "ir",
         hasChild: false,
         selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.GRAY,
         contentHeight: "auto",

@@ -1,21 +1,52 @@
 function Controller() {
     function fetchOffersJobs() {
-        var rows = [];
-        _.each(dbOffers.where({
-            HumanYn: 0
-        }), function(item) {
-            var w = Alloy.createController("row_offer", {
-                OfferID: item.attributes.OfferID,
-                HumanYn: item.attributes.HumanYn,
-                FreelanceYn: item.attributes.FreelanceYn,
-                Title: item.attributes.Title,
-                CategoryTitle: item.attributes.CategoryTitle,
-                ReadYn: item.attributes.ReadYn
-            }).getView();
-            w.setOID(item.attributes.OfferID);
-            rows.push(w);
-        });
-        $.tblOffers.setData(rows);
+        if (Ti.App.Properties.getBool("BJSettingShowCategories", false)) {
+            $.tblOffers.setData([]);
+            var sCategories = Titanium.UI.createTableViewSection();
+            sCategories.headerTitle = L("headerCategories");
+            _.each(dbCategories.models, function(item) {
+                var w = Alloy.createController("row_category", {
+                    CategoryTitle: item.attributes.CategoryTitle
+                }).getView();
+                w.setCID(item.attributes.CategoryID);
+                sCategories.add(w);
+            });
+            $.tblOffers.appendSection(sCategories);
+            var sOffers = Titanium.UI.createTableViewSection();
+            sOffers.headerTitle = L("headerOffers");
+            _.each(dbOffers.where({
+                HumanYn: 0
+            }), function(item) {
+                var w = Alloy.createController("row_offer", {
+                    OfferID: item.attributes.OfferID,
+                    HumanYn: item.attributes.HumanYn,
+                    FreelanceYn: item.attributes.FreelanceYn,
+                    Title: item.attributes.Title,
+                    CategoryTitle: item.attributes.CategoryTitle,
+                    ReadYn: item.attributes.ReadYn
+                }).getView();
+                w.setOID(item.attributes.OfferID);
+                sOffers.add(w);
+            });
+            $.tblOffers.appendSection(sOffers);
+        } else {
+            var rows = [];
+            _.each(dbOffers.where({
+                HumanYn: 0
+            }), function(item) {
+                var w = Alloy.createController("row_offer", {
+                    OfferID: item.attributes.OfferID,
+                    HumanYn: item.attributes.HumanYn,
+                    FreelanceYn: item.attributes.FreelanceYn,
+                    Title: item.attributes.Title,
+                    CategoryTitle: item.attributes.CategoryTitle,
+                    ReadYn: item.attributes.ReadYn
+                }).getView();
+                w.setOID(item.attributes.OfferID);
+                rows.push(w);
+            });
+            $.tblOffers.setData(rows);
+        }
     }
     function viewDetails(oid) {
         var off = dbOffers.where({
@@ -27,6 +58,17 @@ function Controller() {
             op: $.tbJobs
         });
         odw.openOfferDetails($.tbJobs);
+    }
+    function viewCategory(cid) {
+        var cat = dbCategories.where({
+            CategoryID: cid
+        });
+        var olw = Alloy.createController("offers_list", {
+            data: cat[0],
+            $model: cat[0],
+            op: $.tbJobs
+        });
+        olw.openOffersList($.tbJobs);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "search_jobs";
@@ -67,8 +109,12 @@ function Controller() {
     dbOffers && dbOffers.fetch();
     dbOffers.setSortField("ReadYn", "ASC");
     dbOffers.sort();
+    var dbCategories = Alloy.Collections.Categories;
+    dbCategories && dbCategories.fetch();
+    dbCategories.setSortField("CategoryTitle", "ASC");
+    dbCategories.sort();
     $.tblOffers.addEventListener("click", function(e) {
-        viewDetails(e.row.getOID());
+        e.section.headerTitle == L("headerCategories") ? viewCategory(e.row.getCID()) : viewDetails(e.row.getOID());
     });
     __defers["$.__views.__alloyId18!focus!fetchOffersJobs"] && $.__views.__alloyId18.addEventListener("focus", fetchOffersJobs);
     _.extend($, exports);
