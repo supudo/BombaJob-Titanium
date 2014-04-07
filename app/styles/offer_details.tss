@@ -1,7 +1,9 @@
+".svOffer": {
+    width: Ti.UI.FILL
+}
+
 ".vOffer": {
     width: Ti.UI.FILL,
-    top: '10dp',
-    bottom: '10dp',
     left: '10dp',
     right: '10dp'
 }
@@ -31,6 +33,17 @@
         fontSize: '16dp',
         fontStyle: 'normal',
         fontWeight: 'normal'
+    },
+}
+
+".lbldate": {
+    width: Ti.UI.FILL,
+    textAlign: 'left',
+    font: {
+        fontFamily:'Ubuntu',
+        fontSize: '16dp',
+        fontStyle: 'italic',
+        fontWeight: 'italic'
     },
 }
 

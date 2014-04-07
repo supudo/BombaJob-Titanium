@@ -20,15 +20,18 @@ function Controller() {
     $.__views.wOfferDetails && $.addTopLevelView($.__views.wOfferDetails);
     $.__views.scDetails = Ti.UI.createScrollView({
         width: Ti.UI.FILL,
-        top: "10dp",
-        bottom: "10dp",
-        left: "10dp",
-        right: "10dp",
         id: "scDetails",
-        layout: "vertical",
         disableBounce: "true"
     });
     $.__views.wOfferDetails.add($.__views.scDetails);
+    $.__views.__alloyId2 = Ti.UI.createView({
+        width: Ti.UI.FILL,
+        left: "10dp",
+        right: "10dp",
+        layout: "vertical",
+        id: "__alloyId2"
+    });
+    $.__views.scDetails.add($.__views.__alloyId2);
     $.__views.lblOCategory = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         color: "#444",
@@ -40,7 +43,7 @@ function Controller() {
         },
         id: "lblOCategory"
     });
-    $.__views.scDetails.add($.__views.lblOCategory);
+    $.__views.__alloyId2.add($.__views.lblOCategory);
     $.__views.lblOTitle = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         color: "#df9368",
@@ -53,20 +56,20 @@ function Controller() {
         },
         id: "lblOTitle"
     });
-    $.__views.scDetails.add($.__views.lblOTitle);
+    $.__views.__alloyId2.add($.__views.lblOTitle);
     $.__views.lblODate = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         textAlign: "left",
         font: {
             fontFamily: "Ubuntu",
             fontSize: "16dp",
-            fontStyle: "normal",
-            fontWeight: "normal"
+            fontStyle: "italic",
+            fontWeight: "italic"
         },
         top: "10dp",
         id: "lblODate"
     });
-    $.__views.scDetails.add($.__views.lblODate);
+    $.__views.__alloyId2.add($.__views.lblODate);
     $.__views.lblOFreelance = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         textAlign: "left",
@@ -79,14 +82,15 @@ function Controller() {
         top: "10dp",
         id: "lblOFreelance"
     });
-    $.__views.scDetails.add($.__views.lblOFreelance);
-    $.__views.__alloyId2 = Ti.UI.createView({
+    $.__views.__alloyId2.add($.__views.lblOFreelance);
+    $.__views.__alloyId3 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "vertical",
-        id: "__alloyId2"
+        top: "20dp",
+        id: "__alloyId3"
     });
-    $.__views.scDetails.add($.__views.__alloyId2);
+    $.__views.__alloyId2.add($.__views.__alloyId3);
     $.__views.lblONegativism = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         font: {
@@ -99,7 +103,7 @@ function Controller() {
         id: "lblONegativism",
         text: L("post_Human_Negativ")
     });
-    $.__views.__alloyId2.add($.__views.lblONegativism);
+    $.__views.__alloyId3.add($.__views.lblONegativism);
     $.__views.lblONegativismV = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         textAlign: "left",
@@ -111,14 +115,14 @@ function Controller() {
         },
         id: "lblONegativismV"
     });
-    $.__views.__alloyId2.add($.__views.lblONegativismV);
-    $.__views.__alloyId3 = Ti.UI.createView({
+    $.__views.__alloyId3.add($.__views.lblONegativismV);
+    $.__views.__alloyId4 = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
         layout: "vertical",
-        id: "__alloyId3"
+        id: "__alloyId4"
     });
-    $.__views.scDetails.add($.__views.__alloyId3);
+    $.__views.__alloyId2.add($.__views.__alloyId4);
     $.__views.lblOPositivism = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         font: {
@@ -131,7 +135,7 @@ function Controller() {
         id: "lblOPositivism",
         text: L("post_Human_Positiv")
     });
-    $.__views.__alloyId3.add($.__views.lblOPositivism);
+    $.__views.__alloyId4.add($.__views.lblOPositivism);
     $.__views.lblOPositivismV = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         textAlign: "left",
@@ -143,14 +147,12 @@ function Controller() {
         },
         id: "lblOPositivismV"
     });
-    $.__views.__alloyId3.add($.__views.lblOPositivismV);
+    $.__views.__alloyId4.add($.__views.lblOPositivismV);
     exports.destroy = function() {};
     _.extend($, $.__views);
     exports.openOfferDetails = function(_tab) {
         _tab.open($.wOfferDetails);
     };
-    $.scDetails.contentOffset.X = 20;
-    $.scDetails.contentOffset.Y = 20;
     var args = arguments[0] || {};
     var hasData = true;
     hasData = null != args && null != args.$model ? true : false;
@@ -159,7 +161,21 @@ function Controller() {
         offerModel = null == args.$model.attributes ? args.$model : args.$model.attributes;
         $.lblOTitle.text = args.$model.attributes.Title;
         $.lblOCategory.text = args.$model.attributes.CategoryTitle;
-        $.lblODate.text = args.$model.attributes.PublishDate;
+        var darr = args.$model.attributes.PublishDate.split(" ");
+        var mydarr = darr[0].split("-");
+        var hmsarr = darr[1].split(":");
+        var day = parseInt(mydarr[0], 10);
+        var month = parseInt(mydarr[1], 10);
+        var year = parseInt(mydarr[2], 10);
+        var hour = parseInt(hmsarr[0], 10);
+        var minute = parseInt(hmsarr[1], 10);
+        var seconds = parseInt(hmsarr[2], 10);
+        Alloy.Globals.LogThis(args.$model.attributes.PublishDate);
+        Alloy.Globals.LogThis(day + "-" + month + "-" + year + " " + hour + ":" + minute + ":" + seconds);
+        var dt = (10 > hour ? "0" + hour : hour) + ":" + (10 > minute ? "0" + minute : minute);
+        dt += ", ";
+        dt += day + " " + L("monthsLong_" + month) + ", " + year;
+        $.lblODate.text = dt;
         $.lblOFreelance.text = 1 == args.$model.attributes.FreelanceYn ? L("postComboFreelanceY") : L("postComboFreelanceN");
         $.lblONegativism.text = 1 == parseInt(args.$model.attributes.HumanYn) ? L("post_Human_Negativ") : L("post_Company_Negativ");
         $.lblONegativismV.text = args.$model.attributes.Negativism;

@@ -2,9 +2,6 @@ exports.openOfferDetails = function(_tab) {
     _tab.open($.wOfferDetails);
 };
 
-$.scDetails.contentOffset.X = 20;
-$.scDetails.contentOffset.Y = 20;
-
 var args = arguments[0] || {};
 var hasData = true;
 
@@ -24,7 +21,26 @@ if (hasData) {
     $.lblOTitle.text = args.$model.attributes.Title;
     $.lblOCategory.text = args.$model.attributes.CategoryTitle;
 
-    $.lblODate.text = args.$model.attributes.PublishDate;
+    //$.lblODate.text = args.$model.attributes.PublishDate;
+    var darr = args.$model.attributes.PublishDate.split(" ");
+    var mydarr = darr[0].split("-");
+    var hmsarr = darr[1].split(":");
+    
+    var day = parseInt(mydarr[0], 10);
+    var month = parseInt(mydarr[1], 10);
+    var year = parseInt(mydarr[2], 10);
+    
+    var hour = parseInt(hmsarr[0], 10);
+    var minute = parseInt(hmsarr[1], 10);
+    var seconds = parseInt(hmsarr[2], 10);
+    
+    Alloy.Globals.LogThis(args.$model.attributes.PublishDate);
+    Alloy.Globals.LogThis(day + "-" + month + "-" + year + " " + hour + ":" + minute + ":" + seconds); 
+    
+    var dt = (hour < 10 ?"0" + hour : hour) + ":" + (minute < 10 ?"0" + minute : minute);
+    dt += ", ";
+    dt += day + " " + L('monthsLong_' + month) + " " + year;
+    $.lblODate.text = dt;
 
     if (args.$model.attributes.FreelanceYn == 1)
         $.lblOFreelance.text = L('postComboFreelanceY');
@@ -36,7 +52,7 @@ if (hasData) {
     
     $.lblOPositivism.text = (parseInt(args.$model.attributes.HumanYn) == 1 ? L('post_Human_Positiv') : L('post_Company_Positiv'));
     $.lblOPositivismV.text = args.$model.attributes.Positivism;
-
+    
     var dbOffers = Alloy.Collections.Offers;
     dbOffers && dbOffers.fetch();
     var off = dbOffers.get(args.$model.attributes.OfferID);

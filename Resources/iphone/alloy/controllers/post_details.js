@@ -23,16 +23,16 @@ function Controller() {
     });
     $.__views.wPostDetails && $.addTopLevelView($.__views.wPostDetails);
     openEdit ? $.__views.wPostDetails.addEventListener("focus", openEdit) : __defers["$.__views.wPostDetails!focus!openEdit"] = true;
-    $.__views.__alloyId4 = Ti.UI.createView({
+    $.__views.__alloyId5 = Ti.UI.createView({
         top: "10dp",
         left: "10dp",
         right: "10dp",
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         layout: "vertical",
-        id: "__alloyId4"
+        id: "__alloyId5"
     });
-    $.__views.wPostDetails.add($.__views.__alloyId4);
+    $.__views.wPostDetails.add($.__views.__alloyId5);
     $.__views.lblPostTitle = Ti.UI.createLabel({
         width: Ti.UI.FILL,
         left: "10dp",
@@ -45,7 +45,7 @@ function Controller() {
         id: "lblPostTitle",
         text: L("post_Human_Negativ")
     });
-    $.__views.__alloyId4.add($.__views.lblPostTitle);
+    $.__views.__alloyId5.add($.__views.lblPostTitle);
     $.__views.txtDetails = Ti.UI.createTextArea({
         backgroundColor: "#fff",
         width: Ti.UI.FILL,
@@ -66,7 +66,7 @@ function Controller() {
         id: "txtDetails",
         suppressReturn: "false"
     });
-    $.__views.__alloyId4.add($.__views.txtDetails);
+    $.__views.__alloyId5.add($.__views.txtDetails);
     exports.destroy = function() {};
     _.extend($, $.__views);
     exports.openDetails = function(_tab) {

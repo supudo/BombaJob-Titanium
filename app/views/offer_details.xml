@@ -1,17 +1,19 @@
 <Alloy>
     <Window id="wOfferDetails" class="bgContainer" backButtonTitle="" title="L('title_Offer')">
-        <ScrollView id="scDetails" layout="vertical" class="vOffer" disableBounce="true">
-            <Label id="lblOCategory" class="lblc" />
-            <Label id="lblOTitle" class="lblo" />
-            <Label id="lblODate" class="lblt" />
-            <Label id="lblOFreelance" class="lblt" />
-            <View class="vORow" layout="vertical">
-                <Label id="lblONegativism" class="lbltb" text="L('post_Human_Negativ')" />
-                <Label id="lblONegativismV" class="lblt" />
-            </View>
-            <View class="vORow" layout="vertical">
-                <Label id="lblOPositivism" class="lbltb" text="L('post_Human_Positiv')" />
-                <Label id="lblOPositivismV" class="lblt" />
+        <ScrollView id="scDetails" class="svOffer" disableBounce="true">
+            <View layout="vertical" class="vOffer">
+                <Label id="lblOCategory" class="lblc" />
+                <Label id="lblOTitle" class="lblo" />
+                <Label id="lblODate" class="lbldate" />
+                <Label id="lblOFreelance" class="lblt" />
+                <View class="vORow" layout="vertical" top="20dp">
+                    <Label id="lblONegativism" class="lbltb" text="L('post_Human_Negativ')" />
+                    <Label id="lblONegativismV" class="lblt" />
+                </View>
+                <View class="vORow" layout="vertical">
+                    <Label id="lblOPositivism" class="lbltb" text="L('post_Human_Positiv')" />
+                    <Label id="lblOPositivismV" class="lblt" />
+                </View>
             </View>
         </ScrollView>
     </Window>
