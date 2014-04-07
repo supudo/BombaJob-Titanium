@@ -28,6 +28,8 @@ function Controller() {
     }
     function sendMessage() {
         var omw = Alloy.createController("offer_message", {
+            data: args.$model,
+            $model: args.$model,
             op: args.op
         });
         omw.openOfferMessage(args.op);

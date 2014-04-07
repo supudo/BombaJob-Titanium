@@ -1,5 +1,6 @@
 function Controller() {
     function openEdit() {
+        hudLoading = loHud.loadingOverlay(Alloy.Globals.navgroup);
         $.txtMessage.focus();
         var rbtn = Ti.UI.createButton({
             systemButton: Ti.UI.iPhone.SystemButton.SAVE
@@ -9,7 +10,23 @@ function Controller() {
         });
         $.wOfferMessage.rightNavButton = rbtn;
     }
-    function sendMessage() {}
+    function sendMessage() {
+        var msg = $.txtMessage.value;
+        if ("" != string.trim(msg) && msg.length >= 6) {
+            hudLoading.show(L("sending"));
+            sync_manager.sendOfferMessage(args.$model.attributes.OfferID, msg, sendMessageFinished, sendMessageError);
+        }
+    }
+    function sendMessageFinished() {
+        Alloy.Globals.LogThis("Offer message sent!");
+        hudLoading.hide();
+        $.txtMessage.value = "";
+        $.wOfferMessage.close();
+    }
+    function sendMessageError(e) {
+        Alloy.Globals.LogThis("Offer message error - " + e.error + "!");
+        alert(L("generic_error") + " " + e.error);
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "offer_message";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -77,10 +94,13 @@ function Controller() {
     $.__views.__alloyId5.add($.__views.txtMessage);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var sync_manager = require("SyncManager");
+    var string = require("alloy/string");
+    var loHud = require("LoadingOverlay");
     exports.openOfferMessage = function(_tab) {
         _tab.open($.wOfferMessage);
     };
-    arguments[0] || {};
+    var args = arguments[0] || {};
     $.txtMessage.addEventListener("change", function() {
         Alloy.Globals.OfferMessage = $.txtMessage.value;
     });

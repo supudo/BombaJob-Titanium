@@ -1,3 +1,45 @@
+function doSendMessage() {
+    if (Titanium.Network.online) {
+        var url = Alloy.Globals.ServicesURL;
+        var urlParams = "?action=postMessage&oid=" + offid;
+        url += urlParams;
+        Alloy.Globals.LogThis("Offer Message URL - " + url);
+        var m = {
+            msg: omessage
+        };
+        var params = {
+            jsonobj: JSON.stringify(m)
+        };
+        Alloy.Globals.LogThis("Offer Message - jsonobj=" + JSON.stringify(m));
+        var xhr = Ti.Network.createHTTPClient();
+        xhr.open("POST", url);
+        xhr.onload = function() {
+            null != this.responseText && processOfferMessage(this.responseText);
+        };
+        xhr.onerror = function(e) {
+            Alloy.Globals.LogThis("Offer Message - " + e.error);
+            delegateSyncError(e);
+        };
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(params);
+    } else delegateSyncError({
+        error: L("noInternet")
+    });
+}
+
+function processOfferMessage(jsonText) {
+    try {
+        Alloy.Globals.LogThis(jsonText);
+        var json = JSON.parse(jsonText);
+        "true" == json.postMessage ? delegateSyncFinished() : delegateSyncError({
+            error: json.postNewJob.result
+        });
+    } catch (e) {
+        Alloy.Globals.LogThis("processOfferMessage error : " + e.error);
+        delegateSyncError(e);
+    }
+}
+
 function doPostOffer() {
     if (Titanium.Network.online) {
         var url = Alloy.Globals.ServicesURL;
@@ -244,7 +286,7 @@ function processOffers(jsonText) {
 
 var delegateSyncFinished, delegateSyncError;
 
-var searchKeyword, searchFreelance, joff;
+var searchKeyword, searchFreelance, joff, offid, omessage;
 
 exports.startSync = function(o, u) {
     delegateSyncFinished = o;
@@ -265,4 +307,12 @@ exports.startSearch = function(sk, sf, o, u) {
     delegateSyncFinished = o;
     delegateSyncError = u;
     doSearch();
+};
+
+exports.sendOfferMessage = function(oid, msg, o, u) {
+    offid = oid;
+    omessage = msg;
+    delegateSyncFinished = o;
+    delegateSyncError = u;
+    doSendMessage();
 };
