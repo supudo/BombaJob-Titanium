@@ -139,6 +139,13 @@ function shareFacebook() {
         if (!Social.isFacebookSupported())
             Alloy.Globals.LogThis('No Facebook!');
         else {
+            var msg = "BombaJob.bg - " + args.$model.attributes.Title;
+            msg += " " + Alloy.Globals.SiteURL + "/offer/" + args.$model.attributes.OfferID;
+            msg += " #bombajobbg";
+    
+            Social.facebook({
+                text: msg 
+            });
         }
     }
 }

@@ -57,7 +57,14 @@ function Controller() {
     }
     function shareFacebook() {
         var Social = require("dk.napp.social");
-        Social.isFacebookSupported() || Alloy.Globals.LogThis("No Facebook!");
+        if (Social.isFacebookSupported()) {
+            var msg = "BombaJob.bg - " + args.$model.attributes.Title;
+            msg += " " + Alloy.Globals.SiteURL + "/offer/" + args.$model.attributes.OfferID;
+            msg += " #bombajobbg";
+            Social.facebook({
+                text: msg
+            });
+        } else Alloy.Globals.LogThis("No Facebook!");
     }
     function shareTwitter() {
         var Social = require("dk.napp.social");

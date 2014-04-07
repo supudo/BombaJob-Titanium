@@ -12,12 +12,6 @@ Alloy.Globals.PostPositiv = "";
 
 Alloy.Globals.PostNegativ = "";
 
-Alloy.Globals.FacebookAppID = "162884250446512";
-
-Alloy.Globals.TwitterKey = "uSlctvG45nI6JawDFzGHw";
-
-Alloy.Globals.TwitterSecret = "RGLWAZDxDBfqnw4i0LHTEEnfRPaYzAZQXZriSI1cI";
-
 Alloy.Collections.Categories = Alloy.createCollection("Category");
 
 Alloy.Collections.Offers = Alloy.createCollection("Offer");
