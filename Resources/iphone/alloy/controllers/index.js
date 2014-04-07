@@ -1,6 +1,6 @@
 function Controller() {
     function startSync() {
-        Ti.App.Properties.getBool("BJSettingInitSync") ? sync_manager.startSync(syncFinished, syncError) : syncFinished();
+        Ti.App.Properties.getBool("BJSettingInitSync", true) ? sync_manager.startSync(syncFinished, syncError) : syncFinished();
     }
     function syncFinished() {
         Alloy.createController("tabs").getView().open();

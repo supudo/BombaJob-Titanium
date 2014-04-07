@@ -6,7 +6,7 @@ $.acView.show();
 startSync();
 
 function startSync() {
-    if (Ti.App.Properties.getBool('BJSettingInitSync'))
+    if (Ti.App.Properties.getBool('BJSettingInitSync', true))
         sync_manager.startSync(syncFinished, syncError);
     else
         syncFinished();

@@ -125,7 +125,7 @@ function Controller() {
         searchFreelance = $.swFreelance.value;
         if ("" != string.trim(searchKeyword) && searchKeyword.length >= 3) {
             Alloy.Globals.LogThis("Search start...");
-            Ti.App.Properties.getBool("BJSettingOnlineSearch") ? sync_manager.startSearch(searchKeyword, searchFreelance, searchFinished, searchError) : openResults();
+            Ti.App.Properties.getBool("BJSettingOnlineSearch", true) ? sync_manager.startSearch(searchKeyword, searchFreelance, searchFinished, searchError) : openResults();
         }
     });
     _.extend($, exports);
