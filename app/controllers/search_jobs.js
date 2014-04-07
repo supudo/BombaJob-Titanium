@@ -19,8 +19,20 @@ function fetchOffersJobs() {
     if (Ti.App.Properties.getBool('BJSettingShowCategories', false)) {
         $.tblOffers.setData([]);
 
-        var sCategories = Titanium.UI.createTableViewSection();
-        sCategories.headerTitle = L('headerCategories');
+        var sCategoriesView = Ti.UI.createView({
+            height: 40,
+            backgroundColor: '#444'
+        });
+        var sCategoriesTitle = Ti.UI.createLabel({
+            text: L('headerCategories'),
+            font: { fontFamily:'Ubuntu', fontSize: '20dp', fontStyle: 'normal', fontWeight: 'bold' },
+            textAlign: 'left',
+            width: Ti.UI.FILL,
+            color: '#df9368',
+            left: '10dp'
+        });
+        sCategoriesView.add(sCategoriesTitle);
+        var sCategories = Titanium.UI.createTableViewSection({ headerView: sCategoriesView });
         
         _.each(dbCategories.models, function(item) {
             var w = Alloy.createController('row_category', {
@@ -32,8 +44,20 @@ function fetchOffersJobs() {
 
         $.tblOffers.appendSection(sCategories);
 
-        var sOffers = Titanium.UI.createTableViewSection();
-        sOffers.headerTitle = L('headerOffers');
+        var sOffersView = Ti.UI.createView({
+            height: 40,
+            backgroundColor: '#444'
+        });
+        var sOffersTitle = Ti.UI.createLabel({
+            text: L('headerOffers'),
+            font: { fontFamily:'Ubuntu', fontSize: '20dp', fontStyle: 'normal', fontWeight: 'bold' },
+            textAlign: 'left',
+            width: Ti.UI.FILL,
+            color: '#df9368',
+            left: '10dp'
+        });
+        sOffersView.add(sOffersTitle);
+        var sOffers = Titanium.UI.createTableViewSection({ headerView: sOffersView });
         
         _.each(dbOffers.where({ HumanYn: 0 }), function(item) {
             var w = Alloy.createController('row_offer', {

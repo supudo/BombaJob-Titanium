@@ -46,7 +46,6 @@ function Controller() {
     $.__views.wOffersList && $.addTopLevelView($.__views.wOffersList);
     fetchOffers ? $.__views.wOffersList.addEventListener("focus", fetchOffers) : __defers["$.__views.wOffersList!focus!fetchOffers"] = true;
     $.__views.tblOffersList = Ti.UI.createTableView({
-        top: "10dp",
         backgroundColor: "transparent",
         separatorColor: "#df9368",
         id: "tblOffersList"

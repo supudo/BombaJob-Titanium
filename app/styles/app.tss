@@ -59,7 +59,7 @@
 }
 
 'TableView':{
-    top:'10dp'
+    //top:'10dp'
 },
 
 'TextField':{

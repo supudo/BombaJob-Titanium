@@ -42,7 +42,6 @@ function Controller() {
     });
     fetchOffers ? $.__views.__alloyId1.addEventListener("focus", fetchOffers) : __defers["$.__views.__alloyId1!focus!fetchOffers"] = true;
     $.__views.tblOffers = Ti.UI.createTableView({
-        top: "10dp",
         backgroundColor: "transparent",
         separatorColor: "#df9368",
         id: "tblOffers"
