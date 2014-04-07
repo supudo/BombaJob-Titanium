@@ -34,7 +34,27 @@ function Controller() {
         });
         omw.openOfferMessage(args.op);
     }
-    function shareEmail() {}
+    function shareEmail() {
+        var emailBody = "";
+        emailBody += args.$model.attributes.CategoryTitle + "<br /><br />";
+        emailBody += "<b>" + args.$model.attributes.Title + "</b><br /><br />";
+        emailBody += "<i>" + $.lblODate.text + "</i><br /><br />";
+        emailBody += L("odetails_Freelance") + " " + ("1" == args.$model.attributes.FreelanceYn ? L("yes") : L("no")) + "<br /><br />";
+        if ("1" == args.$model.attributes.HumanYn) {
+            emailBody += "<b>" + L("odetails_Human_Positiv") + "</b> " + args.$model.attributes.Positivism + "<br /><br />";
+            emailBody += "<b>" + L("odetails_Human_Negativ") + "</b> " + args.$model.attributes.Negativism + "<br /><br />";
+        } else {
+            emailBody += "<b>" + L("odetails_Company_Positiv") + "</b> " + args.$model.attributes.Positivism + "<br /><br />";
+            emailBody += "<b>" + L("odetails_Company_Negativ") + "</b> " + args.$model.attributes.Negativism + "<br /><br />";
+        }
+        emailBody += "<br /><br /> Sent from BombaJob ...";
+        var emailDialog = Ti.UI.createEmailDialog();
+        emailDialog.subject = L("email_subject");
+        emailDialog.toRecipients = [];
+        emailDialog.messageBody = emailBody;
+        emailDialog.setHtml(true);
+        emailDialog.open();
+    }
     function shareFacebook() {}
     function shareTwitter() {}
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));

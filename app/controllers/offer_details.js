@@ -21,7 +21,6 @@ if (hasData) {
     $.lblOTitle.text = args.$model.attributes.Title;
     $.lblOCategory.text = args.$model.attributes.CategoryTitle;
 
-    //$.lblODate.text = args.$model.attributes.PublishDate;
     var darr = args.$model.attributes.PublishDate.split(" ");
     var mydarr = darr[0].split("-");
     var hmsarr = darr[1].split(":");
@@ -114,6 +113,27 @@ function sendMessage() {
 }
 
 function shareEmail() {
+    var emailBody = "";
+    emailBody += args.$model.attributes.CategoryTitle + "<br /><br />";
+    emailBody += "<b>" + args.$model.attributes.Title + "</b><br /><br />";
+    emailBody += "<i>" + $.lblODate.text + "</i><br /><br />";
+    emailBody += L('odetails_Freelance') + " " + (args.$model.attributes.FreelanceYn == "1" ? L('yes') : L('no')) + "<br /><br />";
+    if (args.$model.attributes.HumanYn == "1") {
+        emailBody += "<b>" + L('odetails_Human_Positiv') + "</b> " + args.$model.attributes.Positivism + "<br /><br />";
+        emailBody += "<b>" + L('odetails_Human_Negativ') + "</b> " + args.$model.attributes.Negativism + "<br /><br />";
+    }
+    else {
+        emailBody += "<b>" + L('odetails_Company_Positiv') + "</b> " + args.$model.attributes.Positivism + "<br /><br />";
+        emailBody += "<b>" + L('odetails_Company_Negativ') + "</b> " + args.$model.attributes.Negativism + "<br /><br />";
+    }
+    emailBody += "<br /><br /> Sent from BombaJob ...";
+    
+    var emailDialog = Ti.UI.createEmailDialog();
+    emailDialog.subject = L('email_subject');
+    emailDialog.toRecipients = [];
+    emailDialog.messageBody = emailBody;
+    emailDialog.setHtml(true);
+    emailDialog.open();
 }
 
 function shareFacebook() {

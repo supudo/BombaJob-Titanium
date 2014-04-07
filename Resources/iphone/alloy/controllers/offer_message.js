@@ -24,8 +24,9 @@ function Controller() {
         $.wOfferMessage.close();
     }
     function sendMessageError(e) {
-        Alloy.Globals.LogThis("Offer message error - " + e.error + "!");
-        alert(L("generic_error") + " " + e.error);
+        hudLoading.hide();
+        Alloy.Globals.LogThis("Offer Message error - " + e.error + "!");
+        null != e && null != e.error && e.error.indexOf("post_") >= 0 ? alert(L(e.error)) : alert(L("generic_error"));
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "offer_message";
