@@ -55,8 +55,21 @@ function Controller() {
         emailDialog.setHtml(true);
         emailDialog.open();
     }
-    function shareFacebook() {}
-    function shareTwitter() {}
+    function shareFacebook() {
+        var Social = require("dk.napp.social");
+        Social.isFacebookSupported() || Alloy.Globals.LogThis("No Facebook!");
+    }
+    function shareTwitter() {
+        var Social = require("dk.napp.social");
+        if (Social.isTwitterSupported()) {
+            var tweet = "BombaJob.bg - " + args.$model.attributes.Title;
+            tweet += " " + Alloy.Globals.SiteURL + "/offer/" + args.$model.attributes.OfferID;
+            tweet += " #bombajobbg";
+            Social.twitter({
+                text: tweet
+            });
+        } else Alloy.Globals.LogThis("No Twitter!");
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "offer_details";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -227,9 +240,7 @@ function Controller() {
         var year = parseInt(mydarr[2], 10);
         var hour = parseInt(hmsarr[0], 10);
         var minute = parseInt(hmsarr[1], 10);
-        var seconds = parseInt(hmsarr[2], 10);
-        Alloy.Globals.LogThis(args.$model.attributes.PublishDate);
-        Alloy.Globals.LogThis(day + "-" + month + "-" + year + " " + hour + ":" + minute + ":" + seconds);
+        parseInt(hmsarr[2], 10);
         var dt = (10 > hour ? "0" + hour : hour) + ":" + (10 > minute ? "0" + minute : minute);
         dt += ", ";
         dt += day + " " + L("monthsLong_" + month) + " " + year;

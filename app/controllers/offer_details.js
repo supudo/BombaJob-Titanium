@@ -33,9 +33,6 @@ if (hasData) {
     var minute = parseInt(hmsarr[1], 10);
     var seconds = parseInt(hmsarr[2], 10);
     
-    Alloy.Globals.LogThis(args.$model.attributes.PublishDate);
-    Alloy.Globals.LogThis(day + "-" + month + "-" + year + " " + hour + ":" + minute + ":" + seconds); 
-    
     var dt = (hour < 10 ?"0" + hour : hour) + ":" + (minute < 10 ?"0" + minute : minute);
     dt += ", ";
     dt += day + " " + L('monthsLong_' + month) + " " + year;
@@ -137,7 +134,28 @@ function shareEmail() {
 }
 
 function shareFacebook() {
+    if (OS_IOS) {
+        var Social = require('dk.napp.social');
+        if (!Social.isFacebookSupported())
+            Alloy.Globals.LogThis('No Facebook!');
+        else {
+        }
+    }
 }
 
 function shareTwitter() {
+    if (OS_IOS) {
+        var Social = require('dk.napp.social');
+        if (!Social.isTwitterSupported())
+            Alloy.Globals.LogThis('No Twitter!');
+        else {
+            var tweet = "BombaJob.bg - " + args.$model.attributes.Title;
+            tweet += " " + Alloy.Globals.SiteURL + "/offer/" + args.$model.attributes.OfferID;
+            tweet += " #bombajobbg";
+    
+            Social.twitter({
+                text: tweet 
+            });
+        }
+    }
 }
