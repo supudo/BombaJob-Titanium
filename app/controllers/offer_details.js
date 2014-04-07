@@ -57,6 +57,14 @@ if (hasData) {
     dbOffers && dbOffers.fetch();
     var off = dbOffers.get(args.$model.attributes.OfferID);
     off.set({ "ReadYn": 1 }).save();
+
+    var rbtn = Ti.UI.createButton({
+        systemButton: Ti.UI.iPhone.SystemButton.ACTION
+    });
+    rbtn.addEventListener('click', function(e) {
+        showShare();
+    });
+    $.wOfferDetails.rightNavButton = rbtn;
 }
 else {
     $.lblOTitle.text = L('generic_error');
@@ -68,4 +76,43 @@ else {
     $.lblONegativismV.text = '';
     $.lblOPositivism.text = '';
     $.lblOPositivismV.text = '';
+}
+
+function showShare() {
+    var dialog = Titanium.UI.createOptionDialog({
+        options:[L('contextmenu_sharefb'), L('contextmenu_sharetw'), L('contextmenu_shareemail'), L('contextmenu_sendmessage'), L('message_btn_cancel')],
+        destructive: 4,
+        cancel: 1,
+        title: L('contextmenu_share')
+    });
+    dialog.addEventListener('click', function(e) {
+        Alloy.Globals.LogThis('You selected ' + e.index);
+        switch (e.index) {
+            case 0:
+                shareFacebook();
+                break;
+            case 1:
+                shareTwitter();
+                break;
+            case 2:
+                shareEmail();
+                break;
+            case 3:
+                sendMessage();
+                break;
+        }
+    });
+    dialog.show();
+}
+
+function sendMessage() {
+}
+
+function shareEmail() {
+}
+
+function shareFacebook() {
+}
+
+function shareTwitter() {
 }

@@ -1,4 +1,16 @@
 function Controller() {
+    function showShare() {
+        var dialog = Titanium.UI.createOptionDialog({
+            options: [ L("contextmenu_sharefb"), L("contextmenu_sharetw"), L("contextmenu_shareemail"), L("contextmenu_sendmessage"), L("message_btn_cancel") ],
+            destructive: 4,
+            cancel: 1,
+            title: L("contextmenu_share")
+        });
+        dialog.addEventListener("click", function(e) {
+            Alloy.Globals.LogThis("You selected " + e.index);
+        });
+        dialog.show();
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "offer_details";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -174,7 +186,7 @@ function Controller() {
         Alloy.Globals.LogThis(day + "-" + month + "-" + year + " " + hour + ":" + minute + ":" + seconds);
         var dt = (10 > hour ? "0" + hour : hour) + ":" + (10 > minute ? "0" + minute : minute);
         dt += ", ";
-        dt += day + " " + L("monthsLong_" + month) + ", " + year;
+        dt += day + " " + L("monthsLong_" + month) + " " + year;
         $.lblODate.text = dt;
         $.lblOFreelance.text = 1 == args.$model.attributes.FreelanceYn ? L("postComboFreelanceY") : L("postComboFreelanceN");
         $.lblONegativism.text = 1 == parseInt(args.$model.attributes.HumanYn) ? L("post_Human_Negativ") : L("post_Company_Negativ");
@@ -187,6 +199,13 @@ function Controller() {
         off.set({
             ReadYn: 1
         }).save();
+        var rbtn = Ti.UI.createButton({
+            systemButton: Ti.UI.iPhone.SystemButton.ACTION
+        });
+        rbtn.addEventListener("click", function() {
+            showShare();
+        });
+        $.wOfferDetails.rightNavButton = rbtn;
     } else {
         $.lblOTitle.text = L("generic_error");
         $.lblOCategory.text = "";
