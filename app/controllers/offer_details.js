@@ -54,13 +54,26 @@ if (hasData) {
     var off = dbOffers.get(args.$model.attributes.OfferID);
     off.set({ "ReadYn": 1 }).save();
 
-    var rbtn = Ti.UI.createButton({
-        systemButton: Ti.UI.iPhone.SystemButton.ACTION
-    });
-    rbtn.addEventListener('click', function(e) {
-        showShare();
-    });
-    $.wOfferDetails.rightNavButton = rbtn;
+    if (OS_IOS) {
+        var rbtn = Ti.UI.createButton({
+            systemButton: Ti.UI.iPhone.SystemButton.ACTION
+        });
+        rbtn.addEventListener('click', function(e) {
+            showShare();
+        });
+        $.wOfferDetails.rightNavButton = rbtn;
+    }
+    else {
+        var activity = $.wOfferDetails.activity;
+        activity.onCreateOptionsMenu = function(e) {
+            var menu = e.menu;
+            var miSettings = menu.add({ title: L('contextmenu_share') });
+            miSettings.setIcon("/images/tbsettings.png");
+            miSettings.addEventListener("click", function(e) {
+                showShare();
+            });
+        };
+    }
 }
 else {
     $.lblOTitle.text = L('generic_error');

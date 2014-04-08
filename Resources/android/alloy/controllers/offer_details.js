@@ -245,13 +245,19 @@ function Controller() {
         off.set({
             ReadYn: 1
         }).save();
-        var rbtn = Ti.UI.createButton({
-            systemButton: Ti.UI.iPhone.SystemButton.ACTION
-        });
-        rbtn.addEventListener("click", function() {
-            showShare();
-        });
-        $.wOfferDetails.rightNavButton = rbtn;
+        var activity = $.wOfferDetails.activity;
+        activity.onCreateOptionsMenu = function(e) {
+            Alloy.Globals.LogThis("OfferDetails - onCreateOptionsMenu");
+            var menu = e.menu;
+            var miSettings = menu.add({
+                title: L("settings")
+            });
+            miSettings.setIcon("/images/tbsettings.png");
+            miSettings.addEventListener("click", function() {
+                Alloy.Globals.LogThis("OfferDetails - Share clicked!");
+                showShare();
+            });
+        };
     } else {
         $.lblOTitle.text = L("generic_error");
         $.lblOCategory.text = "";
