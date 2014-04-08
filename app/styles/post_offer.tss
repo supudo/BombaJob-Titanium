@@ -70,5 +70,7 @@
         fontSize: '16dp',
         fontStyle: 'normal',
         fontWeight: 'normal'
-    }
+    },
+    color: '#fff',
+    backgroundImage: '/images/btn_boom.png'
 }

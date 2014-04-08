@@ -103,9 +103,10 @@ function Controller() {
             fontStyle: "normal",
             fontWeight: "normal"
         },
+        color: "#fff",
+        backgroundImage: "/images/btn_boom.png",
         id: "btnSearch",
-        title: L("search"),
-        backgroundImage: "btn_boom.png"
+        title: L("search")
     });
     $.__views.__alloyId17.add($.__views.btnSearch);
     $.__views.tbSearch = Ti.UI.createTab({

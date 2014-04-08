@@ -1,9 +1,9 @@
 function Controller() {
     function initSettings() {
-        $.txtEmail.value = Ti.App.Properties.getString("BJSettingPrivateEmail");
-        $.swInitSync.value = Ti.App.Properties.getString("BJSettingInitSync");
-        $.swOnlineSearch.value = Ti.App.Properties.getString("BJSettingOnlineSearch");
-        $.swShowCategories.value = Ti.App.Properties.getString("BJSettingShowCategories");
+        $.txtEmail.value = Ti.App.Properties.getString("BJSettingPrivateEmail", "");
+        $.swInitSync.value = Ti.App.Properties.getBool("BJSettingInitSync", true);
+        $.swOnlineSearch.value = Ti.App.Properties.getBool("BJSettingOnlineSearch", true);
+        $.swShowCategories.value = Ti.App.Properties.getBool("BJSettingShowCategories", false);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "settings";
@@ -154,13 +154,13 @@ function Controller() {
         Ti.App.Properties.setString("BJSettingPrivateEmail", $.txtEmail.value);
     });
     $.swInitSync.addEventListener("change", function() {
-        Ti.App.Properties.setString("BJSettingInitSync", $.swInitSync.value);
+        Ti.App.Properties.setBool("BJSettingInitSync", $.swInitSync.value);
     });
     $.swOnlineSearch.addEventListener("change", function() {
-        Ti.App.Properties.setString("BJSettingOnlineSearch", $.swOnlineSearch.value);
+        Ti.App.Properties.setBool("BJSettingOnlineSearch", $.swOnlineSearch.value);
     });
     $.swShowCategories.addEventListener("change", function() {
-        Ti.App.Properties.setString("BJSettingShowCategories", $.swShowCategories.value);
+        Ti.App.Properties.setBool("BJSettingShowCategories", $.swShowCategories.value);
     });
     __defers["$.__views.__alloyId20!focus!initSettings"] && $.__views.__alloyId20.addEventListener("focus", initSettings);
     _.extend($, exports);

@@ -373,9 +373,10 @@ function Controller() {
             fontStyle: "normal",
             fontWeight: "normal"
         },
+        color: "#fff",
+        backgroundImage: "/images/btn_boom.png",
         id: "btnPost",
-        title: L("post_Button"),
-        backgroundImage: "btn_boom.png"
+        title: L("post_Button")
     });
     $.__views.__alloyId8.add($.__views.btnPost);
     $.__views.tbPost = Ti.UI.createTab({

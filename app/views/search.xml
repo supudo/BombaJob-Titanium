@@ -7,7 +7,7 @@
                     <Label id="lblSearchFreelance" text="L('searchFreelance')" />
                     <Switch id="swFreelance" value="true" />
                 </View>
-                <Button id="btnSearch" title="L('search')" backgroundImage="btn_boom.png" />
+                <Button id="btnSearch" title="L('search')" />
             </View>
         </Window>
     </Tab>

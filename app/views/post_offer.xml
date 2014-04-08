@@ -28,7 +28,7 @@
                         <Label id="lblPostPositiv" class="lblPost" text="L('post_Human_Positiv')" />
                         <TextField class="txtPost" id="txtPositiv" />
                     </View>
-                    <Button id="btnPost" title="L('post_Button')" backgroundImage="btn_boom.png" />
+                    <Button id="btnPost" title="L('post_Button')" />
                 </View>
             </ScrollView>
         </Window>
