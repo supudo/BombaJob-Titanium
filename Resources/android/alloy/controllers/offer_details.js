@@ -247,14 +247,12 @@ function Controller() {
         }).save();
         var activity = $.wOfferDetails.activity;
         activity.onCreateOptionsMenu = function(e) {
-            Alloy.Globals.LogThis("OfferDetails - onCreateOptionsMenu");
             var menu = e.menu;
             var miSettings = menu.add({
-                title: L("settings")
+                title: L("contextmenu_share")
             });
             miSettings.setIcon("/images/tbsettings.png");
             miSettings.addEventListener("click", function() {
-                Alloy.Globals.LogThis("OfferDetails - Share clicked!");
                 showShare();
             });
         };
