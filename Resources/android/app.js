@@ -8,6 +8,10 @@ Alloy.Globals.SiteURL = "http://bombajob.supudo.net";
 
 Alloy.Globals.ConnectionTimeout = 0;
 
+Alloy.Globals.PostPositiv = "";
+
+Alloy.Globals.PostNegativ = "";
+
 Alloy.Collections.Categories = Alloy.createCollection("Category");
 
 Alloy.Collections.Offers = Alloy.createCollection("Offer");

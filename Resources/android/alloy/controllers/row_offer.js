@@ -8,7 +8,6 @@ function Controller() {
     var exports = {};
     $.__views.rowOffer = Ti.UI.createTableViewRow({
         backgroundColor: "transparent",
-        className: "ir",
         hasChild: false,
         selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.GRAY,
         contentHeight: "auto",
@@ -33,18 +32,18 @@ function Controller() {
     $.__views.lblTitle = Ti.UI.createLabel({
         left: "50dip",
         top: "5dip",
+        right: "5dip",
+        ellipsize: true,
+        wordWrap: false,
         textAlign: "left",
+        touchEnabled: false,
+        color: "#000",
         font: {
             fontFamily: "Ubuntu",
             fontSize: "16dp",
             fontStyle: "normal",
             fontWeight: "normal"
         },
-        right: "5dip",
-        ellipsize: true,
-        wordWrap: false,
-        touchEnabled: false,
-        color: "#000",
         horizontalWrap: true,
         width: Ti.UI.FILL,
         id: "lblTitle"
@@ -52,20 +51,19 @@ function Controller() {
     $.__views.vRow.add($.__views.lblTitle);
     $.__views.lblCategory = Ti.UI.createLabel({
         left: "50dip",
-        top: "10dp",
+        right: "5dip",
+        bottom: "5dip",
+        ellipsize: true,
+        wordWrap: false,
         textAlign: "left",
+        touchEnabled: false,
+        color: "#444",
         font: {
             fontFamily: "Ubuntu",
             fontSize: "10dp",
             fontStyle: "normal",
             fontWeight: "normal"
         },
-        right: "5dip",
-        bottom: "5dip",
-        ellipsize: true,
-        wordWrap: false,
-        touchEnabled: false,
-        color: "#444",
         horizontalWrap: true,
         width: Ti.UI.FILL,
         height: Ti.UI.SIZE,
@@ -74,10 +72,29 @@ function Controller() {
     $.__views.vRow.add($.__views.lblCategory);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var oid;
+    exports.setOID = function(offid) {
+        oid = offid;
+    };
+    exports.getOID = function() {
+        return oid;
+    };
     var args = arguments[0] || {};
-    $.imgType.image = args.HumanYn > 0 ? "@drawable/icon_person" : "@drawable/icon_company";
+    $.imgType.image = args.HumanYn > 0 ? "/images/icon_person.png" : "/images/icon_company.png";
     $.lblTitle.text = args.Title;
     $.lblCategory.text = args.CategoryTitle;
+    $.lblTitle.font = {
+        fontFamily: "Ubuntu",
+        fontSize: "16dp",
+        fontStyle: "normal",
+        fontWeight: "normal"
+    };
+    (null == args.ReadYn || 0 == parseInt(args.ReadYn)) && ($.lblTitle.font = {
+        fontFamily: "Ubuntu",
+        fontSize: "16dp",
+        fontStyle: "normal",
+        fontWeight: "bold"
+    });
     _.extend($, exports);
 }
 

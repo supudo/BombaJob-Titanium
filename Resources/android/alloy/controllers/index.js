@@ -1,13 +1,22 @@
 function Controller() {
     function startSync() {
-        sync_manager.startSync(syncFinished, syncError);
+        Ti.App.Properties.getBool("BJSettingInitSync", true) ? sync_manager.startSync(syncFinished, syncError) : syncFinished();
     }
     function syncFinished() {
         Alloy.createController("tabs").getView().open();
     }
     function syncError(e) {
         Alloy.Globals.LogThis(e.error);
-        alert(L("generic_error") + " " + e.error);
+        var dialog = Ti.UI.createAlertDialog({
+            cancel: 1,
+            buttonNames: [ L("retry_alertbox"), L("close_alertbox") ],
+            message: void 0 != e.error ? e.error : "",
+            title: L("generic_error")
+        });
+        dialog.addEventListener("click", function(e) {
+            e.index === e.source.cancel ? syncFinished() : startSync();
+        });
+        dialog.show();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";

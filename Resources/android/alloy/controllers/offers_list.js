@@ -1,69 +1,73 @@
 function Controller() {
     function fetchOffers() {
         var rows = [];
-        _.each(dbOffers.models, function(item) {
-            rows.push(Alloy.createController("row_offer", {
+        _.each(foffers, function(item) {
+            var w = Alloy.createController("row_offer", {
                 OfferID: item.attributes.OfferID,
                 HumanYn: item.attributes.HumanYn,
                 FreelanceYn: item.attributes.FreelanceYn,
                 Title: item.attributes.Title,
                 CategoryTitle: item.attributes.CategoryTitle,
                 ReadYn: item.attributes.ReadYn
-            }).getView());
+            }).getView();
+            w.setOID(item.attributes.OfferID);
+            rows.push(w);
         });
-        $.tblOffers.setData(rows);
+        $.tblOffersList.setData(rows);
     }
-    function viewDetails(idx) {
-        var off = dbOffers.models[idx];
-        var odw = Alloy.createController("offer_details", {
-            data: off,
-            $model: off,
-            op: $.tbNewest
+    function viewDetails(oid) {
+        var off = dbOffers.where({
+            OfferID: oid
         });
-        odw.openOfferDetails($.tbNewest);
+        var odw = Alloy.createController("offer_details", {
+            data: off[0],
+            $model: off[0]
+        });
+        odw.openOfferDetails(args.op);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
-    this.__controllerPath = "newest_offers";
+    this.__controllerPath = "offers_list";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
     arguments[0] ? arguments[0]["$model"] : null;
     arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.__alloyId1 = Ti.UI.createWindow({
+    $.__views.wOffersList = Ti.UI.createWindow({
         navBarHidden: false,
         backgroundColor: "white",
         backgroundImage: "/bg-pattern.png",
         backgroundRepeat: true,
         verticalAlign: "center",
         navTintColor: "#df9368",
-        title: L("newestOffers"),
-        id: "__alloyId1"
+        id: "wOffersList",
+        title: L("headerOffers")
     });
-    fetchOffers ? $.__views.__alloyId1.addEventListener("focus", fetchOffers) : __defers["$.__views.__alloyId1!focus!fetchOffers"] = true;
-    $.__views.tblOffers = Ti.UI.createTableView({
+    $.__views.wOffersList && $.addTopLevelView($.__views.wOffersList);
+    fetchOffers ? $.__views.wOffersList.addEventListener("focus", fetchOffers) : __defers["$.__views.wOffersList!focus!fetchOffers"] = true;
+    $.__views.tblOffersList = Ti.UI.createTableView({
         backgroundColor: "transparent",
         separatorColor: "#df9368",
-        id: "tblOffers"
+        id: "tblOffersList"
     });
-    $.__views.__alloyId1.add($.__views.tblOffers);
-    $.__views.tbNewest = Ti.UI.createTab({
-        window: $.__views.__alloyId1,
-        id: "tbNewest",
-        title: L("newestOffers"),
-        icon: "tb_newest.png"
-    });
-    $.__views.tbNewest && $.addTopLevelView($.__views.tbNewest);
+    $.__views.wOffersList.add($.__views.tblOffersList);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    exports.openOffersList = function(_tab) {
+        _tab.open($.wOffersList);
+    };
     var dbOffers = Alloy.Collections.Offers;
     dbOffers && dbOffers.fetch();
     dbOffers.setSortField("OfferID", "DESC");
     dbOffers.sort();
-    $.tblOffers.addEventListener("click", function(e) {
-        viewDetails(e.index);
+    var args = arguments[0] || {};
+    var foffers = dbOffers.where({
+        CategoryID: args.$model.attributes.CategoryID
     });
-    __defers["$.__views.__alloyId1!focus!fetchOffers"] && $.__views.__alloyId1.addEventListener("focus", fetchOffers);
+    $.tblOffersList.addEventListener("click", function(e) {
+        viewDetails(e.row.getOID());
+    });
+    __defers["$.__views.wOffersList!focus!fetchOffers"] && $.__views.wOffersList.addEventListener("focus", fetchOffers);
     _.extend($, exports);
 }
 
