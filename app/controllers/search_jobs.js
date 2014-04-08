@@ -10,9 +10,9 @@ dbCategories.sort();
 
 $.tblOffers.addEventListener("click", function(e) {
     if (e.section.headerTitle == L('headerCategories'))
-        viewCategory(e.row.getCID());
+        viewCategory(e.row.children[0].text);
     else
-        viewDetails(e.row.getOID());
+        viewDetails(e.row.children[0].text);
 });
 
 function fetchOffersJobs() {
@@ -36,9 +36,9 @@ function fetchOffersJobs() {
         
         _.each(dbCategories.models, function(item) {
             var w = Alloy.createController('row_category', {
+                CategoryID: item.attributes.CategoryID,
                 CategoryTitle: item.attributes.CategoryTitle
             }).getView();
-            w.setCID(item.attributes.CategoryID);
             sCategories.add(w);
         });
 
@@ -68,7 +68,6 @@ function fetchOffersJobs() {
                 CategoryTitle: item.attributes.CategoryTitle,
                 ReadYn: item.attributes.ReadYn
             }).getView();
-            w.setOID(item.attributes.OfferID);
             sOffers.add(w);
         });
 
@@ -85,7 +84,6 @@ function fetchOffersJobs() {
                 CategoryTitle: item.attributes.CategoryTitle,
                 ReadYn: item.attributes.ReadYn
             }).getView();
-            w.setOID(item.attributes.OfferID);
             rows.push(w);
         });
         $.tblOffers.setData(rows);

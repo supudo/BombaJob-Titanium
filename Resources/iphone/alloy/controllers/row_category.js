@@ -14,6 +14,11 @@ function Controller() {
         id: "rowCategory"
     });
     $.__views.rowCategory && $.addTopLevelView($.__views.rowCategory);
+    $.__views.lblCategoryID = Ti.UI.createLabel({
+        id: "lblCategoryID",
+        visible: "false"
+    });
+    $.__views.rowCategory.add($.__views.lblCategoryID);
     $.__views.vRow = Ti.UI.createView({
         layout: "vertical",
         height: Ti.UI.SIZE,
@@ -44,15 +49,9 @@ function Controller() {
     $.__views.vRow.add($.__views.lblTitle);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var cid;
-    exports.setCID = function(catid) {
-        cid = catid;
-    };
-    exports.getCID = function() {
-        return cid;
-    };
     var args = arguments[0] || {};
     $.lblTitle.text = args.CategoryTitle;
+    $.lblCategoryID.text = args.CategoryID;
     _.extend($, exports);
 }
 

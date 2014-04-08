@@ -11,7 +11,6 @@ function Controller() {
                     CategoryTitle: item.attributes.CategoryTitle,
                     ReadYn: item.attributes.ReadYn
                 }).getView();
-                w.setOID(item.attributes.OfferID);
                 rows.push(w);
             }
         });
@@ -68,7 +67,7 @@ function Controller() {
         FreelanceYn: args.$model.freelance > 0 ? 1 : 0
     });
     $.tblSearchResults.addEventListener("click", function(e) {
-        viewDetails(e.row.getOID());
+        viewDetails(e.row.children[0].text);
     });
     __defers["$.__views.wSearchResults!focus!fetchOffers"] && $.__views.wSearchResults.addEventListener("focus", fetchOffers);
     _.extend($, exports);

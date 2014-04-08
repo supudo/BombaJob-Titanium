@@ -1,5 +1,6 @@
 <Alloy>
     <TableViewRow id="rowCategory">
+        <Label id="lblCategoryID" visible="false" />
         <View id="vRow">
             <Label id="lblTitle"/>
         </View>

@@ -25,9 +25,9 @@ function Controller() {
             });
             _.each(dbCategories.models, function(item) {
                 var w = Alloy.createController("row_category", {
+                    CategoryID: item.attributes.CategoryID,
                     CategoryTitle: item.attributes.CategoryTitle
                 }).getView();
-                w.setCID(item.attributes.CategoryID);
                 sCategories.add(w);
             });
             $.tblOffers.appendSection(sCategories);
@@ -63,7 +63,6 @@ function Controller() {
                     CategoryTitle: item.attributes.CategoryTitle,
                     ReadYn: item.attributes.ReadYn
                 }).getView();
-                w.setOID(item.attributes.OfferID);
                 sOffers.add(w);
             });
             $.tblOffers.appendSection(sOffers);
@@ -151,7 +150,7 @@ function Controller() {
     dbCategories.setSortField("CategoryTitle", "ASC");
     dbCategories.sort();
     $.tblOffers.addEventListener("click", function(e) {
-        e.section.headerTitle == L("headerCategories") ? viewCategory(e.row.getCID()) : viewDetails(e.row.getOID());
+        e.section.headerTitle == L("headerCategories") ? viewCategory(e.row.children[0].text) : viewDetails(e.row.children[0].text);
     });
     __defers["$.__views.__alloyId19!focus!fetchOffersPeople"] && $.__views.__alloyId19.addEventListener("focus", fetchOffersPeople);
     _.extend($, exports);

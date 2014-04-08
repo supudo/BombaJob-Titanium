@@ -12,7 +12,7 @@ var args = arguments[0] || {};
 var foffers = dbOffers.where({FreelanceYn: (args.$model.freelance > 0 ? 1 : 0)});
 
 $.tblSearchResults.addEventListener("click", function(e) {
-    viewDetails(e.row.getOID());
+    viewDetails(e.row.children[0].text);
 });
 
 function fetchOffers() {
@@ -29,7 +29,6 @@ function fetchOffers() {
                 CategoryTitle: item.attributes.CategoryTitle,
                 ReadYn: item.attributes.ReadYn
             }).getView();
-            w.setOID(item.attributes.OfferID);
             rows.push(w);
         }
     });

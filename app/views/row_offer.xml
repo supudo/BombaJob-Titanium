@@ -1,5 +1,6 @@
 <Alloy>
     <TableViewRow id="rowOffer">
+        <Label id="lblOfferID" visible="false" />
         <ImageView id="imgType"/>
         <View id="vRow">
             <Label id="lblTitle"/>

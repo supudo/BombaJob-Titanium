@@ -14,6 +14,11 @@ function Controller() {
         id: "rowOffer"
     });
     $.__views.rowOffer && $.addTopLevelView($.__views.rowOffer);
+    $.__views.lblOfferID = Ti.UI.createLabel({
+        id: "lblOfferID",
+        visible: "false"
+    });
+    $.__views.rowOffer.add($.__views.lblOfferID);
     $.__views.imgType = Ti.UI.createImageView({
         width: "40dp",
         left: "5dp",
@@ -72,15 +77,9 @@ function Controller() {
     $.__views.vRow.add($.__views.lblCategory);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var oid;
-    exports.setOID = function(offid) {
-        oid = offid;
-    };
-    exports.getOID = function() {
-        return oid;
-    };
     var args = arguments[0] || {};
     $.imgType.image = args.HumanYn > 0 ? "/images/icon_person.png" : "/images/icon_company.png";
+    $.lblOfferID.text = args.OfferID;
     $.lblTitle.text = args.Title;
     $.lblCategory.text = args.CategoryTitle;
     $.lblTitle.font = {
